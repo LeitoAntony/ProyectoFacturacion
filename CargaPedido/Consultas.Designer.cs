@@ -68,10 +68,15 @@
             this.label3 = new System.Windows.Forms.Label();
             this.estadosBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.fechaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.creaciónToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.asignaciónToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.facturaciónToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPedido)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pedidosBindingSource)).BeginInit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.estadosBindingSource)).BeginInit();
+            this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // dtpFecha
@@ -429,8 +434,39 @@
             // 
             // contextMenuStrip1
             // 
+            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.fechaToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(153, 48);
+            this.contextMenuStrip1.Text = "Consultas";
+            // 
+            // fechaToolStripMenuItem
+            // 
+            this.fechaToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.creaciónToolStripMenuItem,
+            this.asignaciónToolStripMenuItem,
+            this.facturaciónToolStripMenuItem});
+            this.fechaToolStripMenuItem.Name = "fechaToolStripMenuItem";
+            this.fechaToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.fechaToolStripMenuItem.Text = "Fecha";
+            // 
+            // creaciónToolStripMenuItem
+            // 
+            this.creaciónToolStripMenuItem.Name = "creaciónToolStripMenuItem";
+            this.creaciónToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.creaciónToolStripMenuItem.Text = "Creación";
+            // 
+            // asignaciónToolStripMenuItem
+            // 
+            this.asignaciónToolStripMenuItem.Name = "asignaciónToolStripMenuItem";
+            this.asignaciónToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.asignaciónToolStripMenuItem.Text = "Asignación";
+            // 
+            // facturaciónToolStripMenuItem
+            // 
+            this.facturaciónToolStripMenuItem.Name = "facturaciónToolStripMenuItem";
+            this.facturaciónToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.facturaciónToolStripMenuItem.Text = "Facturación";
             // 
             // Consultas
             // 
@@ -455,6 +491,7 @@
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.estadosBindingSource)).EndInit();
+            this.contextMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -500,5 +537,9 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem fechaToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem creaciónToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem asignaciónToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem facturaciónToolStripMenuItem;
     }
 }

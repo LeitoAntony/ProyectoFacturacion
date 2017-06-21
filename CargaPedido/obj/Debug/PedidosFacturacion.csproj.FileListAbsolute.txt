@@ -55,3 +55,17 @@ G:\Proyectos\Proyectos_C#\PedidosFacturacion\CargaPedido\obj\Debug\PedidosFactur
 G:\Proyectos\Proyectos_C#\GitHub\ProyectoFacturacion\CargaPedido\bin\Debug\CargaPedido.exe.config
 G:\Proyectos\Proyectos_C#\GitHub\ProyectoFacturacion\CargaPedido\obj\Debug\CargaPedido.exe
 G:\Proyectos\Proyectos_C#\GitHub\ProyectoFacturacion\CargaPedido\obj\Debug\CargaPedido.pdb
+G:\Proyectos\Proyectos_C#\GitHub\ProyectoFacturacion\CargaPedido\bin\Debug\CargaPedido.exe
+G:\Proyectos\Proyectos_C#\GitHub\ProyectoFacturacion\CargaPedido\bin\Debug\CargaPedido.pdb
+G:\Proyectos\Proyectos_C#\GitHub\ProyectoFacturacion\CargaPedido\bin\Debug\EntityFramework.dll
+G:\Proyectos\Proyectos_C#\GitHub\ProyectoFacturacion\CargaPedido\bin\Debug\PagedList.dll
+G:\Proyectos\Proyectos_C#\GitHub\ProyectoFacturacion\CargaPedido\bin\Debug\EntityFramework.xml
+G:\Proyectos\Proyectos_C#\GitHub\ProyectoFacturacion\CargaPedido\bin\Debug\PagedList.xml
+G:\Proyectos\Proyectos_C#\GitHub\ProyectoFacturacion\CargaPedido\obj\Debug\PedidosFacturacion.csprojResolveAssemblyReference.cache
+G:\Proyectos\Proyectos_C#\GitHub\ProyectoFacturacion\CargaPedido\obj\Debug\PedidosFacturacion.AsignacionPedido.resources
+G:\Proyectos\Proyectos_C#\GitHub\ProyectoFacturacion\CargaPedido\obj\Debug\PedidosFacturacion.CargaPedido.resources
+G:\Proyectos\Proyectos_C#\GitHub\ProyectoFacturacion\CargaPedido\obj\Debug\PedidosFacturacion.Consultas.resources
+G:\Proyectos\Proyectos_C#\GitHub\ProyectoFacturacion\CargaPedido\obj\Debug\PedidosFacturacion.FacturacionPedido.resources
+G:\Proyectos\Proyectos_C#\GitHub\ProyectoFacturacion\CargaPedido\obj\Debug\PedidosFacturacion.Principal.resources
+G:\Proyectos\Proyectos_C#\GitHub\ProyectoFacturacion\CargaPedido\obj\Debug\PedidosFacturacion.Properties.Resources.resources
+G:\Proyectos\Proyectos_C#\GitHub\ProyectoFacturacion\CargaPedido\obj\Debug\PedidosFacturacion.csproj.GenerateResource.Cache
