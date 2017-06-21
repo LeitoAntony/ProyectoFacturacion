@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="CargaPedidoDBModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="CargaPedidoDBModelStoreContainer">
+    <EntitySet Name="Local" EntityType="CargaPedidoDBModel.Store.Local" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Vendedor" EntityType="CargaPedidoDBModel.Store.Vendedor" store:Type="Tables" Schema="dbo" />
+  </EntityContainer>
+  <EntityType Name="Local">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Numero" Type="int" Nullable="false" />
+    <Property Name="Descripcion" Type="nchar" Nullable="false" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Vendedor">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Legajo" Type="int" Nullable="false" />
+    <Property Name="Descripcion" Type="nchar" Nullable="false" MaxLength="50" />
+  </EntityType>
+</Schema>

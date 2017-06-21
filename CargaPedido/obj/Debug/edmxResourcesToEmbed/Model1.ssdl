@@ -1,0 +1,96 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="CargaPedidoDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Asignador">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Legajo" Type="int" Nullable="false" />
+    <Property Name="Descripcion" Type="nchar" MaxLength="500" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Estados">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Estado" Type="nchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Facturista">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Legajo" Type="int" Nullable="false" />
+    <Property Name="Descripcion" Type="nchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Local">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Numero" Type="int" Nullable="false" />
+    <Property Name="Descripcion" Type="nchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Operario">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Legajo" Type="int" />
+    <Property Name="Descripcion" Type="nchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Pedidos">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Id_Local" Type="int" Nullable="false" />
+    <Property Name="Id_Vendedor" Type="int" Nullable="false" />
+    <Property Name="Numero_Local" Type="int" Nullable="false" />
+    <Property Name="Descripcion_Local" Type="nchar" MaxLength="50" Nullable="false" />
+    <Property Name="Legajo_Vendedor" Type="int" Nullable="false" />
+    <Property Name="Descripcion_Vendedor" Type="nchar" MaxLength="50" Nullable="false" />
+    <Property Name="Estado" Type="nchar" MaxLength="50" Nullable="false" />
+    <Property Name="Fecha_creacion" Type="date" />
+    <Property Name="Fecha_Asignacion" Type="date" />
+    <Property Name="Fecha_Facturacion" Type="date" />
+    <Property Name="Hombre" Type="nchar" MaxLength="10" />
+    <Property Name="Mujer" Type="nchar" MaxLength="10" />
+    <Property Name="Kids" Type="nchar" MaxLength="10" />
+    <Property Name="Id_Asignador" Type="int" />
+    <Property Name="Legajo_Asignador" Type="int" />
+    <Property Name="Descripcion_Asignador" Type="nchar" MaxLength="50" />
+    <Property Name="Id_Facturista" Type="int" />
+    <Property Name="Legajo_Facturista" Type="int" />
+    <Property Name="Descripcion_Facturista" Type="nchar" MaxLength="50" />
+    <Property Name="Prioridad_" Type="nchar" MaxLength="50" />
+    <Property Name="Comentario" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="Segmentos">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Hombre" Type="nchar" MaxLength="10" />
+    <Property Name="Mujer" Type="nchar" MaxLength="10" />
+    <Property Name="Kids" Type="nchar" MaxLength="10" />
+  </EntityType>
+  <EntityType Name="Vendedor">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Legajo" Type="int" Nullable="false" />
+    <Property Name="Descripcion" Type="nchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityContainer Name="CargaPedidoDBModelStoreContainer">
+    <EntitySet Name="Asignador" EntityType="Self.Asignador" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Estados" EntityType="Self.Estados" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Facturista" EntityType="Self.Facturista" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Local" EntityType="Self.Local" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Operario" EntityType="Self.Operario" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Pedidos" EntityType="Self.Pedidos" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Segmentos" EntityType="Self.Segmentos" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Vendedor" EntityType="Self.Vendedor" Schema="dbo" store:Type="Tables" />
+  </EntityContainer>
+</Schema>

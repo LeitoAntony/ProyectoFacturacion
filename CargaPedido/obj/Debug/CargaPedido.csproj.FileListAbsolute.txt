@@ -1,0 +1,1 @@
+G:\Proyectos\Proyectos_C#\PedidosFacturacion\CargaPedido\bin\Debug\CargaPedido.exe.config
