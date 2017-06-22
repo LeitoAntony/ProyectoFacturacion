@@ -32,7 +32,7 @@ namespace PedidosFacturacion
         private void actualizarListaTimer()
         {
             
-            timer1.Interval = 1000;
+            timer1.Interval = 10000;
             timer1.Tick += new EventHandler(Timer1_Tick);
 
             timer1.Enabled = true;
@@ -42,7 +42,7 @@ namespace PedidosFacturacion
 
         private void Timer1_Tick(object Sender, EventArgs e)
         {
-            //inicializarPedidos();
+            inicializarPedidos();
         }
 
         private void inicializarPedidos()
