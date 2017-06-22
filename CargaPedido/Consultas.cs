@@ -14,7 +14,7 @@ namespace PedidosFacturacion
 {
     public partial class Consultas : Form
     {
-        private Logica objLogica = new Logica();
+        private Logica objLogica;
         private int paginaActual = 1;
         private int tamañoPagina = 40;
         private Bitmap bmp;
@@ -22,7 +22,6 @@ namespace PedidosFacturacion
         private int ValueIdFila;
         private int contadorFilas = 0;
         private IPagedList<Pedidos> list;
-        private List<Pedidos> lista;
 
         public Consultas()
         {
@@ -49,21 +48,21 @@ namespace PedidosFacturacion
 
         private void Timer1_Tick(object Sender, EventArgs e)
         {
-            list = objLogica.getPedidosPorFecha(dtpFecha.Value, paginaActual, tamañoPagina);
+            
             listarPedidos();
 
         }
         
         private void btmConsultar_Click(object sender, EventArgs e)
         {
-            list = objLogica.getPedidosPorFecha(dtpFecha.Value, paginaActual, tamañoPagina);
+            
             listarPedidos();
             
         }
         private void listarPedidos()
         {
-            
-           // list = objLogica.getPedidosPorFecha(dtpFecha.Value, paginaActual, tamañoPagina);
+            objLogica = new Logica();
+           list = objLogica.getPedidosPorFecha(dtpFecha.Value, paginaActual, tamañoPagina);
             
             
             btnSig.Enabled = list.IsFirstPage;
@@ -79,6 +78,7 @@ namespace PedidosFacturacion
         {
             if (btnPrev.Enabled)
             {
+                objLogica = new Logica();
                 paginaActual--;
                 list = objLogica.getPedidosPorFecha(dtpFecha.Value, paginaActual, tamañoPagina);
                 btnSig.Enabled = list.IsFirstPage;
@@ -92,6 +92,7 @@ namespace PedidosFacturacion
         private void btnSig_Click(object sender, EventArgs e)
         {
             if (btnSig.Enabled) {
+                objLogica = new Logica();
                 paginaActual++;
                 list = objLogica.getPedidosPorFecha(dtpFecha.Value, paginaActual, tamañoPagina);
                 btnSig.Enabled = list.IsFirstPage;
@@ -146,7 +147,8 @@ namespace PedidosFacturacion
         private void dgvPedido_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
             try
-            {   
+            {
+                objLogica = new Logica();
                 IdFila = dgvPedido.CurrentRow.Index;
             ValueIdFila = Convert.ToInt32(dgvPedido.Rows[IdFila].Cells[0].Value);
             Thread.Sleep(500);
@@ -167,6 +169,7 @@ namespace PedidosFacturacion
 
         private void setPrioridad()
         {
+            objLogica = new Logica();
             objLogica.setPrioridad(ValueIdFila);
             actualizarFila("Prioridad");
             dgvPedido.CurrentRow.DefaultCellStyle.BackColor = Color.Red;
@@ -195,6 +198,7 @@ namespace PedidosFacturacion
 
         private void btnAceptar_Click(object sender, EventArgs e)
         {
+            objLogica = new Logica();
             objLogica.comentar(ValueIdFila, txtComentario.Text);
             txtComentario.Text = String.Empty;
         }
