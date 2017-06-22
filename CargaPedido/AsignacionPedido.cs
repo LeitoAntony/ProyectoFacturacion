@@ -26,6 +26,23 @@ namespace PedidosFacturacion
             llenarComboBox();
             cmbAsignador.SelectedIndex = -1;
             cmbFacturista.SelectedIndex = -1;
+            actualizarListaTimer();
+        }
+
+        private void actualizarListaTimer()
+        {
+            
+            timer1.Interval = 100000;
+            timer1.Tick += new EventHandler(Timer1_Tick);
+
+            timer1.Enabled = true;
+
+
+        }
+
+        private void Timer1_Tick(object Sender, EventArgs e)
+        {
+            inicializarPedidos();
         }
 
         private void inicializarPedidos()

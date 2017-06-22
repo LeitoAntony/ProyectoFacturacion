@@ -115,10 +115,10 @@ namespace PedidosFacturacion
             
             
             
-            Thread.Sleep(500);
-            string comentario = objLogica.getComentario(ValueIdFila).ToString();
-            txtPopUp.Text = comentario.ToString();
-            txtPopUp.Visible = true;
+            //Thread.Sleep(500);
+            //string comentario = objLogica.getComentario(ValueIdFila).ToString();
+            //txtPopUp.Text = comentario.ToString();
+            //txtPopUp.Visible = true;
             btnCerrar.Visible = true;
         }
 
