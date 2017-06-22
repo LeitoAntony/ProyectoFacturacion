@@ -15,26 +15,17 @@ namespace PedidosFacturacion
     public partial class Pedidos
     {
         public int Id { get; set; }
-        public int Id_Local { get; set; }
-        public int Id_Vendedor { get; set; }
-        public int Numero_Local { get; set; }
-        public string Descripcion_Local { get; set; }
-        public int Legajo_Vendedor { get; set; }
-        public string Descripcion_Vendedor { get; set; }
-        public string Estado { get; set; }
-        public Nullable<System.DateTime> Fecha_creacion { get; set; }
-        public Nullable<System.DateTime> Fecha_Asignacion { get; set; }
-        public Nullable<System.DateTime> Fecha_Facturacion { get; set; }
-        public string Hombre { get; set; }
-        public string Mujer { get; set; }
-        public string Kids { get; set; }
-        public Nullable<int> Id_Asignador { get; set; }
-        public Nullable<int> Legajo_Asignador { get; set; }
-        public string Descripcion_Asignador { get; set; }
-        public Nullable<int> Id_Facturista { get; set; }
+        public int Id_Canasto { get; set; }
+        public Nullable<System.DateTime> Fecha_canasto { get; set; }
+        public Nullable<System.DateTime> Fecha_asignacion { get; set; }
+        public Nullable<System.DateTime> Fecha_facturacion { get; set; }
+        public string Prioridad { get; set; }
+        public Nullable<int> Id_asignador { get; set; }
+        public Nullable<int> Legajo_asignador { get; set; }
+        public string Descripcion_asignador { get; set; }
+        public Nullable<int> Id_facturista { get; set; }
         public Nullable<int> Legajo_Facturista { get; set; }
-        public string Descripcion_Facturista { get; set; }
+        public string Descripcion_facturista { get; set; }
         public string Comentario { get; set; }
-        public string Prioridad_ { get; set; }
     }
 }

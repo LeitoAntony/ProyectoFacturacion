@@ -10,34 +10,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Pedidos">
-      <EntityTypeMapping TypeName="CargaPedidoDBModel.Pedidos">
-        <MappingFragment StoreEntitySet="Pedidos">
-          <ScalarProperty Name="Prioridad_" ColumnName="Prioridad_" />
-          <ScalarProperty Name="Comentario" ColumnName="Comentario" />
-          <ScalarProperty Name="Descripcion_Facturista" ColumnName="Descripcion_Facturista" />
-          <ScalarProperty Name="Legajo_Facturista" ColumnName="Legajo_Facturista" />
-          <ScalarProperty Name="Id_Facturista" ColumnName="Id_Facturista" />
-          <ScalarProperty Name="Descripcion_Asignador" ColumnName="Descripcion_Asignador" />
-          <ScalarProperty Name="Legajo_Asignador" ColumnName="Legajo_Asignador" />
-          <ScalarProperty Name="Id_Asignador" ColumnName="Id_Asignador" />
-          <ScalarProperty Name="Kids" ColumnName="Kids" />
-          <ScalarProperty Name="Mujer" ColumnName="Mujer" />
-          <ScalarProperty Name="Hombre" ColumnName="Hombre" />
-          <ScalarProperty Name="Fecha_Facturacion" ColumnName="Fecha_Facturacion" />
-          <ScalarProperty Name="Fecha_Asignacion" ColumnName="Fecha_Asignacion" />
-          <ScalarProperty Name="Fecha_creacion" ColumnName="Fecha_creacion" />
-          <ScalarProperty Name="Estado" ColumnName="Estado" />
-          <ScalarProperty Name="Descripcion_Vendedor" ColumnName="Descripcion_Vendedor" />
-          <ScalarProperty Name="Legajo_Vendedor" ColumnName="Legajo_Vendedor" />
-          <ScalarProperty Name="Descripcion_Local" ColumnName="Descripcion_Local" />
-          <ScalarProperty Name="Numero_Local" ColumnName="Numero_Local" />
-          <ScalarProperty Name="Id_Vendedor" ColumnName="Id_Vendedor" />
-          <ScalarProperty Name="Id_Local" ColumnName="Id_Local" />
-          <ScalarProperty Name="Id" ColumnName="Id" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="Operario">
       <EntityTypeMapping TypeName="CargaPedidoDBModel.Operario">
         <MappingFragment StoreEntitySet="Operario">
@@ -75,6 +47,53 @@
           <ScalarProperty Name="Descripcion_Local" ColumnName="Descripcion_Local" />
           <ScalarProperty Name="Numero_Local" ColumnName="Numero_Local" />
           <ScalarProperty Name="Id_Local" ColumnName="Id_Local" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Pedidos2">
+      <EntityTypeMapping TypeName="CargaPedidoDBModel.Pedidos2">
+        <MappingFragment StoreEntitySet="Pedidos2">
+          <ScalarProperty Name="Comentario" ColumnName="Comentario" />
+          <ScalarProperty Name="Prioridad_" ColumnName="Prioridad_" />
+          <ScalarProperty Name="Descripcion_Facturista" ColumnName="Descripcion_Facturista" />
+          <ScalarProperty Name="Legajo_Facturista" ColumnName="Legajo_Facturista" />
+          <ScalarProperty Name="Id_Facturista" ColumnName="Id_Facturista" />
+          <ScalarProperty Name="Descripcion_Asignador" ColumnName="Descripcion_Asignador" />
+          <ScalarProperty Name="Legajo_Asignador" ColumnName="Legajo_Asignador" />
+          <ScalarProperty Name="Id_Asignador" ColumnName="Id_Asignador" />
+          <ScalarProperty Name="Kids" ColumnName="Kids" />
+          <ScalarProperty Name="Mujer" ColumnName="Mujer" />
+          <ScalarProperty Name="Hombre" ColumnName="Hombre" />
+          <ScalarProperty Name="Fecha_Facturacion" ColumnName="Fecha_Facturacion" />
+          <ScalarProperty Name="Fecha_Asignacion" ColumnName="Fecha_Asignacion" />
+          <ScalarProperty Name="Fecha_creacion" ColumnName="Fecha_creacion" />
+          <ScalarProperty Name="Estado" ColumnName="Estado" />
+          <ScalarProperty Name="Descripcion_Vendedor" ColumnName="Descripcion_Vendedor" />
+          <ScalarProperty Name="Legajo_Vendedor" ColumnName="Legajo_Vendedor" />
+          <ScalarProperty Name="Descripcion_Local" ColumnName="Descripcion_Local" />
+          <ScalarProperty Name="Numero_Local" ColumnName="Numero_Local" />
+          <ScalarProperty Name="Id_Vendedor" ColumnName="Id_Vendedor" />
+          <ScalarProperty Name="Id_Local" ColumnName="Id_Local" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Pedidos">
+      <EntityTypeMapping TypeName="CargaPedidoDBModel.Pedidos">
+        <MappingFragment StoreEntitySet="Pedidos">
+          <ScalarProperty Name="Comentario" ColumnName="Comentario" />
+          <ScalarProperty Name="Descripcion_facturista" ColumnName="Descripcion_facturista" />
+          <ScalarProperty Name="Legajo_Facturista" ColumnName="Legajo_Facturista" />
+          <ScalarProperty Name="Id_facturista" ColumnName="Id_facturista" />
+          <ScalarProperty Name="Descripcion_asignador" ColumnName="Descripcion_asignador" />
+          <ScalarProperty Name="Legajo_asignador" ColumnName="Legajo_asignador" />
+          <ScalarProperty Name="Id_asignador" ColumnName="Id_asignador" />
+          <ScalarProperty Name="Prioridad" ColumnName="Prioridad" />
+          <ScalarProperty Name="Fecha_facturacion" ColumnName="Fecha_facturacion" />
+          <ScalarProperty Name="Fecha_asignacion" ColumnName="Fecha_asignacion" />
+          <ScalarProperty Name="Fecha_canasto" ColumnName="Fecha_canasto" />
+          <ScalarProperty Name="Id_Canasto" ColumnName="Id_Canasto" />
           <ScalarProperty Name="Id" ColumnName="Id" />
         </MappingFragment>
       </EntityTypeMapping>

@@ -2,11 +2,12 @@
 <Schema Namespace="CargaPedidoDBModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
   <EntityContainer Name="CargaPedidoDBEntities" p1:LazyLoadingEnabled="true">
     <EntitySet Name="Local" EntityType="CargaPedidoDBModel.Local" />
-    <EntitySet Name="Pedidos" EntityType="CargaPedidoDBModel.Pedidos" />
     <EntitySet Name="Operario" EntityType="CargaPedidoDBModel.Operario" />
     <EntitySet Name="Segmentos" EntityType="CargaPedidoDBModel.Segmentos" />
     <EntitySet Name="Estados" EntityType="CargaPedidoDBModel.Estados" />
     <EntitySet Name="Canasto" EntityType="CargaPedidoDBModel.Canasto" />
+    <EntitySet Name="Pedidos2" EntityType="CargaPedidoDBModel.Pedidos2" />
+    <EntitySet Name="Pedidos" EntityType="CargaPedidoDBModel.Pedidos" />
   </EntityContainer>
   <EntityType Name="Local">
     <Key>
@@ -15,33 +16,6 @@
     <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
     <Property Name="Numero" Type="Int32" Nullable="false" />
     <Property Name="Descripcion" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="true" />
-  </EntityType>
-  <EntityType Name="Pedidos">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Type="Int32" Name="Id_Local" Nullable="false" />
-    <Property Type="Int32" Name="Id_Vendedor" Nullable="false" />
-    <Property Type="Int32" Name="Numero_Local" Nullable="false" />
-    <Property Type="String" Name="Descripcion_Local" Nullable="false" MaxLength="50" FixedLength="true" Unicode="true" />
-    <Property Type="Int32" Name="Legajo_Vendedor" Nullable="false" />
-    <Property Type="String" Name="Descripcion_Vendedor" Nullable="false" MaxLength="50" FixedLength="true" Unicode="true" />
-    <Property Type="String" Name="Estado" Nullable="false" MaxLength="50" FixedLength="true" Unicode="true" />
-    <Property Type="DateTime" Name="Fecha_creacion" Precision="0" />
-    <Property Type="DateTime" Name="Fecha_Asignacion" Precision="0" />
-    <Property Type="DateTime" Name="Fecha_Facturacion" Precision="0" />
-    <Property Type="String" Name="Hombre" MaxLength="10" FixedLength="true" Unicode="true" />
-    <Property Type="String" Name="Mujer" MaxLength="10" FixedLength="true" Unicode="true" />
-    <Property Type="String" Name="Kids" MaxLength="10" FixedLength="true" Unicode="true" />
-    <Property Name="Id_Asignador" Type="Int32" />
-    <Property Name="Legajo_Asignador" Type="Int32" />
-    <Property Name="Descripcion_Asignador" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
-    <Property Name="Id_Facturista" Type="Int32" />
-    <Property Name="Legajo_Facturista" Type="Int32" />
-    <Property Name="Descripcion_Facturista" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
-    <Property Name="Comentario" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <Property Name="Prioridad_" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
   </EntityType>
   <EntityType Name="Operario">
     <Key>
@@ -79,5 +53,50 @@
     <Property Name="Estado" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
     <Property Name="Segmento" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
     <Property Name="Fecha" Type="DateTime" Precision="0" />
+  </EntityType>
+  <EntityType Name="Pedidos2">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Id_Local" Type="Int32" Nullable="false" />
+    <Property Name="Id_Vendedor" Type="Int32" Nullable="false" />
+    <Property Name="Numero_Local" Type="Int32" Nullable="false" />
+    <Property Name="Descripcion_Local" Type="String" Nullable="false" MaxLength="50" FixedLength="true" Unicode="true" />
+    <Property Name="Legajo_Vendedor" Type="Int32" Nullable="false" />
+    <Property Name="Descripcion_Vendedor" Type="String" Nullable="false" MaxLength="50" FixedLength="true" Unicode="true" />
+    <Property Name="Estado" Type="String" Nullable="false" MaxLength="50" FixedLength="true" Unicode="true" />
+    <Property Name="Fecha_creacion" Type="DateTime" Precision="0" />
+    <Property Name="Fecha_Asignacion" Type="DateTime" Precision="0" />
+    <Property Name="Fecha_Facturacion" Type="DateTime" Precision="0" />
+    <Property Name="Hombre" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="Mujer" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="Kids" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="Id_Asignador" Type="Int32" />
+    <Property Name="Legajo_Asignador" Type="Int32" />
+    <Property Name="Descripcion_Asignador" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+    <Property Name="Id_Facturista" Type="Int32" />
+    <Property Name="Legajo_Facturista" Type="Int32" />
+    <Property Name="Descripcion_Facturista" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+    <Property Name="Prioridad_" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+    <Property Name="Comentario" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Pedidos">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Id_Canasto" Type="Int32" Nullable="false" />
+    <Property Name="Fecha_canasto" Type="DateTime" Precision="0" />
+    <Property Name="Fecha_asignacion" Type="DateTime" Precision="0" />
+    <Property Name="Fecha_facturacion" Type="DateTime" Precision="0" />
+    <Property Name="Prioridad" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+    <Property Name="Id_asignador" Type="Int32" />
+    <Property Name="Legajo_asignador" Type="Int32" />
+    <Property Name="Descripcion_asignador" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+    <Property Name="Id_facturista" Type="Int32" />
+    <Property Name="Legajo_Facturista" Type="Int32" />
+    <Property Name="Descripcion_facturista" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+    <Property Name="Comentario" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
   </EntityType>
 </Schema>

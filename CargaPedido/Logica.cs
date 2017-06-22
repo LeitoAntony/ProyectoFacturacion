@@ -12,20 +12,21 @@ namespace PedidosFacturacion
     {
         private CargaPedidoDBEntities context = new CargaPedidoDBEntities();
 
-    //    public int insertarPedido(Local local, Operario vendedor, String txtLocal, String txtVenedor,
-    //        String segmento)
-    //{
-            
+        public int insertarPedido()
+    {
+        Pedidos pedido = new Pedidos();
+        int ret = -1;
+
 
     //        //Adhiero mi objeto pedido a la base
     //        //context.Pedidos.Add(canasto);
             
     //        //guardo
     //        context.SaveChanges();
-    //        return canasto.Id;
-    //}
+            return ret;
+    }
 
-        public void insertarCanasto(Local local, Operario vendedor, String txtLocal, String txtVenedor,
+        public int insertarCanasto(Local local, Operario vendedor, String txtLocal, String txtVenedor,
             String segmento)
         {
             Estados[] estado = context.Estados.ToArray();
@@ -43,8 +44,10 @@ namespace PedidosFacturacion
             canasto.Fecha = DateTime.Now;
             canasto.Segmento = segmento;
 
-            
+            context.Canasto.Add(canasto);
+            context.SaveChanges();
 
+            return canasto.Id;
         }
        
         public void actualizarPedido(int Id, Local local, Operario vendedor, String txtLocal, String txtVenedor,
@@ -53,17 +56,17 @@ namespace PedidosFacturacion
             //traigo el objeto desde la base de datos
             var pedido = context.Pedidos.FirstOrDefault(x => x.Id == Id);
             Estados[] estado = context.Estados.ToArray();
-            pedido.Id_Local = local.Id;
-            pedido.Id_Vendedor = vendedor.Id;
-            pedido.Numero_Local = Convert.ToInt32(txtLocal);
-            pedido.Descripcion_Local = local.Descripcion;
-            pedido.Legajo_Vendedor = Convert.ToInt32(txtVenedor);
-            pedido.Descripcion_Vendedor = vendedor.Descripcion;
-            pedido.Estado = estado[0].Estado;
-            pedido.Fecha_creacion = DateTime.Today;
-            pedido.Hombre = chkHombre;
-            pedido.Mujer = chkMujer;
-            pedido.Kids = chkKids;
+            //pedido.Id_Local = local.Id;
+            //pedido.Id_Vendedor = vendedor.Id;
+            //pedido.Numero_Local = Convert.ToInt32(txtLocal);
+            //pedido.Descripcion_Local = local.Descripcion;
+            //pedido.Legajo_Vendedor = Convert.ToInt32(txtVenedor);
+            //pedido.Descripcion_Vendedor = vendedor.Descripcion;
+            //pedido.Estado = estado[0].Estado;
+            //pedido.Fecha_creacion = DateTime.Today;
+            //pedido.Hombre = chkHombre;
+            //pedido.Mujer = chkMujer;
+            //pedido.Kids = chkKids;
             context.SaveChanges();
         }
 
@@ -80,13 +83,13 @@ namespace PedidosFacturacion
             try
             {
                 var pedidoEditar = context.Pedidos.FirstOrDefault(x => x.Id == Id);
-            pedidoEditar.Id_Facturista = facturista.Id;
-            pedidoEditar.Legajo_Facturista = facturista.Legajo;
-            pedidoEditar.Descripcion_Facturista = facturista.Descripcion;
-            pedidoEditar.Id_Asignador = asignador.Id;
-            pedidoEditar.Legajo_Asignador = asignador.Legajo;
-            pedidoEditar.Descripcion_Asignador = asignador.Descripcion;
-            pedidoEditar.Fecha_Asignacion = fechaAsignacion;
+            //pedidoEditar.Id_Facturista = facturista.Id;
+            //pedidoEditar.Legajo_Facturista = facturista.Legajo;
+            //pedidoEditar.Descripcion_Facturista = facturista.Descripcion;
+            //pedidoEditar.Id_Asignador = asignador.Id;
+            //pedidoEditar.Legajo_Asignador = asignador.Legajo;
+            //pedidoEditar.Descripcion_Asignador = asignador.Descripcion;
+            //pedidoEditar.Fecha_Asignacion = fechaAsignacion;
             context.SaveChanges();
 
             }
@@ -105,18 +108,18 @@ namespace PedidosFacturacion
             context.SaveChanges();
         }
 
-        public void actualizarEstado(int Id, String estado)
-        {
-            var pedidoEditar = context.Pedidos.FirstOrDefault(x => x.Id == Id);
-            pedidoEditar.Estado = estado;
-            context.SaveChanges();
-        }
+        //public void actualizarEstado(int Id, String estado)
+        //{
+        //    var pedidoEditar = context.Pedidos.FirstOrDefault(x => x.Id == Id);
+        //    pedidoEditar.Estado = estado;
+        //    context.SaveChanges();
+        //}
 
         public void actualizarEstadoPorFecha(int Id, String estado)
         {
             var pedidoEditar = context.Pedidos.FirstOrDefault(x => x.Id == Id);
-            pedidoEditar.Estado = estado;
-            pedidoEditar.Fecha_Facturacion = DateTime.Today.Date;
+            //pedidoEditar.Estado = estado;
+            //pedidoEditar.Fecha_Facturacion = DateTime.Today.Date;
             context.SaveChanges();
         }
         
@@ -135,35 +138,35 @@ namespace PedidosFacturacion
             return context.Local.ToList();
         }
         
-        public IPagedList<Pedidos> getPedidosPorFecha(DateTime dtpFecha, int paginaActual, int tamañoPagina)
-        {
-            //manejar excepcion
-            IPagedList<Pedidos> lista1 = ( from q in context.Pedidos where (q.Fecha_creacion == dtpFecha.Date.Date) orderby 
-                                               q.Id select q).ToPagedList(paginaActual, tamañoPagina);
-            return lista1;
-        }
+        //public IPagedList<Pedidos> getPedidosPorFecha(DateTime dtpFecha, int paginaActual, int tamañoPagina)
+        //{
+        //    //manejar excepcion
+        //    //IPagedList<Pedidos> lista1 = ( from q in context.Pedidos where (q.Fecha_creacion == dtpFecha.Date.Date) orderby 
+        //    //                                   q.Id select q).ToPagedList(paginaActual, tamañoPagina);
+        //    return lista1;
+        //}
 
-        public List<Pedidos> getPedidosPorFecha(DateTime fecha)
-        {
-            var ped = (from q in context.Pedidos.Where(q => q.Fecha_creacion == fecha.Date) 
-                       orderby q.Id select q).ToList();         
-            return ped;
-        }
+        //public List<Pedidos> getPedidosPorFecha(DateTime fecha)
+        //{
+        //    var ped = (from q in context.Pedidos.Where(q => q.Fecha_creacion == fecha.Date) 
+        //               orderby q.Id select q).ToList();         
+        //    return ped;
+        //}
         
-        public List<Pedidos> getPedidosPorFacturista(Operario facturista)
-        {
-            List<Pedidos> lista = (from q in context.Pedidos
-                                          where (q.Descripcion_Facturista == facturista.Descripcion
-                                          && q.Estado.Trim() == "Asignado") orderby q.Id
-                                          select q).ToList();
-            return lista;
-        }
+        //public List<Pedidos> getPedidosPorFacturista(Operario facturista)
+        //{
+        //    List<Pedidos> lista = (from q in context.Pedidos
+        //                                  where (q.Descripcion_Facturista == facturista.Descripcion
+        //                                  && q.Estado.Trim() == "Asignado") orderby q.Id
+        //                                  select q).ToList();
+        //    return lista;
+        //}
 
-        public List<Pedidos> getPedidosPorAsignador(String fecha)
-        { 
-            var ped = (from q in context.Pedidos orderby q.Id where q.Fecha_creacion.ToString() == fecha select q).ToList();
-            return ped;
-        }
+        //public List<Pedidos> getPedidosPorAsignador(String fecha)
+        //{ 
+        //    var ped = (from q in context.Pedidos orderby q.Id where q.Fecha_creacion.ToString() == fecha select q).ToList();
+        //    return ped;
+        //}
 
         public IQueryable<Pedidos> getPedidos()
         {
@@ -181,10 +184,14 @@ namespace PedidosFacturacion
         public void setPrioridad(int Id)
         {
             var pedidoEditar = context.Pedidos.FirstOrDefault(x => x.Id == Id);
-            pedidoEditar.Prioridad_ = "Prioridad";
+            //pedidoEditar.Prioridad_ = "Prioridad";
             context.SaveChanges();
         }
-        
+
+        public Segmentos[] getSegmentos()
+        {
+            return context.Segmentos.ToArray();
+        }
     }
 
 

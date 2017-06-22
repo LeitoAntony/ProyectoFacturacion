@@ -26,10 +26,11 @@ namespace PedidosFacturacion
         }
     
         public DbSet<Local> Local { get; set; }
-        public DbSet<Pedidos> Pedidos { get; set; }
         public DbSet<Operario> Operario { get; set; }
         public DbSet<Segmentos> Segmentos { get; set; }
         public DbSet<Estados> Estados { get; set; }
         public DbSet<Canasto> Canasto { get; set; }
+        public DbSet<Pedidos2> Pedidos2 { get; set; }
+        public DbSet<Pedidos> Pedidos { get; set; }
     }
 }

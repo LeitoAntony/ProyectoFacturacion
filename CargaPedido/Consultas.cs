@@ -56,7 +56,7 @@ namespace PedidosFacturacion
             {
                 objLogica = new Logica();
                 paginaActual--;
-                list = objLogica.getPedidosPorFecha(dtpFecha.Value, paginaActual, tamañoPagina);
+                //list = objLogica.getPedidosPorFecha(dtpFecha.Value, paginaActual, tamañoPagina);
                 btnSig.Enabled = list.IsFirstPage;
                 btnPrev.Enabled = list.IsLastPage;
                 lblPagina.Text = string.Format("Página {0}/{1}", list.PageNumber, list.PageCount);
@@ -71,7 +71,7 @@ namespace PedidosFacturacion
             {
                 objLogica = new Logica();
                 paginaActual++;
-                list = objLogica.getPedidosPorFecha(dtpFecha.Value, paginaActual, tamañoPagina);
+                //list = objLogica.getPedidosPorFecha(dtpFecha.Value, paginaActual, tamañoPagina);
                 btnSig.Enabled = list.IsFirstPage;
                 btnPrev.Enabled = list.IsLastPage;
                 lblPagina.Text = string.Format("Página {0}/{1}", list.PageNumber, list.PageCount);
@@ -153,32 +153,32 @@ namespace PedidosFacturacion
             dgvPedido.Rows.Clear();
             dgvPedido.Refresh();
             //completo la grilla 
-            foreach (var item in list)
-            {
-                dgvPedido.Rows.Insert(contadorFilas, item.Id, item.Numero_Local, item.Descripcion_Local,
-                         item.Legajo_Vendedor, item.Descripcion_Vendedor, item.Estado, item.Prioridad_, item.Hombre, item.Mujer, item.Kids
-                          , item.Fecha_creacion, item.Fecha_Asignacion, item.Fecha_Facturacion, item.Descripcion_Asignador, item.Descripcion_Facturista);
-                if (item.Prioridad_ != null)
-                {
-                    if (item.Prioridad_.Trim().ToString() == "Prioridad")
-                        dgvPedido.Rows[contadorFilas].DefaultCellStyle.BackColor = Color.Red;
-                }
-                if (item.Estado != null)
-                {
-                    if (item.Estado.Trim().ToString() == "Asignado")
-                        dgvPedido.Rows[contadorFilas].DefaultCellStyle.BackColor = Color.Yellow;
-                    if (item.Estado.Trim().ToString() == "Facturado")
-                        dgvPedido.Rows[contadorFilas].DefaultCellStyle.BackColor = Color.LightGreen;
-                }
-                this.contadorFilas = contadorFilas + 1;
-            }
+            //foreach (var item in list)
+            //{
+            //    dgvPedido.Rows.Insert(contadorFilas, item.Id, item.Numero_Local, item.Descripcion_Local,
+            //             item.Legajo_Vendedor, item.Descripcion_Vendedor, item.Estado, item.Prioridad_, item.Hombre, item.Mujer, item.Kids
+            //              , item.Fecha_creacion, item.Fecha_Asignacion, item.Fecha_Facturacion, item.Descripcion_Asignador, item.Descripcion_Facturista);
+            //    if (item.Prioridad_ != null)
+            //    {
+            //        if (item.Prioridad_.Trim().ToString() == "Prioridad")
+            //            dgvPedido.Rows[contadorFilas].DefaultCellStyle.BackColor = Color.Red;
+            //    }
+            //    if (item.Estado != null)
+            //    {
+            //        if (item.Estado.Trim().ToString() == "Asignado")
+            //            dgvPedido.Rows[contadorFilas].DefaultCellStyle.BackColor = Color.Yellow;
+            //        if (item.Estado.Trim().ToString() == "Facturado")
+            //            dgvPedido.Rows[contadorFilas].DefaultCellStyle.BackColor = Color.LightGreen;
+            //    }
+            //    this.contadorFilas = contadorFilas + 1;
+            //}
         }
 
         private void listarPedidos()
         {
             objLogica = new Logica();
             //traigo los objetos de la DB
-            list = objLogica.getPedidosPorFecha(dtpFecha.Value, paginaActual, tamañoPagina);
+           // list = objLogica.getPedidosPorFecha(dtpFecha.Value, paginaActual, tamañoPagina);
             btnSig.Enabled = list.IsFirstPage;
             btnPrev.Enabled = list.IsLastPage;
             lblPagina.Text = string.Format("Página {0}/{1}", list.PageNumber, list.PageCount);

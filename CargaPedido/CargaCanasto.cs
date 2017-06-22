@@ -28,7 +28,8 @@ namespace PedidosFacturacion
         private void CargaPedido_Load(object sender, EventArgs e)
         {
             llenarCombo();
-            inicializarPedidos();
+            setRButton();
+            //inicializarPedidos();
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)
@@ -40,10 +41,10 @@ namespace PedidosFacturacion
         {
             //chequeo de campos completos
             if (cmbVendedor.SelectedItem != null && cmbLocal.SelectedItem != null &&
-                (chkHombre.Checked || chkMujer.Checked || chkKids.Checked))
+                (rbHombre.Checked || rbMujer.Checked || rbKids.Checked))
             {
                 //inserto los objetos en la base
-                insertarPedidoDB();
+                //insertarPedidoDB();
                 //cargo el pedido en los comboBox
                 cargarPedido(contadorFilas);
 
@@ -127,19 +128,27 @@ namespace PedidosFacturacion
 
         }
 
-        private void inicializarPedidos()
-        {
-            //traigo desde la base de datos
-            List<Pedidos> pedidos = objLogica.getPedidosPorFecha(DateTime.Now);
-            //los mapeo a la gilla
-            foreach (var item in pedidos)
-            {
-                dgvPedido.Rows.Insert(contadorFilas, item.Id, item.Numero_Local, item.Descripcion_Local,
-                   item.Legajo_Vendedor, item.Descripcion_Vendedor, item.Hombre, item.Mujer, item.Kids
-                    , item.Fecha_creacion);
-                this.contadorFilas = contadorFilas + 1;
-            }
+        private void setRButton() {
+            objLogica = new Logica();
+            Segmentos[] array = objLogica.getSegmentos();
+            rbHombre.Text = array[0].Descripcion;
+            rbMujer.Text = array[1].Descripcion;
+            rbKids.Text = array[2].Descripcion;
         }
+
+        //private void inicializarPedidos()
+        //{
+        //    //traigo desde la base de datos
+        //    List<Pedidos> pedidos = objLogica.getPedidosPorFecha(DateTime.Now);
+        //    //los mapeo a la gilla
+        //    foreach (var item in pedidos)
+        //    {
+        //        dgvPedido.Rows.Insert(contadorFilas, item.Id, item.Numero_Local, item.Descripcion_Local,
+        //           item.Legajo_Vendedor, item.Descripcion_Vendedor, item.Hombre, item.Mujer, item.Kids
+        //            , item.Fecha_creacion);
+        //        this.contadorFilas = contadorFilas + 1;
+        //    }
+        //}
 
         private void cargarPedido(int conFilas)
         {
@@ -147,12 +156,12 @@ namespace PedidosFacturacion
             Local local = (Local)cmbLocal.SelectedItem; 
             Operario vendedor = (Operario)cmbVendedor.SelectedItem;
             string hombre = "", mujer = "", kids = "";
-            if (chkHombre.Checked)
-                hombre = chkHombre.Text;
-            if (chkMujer.Checked)
-                mujer = chkMujer.Text;
-            if (chkKids.Checked)
-                kids = chkKids.Text;
+            if (rbHombre.Checked)
+                hombre = rbHombre.Text;
+            if (rbMujer.Checked)
+                mujer = rbMujer.Text;
+            if (rbKids.Checked)
+                kids = rbKids.Text;
 
             //se carga en el dataGrdView los elemenos 
             dgvPedido.Rows.Insert(conFilas, Id, local.Numero, local.Descripcion, vendedor.Legajo
@@ -161,22 +170,22 @@ namespace PedidosFacturacion
             contadorFilas = contadorFilas + 1;
         }
 
-        private void insertarPedidoDB()
-        {
-            //recupero los datos de local, vendedor y segmento
-            Local local = (Local)cmbLocal.SelectedItem;
-            Operario vendedor = (Operario)cmbVendedor.SelectedItem;
-            string hombre = "", mujer = "", kids = "";
-            if (chkHombre.Checked)
-                hombre = chkHombre.Text;
-            if (chkMujer.Checked)
-                mujer = chkMujer.Text;
-            if (chkKids.Checked)
-                kids = chkKids.Text;
-            //inserto los datos en la DB y me guardo el id de ese pedido
-            //Id = objLogica.insertarPedido(local, vendedor, txtLocal.Text,
-            //    txtVenedor.Text, hombre, mujer, kids);
-        }
+        //private void insertarPedidoDB()
+        //{
+        //    //recupero los datos de local, vendedor y segmento
+        //    Local local = (Local)cmbLocal.SelectedItem;
+        //    Operario vendedor = (Operario)cmbVendedor.SelectedItem;
+        //    string hombre = "", mujer = "", kids = "";
+        //    if (chkHombre.Checked)
+        //        hombre = chkHombre.Text;
+        //    if (chkMujer.Checked)
+        //        mujer = chkMujer.Text;
+        //    if (chkKids.Checked)
+        //        kids = chkKids.Text;
+        //    //inserto los datos en la DB y me guardo el id de ese pedido
+        //    //Id = objLogica.insertarPedido(local, vendedor, txtLocal.Text,
+        //    //    txtVenedor.Text, hombre, mujer, kids);
+        //}
 
         private void eliminarPedido()
         {
@@ -197,12 +206,12 @@ namespace PedidosFacturacion
             Local local = (Local)cmbLocal.SelectedItem;
             Operario vendedor = (Operario)cmbVendedor.SelectedItem;
             string hombre = "", mujer = "", kids = "";
-            if (chkHombre.Checked)
-                hombre = chkHombre.Text;
-            if (chkMujer.Checked)
-                mujer = chkMujer.Text;
-            if (chkKids.Checked)
-                kids = chkKids.Text;
+            if (rbHombre.Checked)
+                hombre = rbHombre.Text;
+            if (rbMujer.Checked)
+                mujer = rbMujer.Text;
+            if (rbKids.Checked)
+                kids = rbKids.Text;
             objLogica.actualizarPedido(ValueIdFila, local, vendedor, txtLocal.Text,
                 txtVenedor.Text, hombre, mujer, kids);
          
@@ -215,9 +224,9 @@ namespace PedidosFacturacion
         {
             cmbVendedor.SelectedIndex = -1;
             cmbLocal.SelectedIndex = -1;
-            chkHombre.Checked = false;
-            chkMujer.Checked = false;
-            chkKids.Checked = false;
+            rbHombre.Checked = false;
+            rbMujer.Checked = false;
+            rbKids.Checked = false;
             txtLocal.Text = String.Empty;
             txtVenedor.Text = String.Empty;
             cmbVendedor.Focus();

@@ -80,27 +80,27 @@ namespace PedidosFacturacion
             Operario facturista = (Operario)cmbFacturista.SelectedItem;
             List<Pedidos> lista = new List<Pedidos>();
             //traigo desde la base de datos
-            lista = objLogica.getPedidosPorFacturista(facturista);
+            //lista = objLogica.getPedidosPorFacturista(facturista);
 
-            foreach (var item in lista)
-            {
-                dataGridView1.Rows.Insert(contadorFilas, item.Id, item.Numero_Local, item.Descripcion_Local,
-                      item.Descripcion_Vendedor, item.Estado, item.Prioridad_, item.Hombre, item.Mujer, item.Kids
-                      , item.Fecha_creacion, item.Fecha_Asignacion, item.Fecha_Facturacion,
-                      item.Descripcion_Facturista, item.Descripcion_Asignador);
+            //foreach (var item in lista)
+            //{
+            //    dataGridView1.Rows.Insert(contadorFilas, item.Id, item.Numero_Local, item.Descripcion_Local,
+            //          item.Descripcion_Vendedor, item.Estado, item.Prioridad_, item.Hombre, item.Mujer, item.Kids
+            //          , item.Fecha_creacion, item.Fecha_Asignacion, item.Fecha_Facturacion,
+            //          item.Descripcion_Facturista, item.Descripcion_Asignador);
 
-                if (item.Prioridad_ != null)
-                {
-                    if (item.Prioridad_.Trim().ToString() == "Prioridad")
-                        dataGridView1.Rows[contadorFilas].DefaultCellStyle.BackColor = Color.Red;
-                }
-                if (item.Estado != null)
-                {
-                    if (item.Estado.Trim().ToString() == "Facturado")                    
-                        dataGridView1.Rows[contadorFilas].DefaultCellStyle.BackColor = Color.LightGreen;                   
-                }
-                this.contadorFilas = contadorFilas + 1;
-            }
+            //    if (item.Prioridad_ != null)
+            //    {
+            //        if (item.Prioridad_.Trim().ToString() == "Prioridad")
+            //            dataGridView1.Rows[contadorFilas].DefaultCellStyle.BackColor = Color.Red;
+            //    }
+            //    if (item.Estado != null)
+            //    {
+            //        if (item.Estado.Trim().ToString() == "Facturado")                    
+            //            dataGridView1.Rows[contadorFilas].DefaultCellStyle.BackColor = Color.LightGreen;                   
+            //    }
+            //    this.contadorFilas = contadorFilas + 1;
+            //}
 
         }
 

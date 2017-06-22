@@ -43,6 +43,24 @@
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Id_Canasto" Type="int" Nullable="false" />
+    <Property Name="Fecha_canasto" Type="date" />
+    <Property Name="Fecha_asignacion" Type="date" />
+    <Property Name="Fecha_facturacion" Type="date" />
+    <Property Name="Prioridad" Type="nchar" MaxLength="50" />
+    <Property Name="Id_asignador" Type="int" />
+    <Property Name="Legajo_asignador" Type="int" />
+    <Property Name="Descripcion_asignador" Type="nchar" MaxLength="50" />
+    <Property Name="Id_facturista" Type="int" />
+    <Property Name="Legajo_Facturista" Type="int" />
+    <Property Name="Descripcion_facturista" Type="nchar" MaxLength="50" />
+    <Property Name="Comentario" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="Pedidos2">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Id_Local" Type="int" Nullable="false" />
     <Property Name="Id_Vendedor" Type="int" Nullable="false" />
     <Property Name="Numero_Local" Type="int" Nullable="false" />
@@ -78,6 +96,7 @@
     <EntitySet Name="Local" EntityType="Self.Local" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Operario" EntityType="Self.Operario" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Pedidos" EntityType="Self.Pedidos" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Pedidos2" EntityType="Self.Pedidos2" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Segmentos" EntityType="Self.Segmentos" Schema="dbo" store:Type="Tables" />
   </EntityContainer>
 </Schema>

@@ -50,14 +50,14 @@ namespace PedidosFacturacion
             this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.chkKids = new System.Windows.Forms.CheckBox();
-            this.chkMujer = new System.Windows.Forms.CheckBox();
-            this.chkHombre = new System.Windows.Forms.CheckBox();
             this.txtVenedor = new System.Windows.Forms.TextBox();
             this.txtLocal = new System.Windows.Forms.TextBox();
             this.btnBorrar = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.rbKids = new System.Windows.Forms.RadioButton();
+            this.rbMujer = new System.Windows.Forms.RadioButton();
+            this.rbHombre = new System.Windows.Forms.RadioButton();
             this.btnActualizar = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.localBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.operarioBindingSource)).BeginInit();
@@ -237,44 +237,14 @@ namespace PedidosFacturacion
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.chkKids);
-            this.groupBox1.Controls.Add(this.chkMujer);
-            this.groupBox1.Controls.Add(this.chkHombre);
+            this.groupBox1.Controls.Add(this.rbKids);
+            this.groupBox1.Controls.Add(this.rbHombre);
+            this.groupBox1.Controls.Add(this.rbMujer);
             this.groupBox1.Location = new System.Drawing.Point(87, 93);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(276, 49);
             this.groupBox1.TabIndex = 15;
             this.groupBox1.TabStop = false;
-            // 
-            // chkKids
-            // 
-            this.chkKids.AutoSize = true;
-            this.chkKids.Location = new System.Drawing.Point(217, 20);
-            this.chkKids.Name = "chkKids";
-            this.chkKids.Size = new System.Drawing.Size(46, 17);
-            this.chkKids.TabIndex = 4;
-            this.chkKids.Text = "Kids";
-            this.chkKids.UseVisualStyleBackColor = true;
-            // 
-            // chkMujer
-            // 
-            this.chkMujer.AutoSize = true;
-            this.chkMujer.Location = new System.Drawing.Point(118, 19);
-            this.chkMujer.Name = "chkMujer";
-            this.chkMujer.Size = new System.Drawing.Size(52, 17);
-            this.chkMujer.TabIndex = 3;
-            this.chkMujer.Text = "Mujer";
-            this.chkMujer.UseVisualStyleBackColor = true;
-            // 
-            // chkHombre
-            // 
-            this.chkHombre.AutoSize = true;
-            this.chkHombre.Location = new System.Drawing.Point(19, 20);
-            this.chkHombre.Name = "chkHombre";
-            this.chkHombre.Size = new System.Drawing.Size(63, 17);
-            this.chkHombre.TabIndex = 2;
-            this.chkHombre.Text = "Hombre";
-            this.chkHombre.UseVisualStyleBackColor = true;
             // 
             // txtVenedor
             // 
@@ -333,6 +303,39 @@ namespace PedidosFacturacion
             this.panel1.Size = new System.Drawing.Size(1340, 178);
             this.panel1.TabIndex = 20;
             // 
+            // rbKids
+            // 
+            this.rbKids.AutoSize = true;
+            this.rbKids.Location = new System.Drawing.Point(193, 20);
+            this.rbKids.Name = "rbKids";
+            this.rbKids.Size = new System.Drawing.Size(45, 17);
+            this.rbKids.TabIndex = 21;
+            this.rbKids.TabStop = true;
+            this.rbKids.Text = "Kids";
+            this.rbKids.UseVisualStyleBackColor = true;
+            // 
+            // rbMujer
+            // 
+            this.rbMujer.AutoSize = true;
+            this.rbMujer.Location = new System.Drawing.Point(106, 19);
+            this.rbMujer.Name = "rbMujer";
+            this.rbMujer.Size = new System.Drawing.Size(51, 17);
+            this.rbMujer.TabIndex = 21;
+            this.rbMujer.TabStop = true;
+            this.rbMujer.Text = "Mujer";
+            this.rbMujer.UseVisualStyleBackColor = true;
+            // 
+            // rbHombre
+            // 
+            this.rbHombre.AutoSize = true;
+            this.rbHombre.Location = new System.Drawing.Point(13, 18);
+            this.rbHombre.Name = "rbHombre";
+            this.rbHombre.Size = new System.Drawing.Size(62, 17);
+            this.rbHombre.TabIndex = 21;
+            this.rbHombre.TabStop = true;
+            this.rbHombre.Text = "Hombre";
+            this.rbHombre.UseVisualStyleBackColor = true;
+            // 
             // btnActualizar
             // 
             this.btnActualizar.Location = new System.Drawing.Point(169, 148);
@@ -379,9 +382,6 @@ namespace PedidosFacturacion
         private System.Windows.Forms.Button btnCancelar;
         private System.Windows.Forms.DataGridView dgvPedido;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.CheckBox chkKids;
-        private System.Windows.Forms.CheckBox chkMujer;
-        private System.Windows.Forms.CheckBox chkHombre;
         private System.Windows.Forms.TextBox txtVenedor;
         private System.Windows.Forms.TextBox txtLocal;
         private System.Windows.Forms.Button btnBorrar;
@@ -399,5 +399,8 @@ namespace PedidosFacturacion
         private System.Windows.Forms.DataGridViewTextBoxColumn Column8;
         private System.Windows.Forms.BindingSource localBindingSource;
         private System.Windows.Forms.BindingSource operarioBindingSource;
+        private System.Windows.Forms.RadioButton rbKids;
+        private System.Windows.Forms.RadioButton rbMujer;
+        private System.Windows.Forms.RadioButton rbHombre;
     }
 }

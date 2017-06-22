@@ -66,29 +66,29 @@ namespace PedidosFacturacion
             objLogica = new Logica();
 
             //traigo los objetos de la DB
-            pedidos = objLogica.getPedidosPorFecha(dtpFecha.Value.Date);
+           // pedidos = objLogica.getPedidosPorFecha(dtpFecha.Value.Date);
             //completo la grilla 
-            foreach (var item in pedidos)
-            {
-                dgvPedidosCargados.Rows.Insert(contadorFilas, item.Id, item.Numero_Local, item.Descripcion_Local,
-                     item.Legajo_Vendedor, item.Descripcion_Vendedor, item.Estado, item.Prioridad_, item.Hombre, item.Mujer, item.Kids
-                      , item.Fecha_creacion, item.Fecha_Asignacion, item.Descripcion_Facturista, item.Descripcion_Asignador);
-                //por cada fila verifica su estado y prioridad
-                if (item.Prioridad_ != null)
-                {
-                    if (item.Prioridad_.Trim().ToString() == "Prioridad")
-                        dgvPedidosCargados.Rows[contadorFilas].DefaultCellStyle.BackColor = Color.Red;
+            //foreach (var item in pedidos)
+            //{
+            //    dgvPedidosCargados.Rows.Insert(contadorFilas, item.Id, item.Numero_Local, item.Descripcion_Local,
+            //         item.Legajo_Vendedor, item.Descripcion_Vendedor, item.Estado, item.Prioridad_, item.Hombre, item.Mujer, item.Kids
+            //          , item.Fecha_creacion, item.Fecha_Asignacion, item.Descripcion_Facturista, item.Descripcion_Asignador);
+            //    //por cada fila verifica su estado y prioridad
+            //    if (item.Prioridad_ != null)
+            //    {
+            //        if (item.Prioridad_.Trim().ToString() == "Prioridad")
+            //            dgvPedidosCargados.Rows[contadorFilas].DefaultCellStyle.BackColor = Color.Red;
 
-                }
-                if (item.Estado != null)
-                {
-                    if (item.Estado.Trim().ToString().Equals("Asignado"))
-                        dgvPedidosCargados.Rows[contadorFilas].DefaultCellStyle.BackColor = Color.Yellow;
-                    if (item.Estado.Trim().ToString().Equals("Facturado"))
-                        dgvPedidosCargados.Rows[contadorFilas].DefaultCellStyle.BackColor = Color.LightGreen;
-                }
-                this.contadorFilas = contadorFilas + 1;
-            }
+            //    }
+            //    if (item.Estado != null)
+            //    {
+            //        if (item.Estado.Trim().ToString().Equals("Asignado"))
+            //            dgvPedidosCargados.Rows[contadorFilas].DefaultCellStyle.BackColor = Color.Yellow;
+            //        if (item.Estado.Trim().ToString().Equals("Facturado"))
+            //            dgvPedidosCargados.Rows[contadorFilas].DefaultCellStyle.BackColor = Color.LightGreen;
+            //    }
+            //    this.contadorFilas = contadorFilas + 1;
+            //}
         }
 
         private void actualizarListaTimer()
@@ -108,7 +108,7 @@ namespace PedidosFacturacion
                 //actualizo la DB con el facturista y la fecha/hora
                 objLogica.setFacturista(ValueIdFila, facturista, asignador, DateTime.Today.Date);
                 //actualizo el estado del pedido
-                objLogica.actualizarEstado(ValueIdFila, "Asignado");
+                //objLogica.actualizarEstado(ValueIdFila, "Asignado");
                 actualizarFila(facturista.Descripcion, asignador.Descripcion);
             }
             catch (Exception ex)
