@@ -22,6 +22,8 @@ namespace PedidosFacturacion
         private int ValueIdFila;
         private int contadorFilas = 0;
         private IPagedList<Pedidos> list;
+        private List<Pedidos> lista;
+
         public Consultas()
         {
             InitializeComponent();
@@ -30,7 +32,24 @@ namespace PedidosFacturacion
         private void Consultas_Load(object sender, EventArgs e)
         {
             //llenarCmbEstados();
+            actualizarListaTimer();
 
+        }
+
+        private void actualizarListaTimer()
+        {
+
+            timer1.Interval = 10000;
+            timer1.Tick += new EventHandler(Timer1_Tick);
+
+            timer1.Enabled = true;
+
+
+        }
+
+        private void Timer1_Tick(object Sender, EventArgs e)
+        {
+            listarPedidos();
         }
         
         private void btmConsultar_Click(object sender, EventArgs e)
@@ -40,14 +59,17 @@ namespace PedidosFacturacion
         }
         private void listarPedidos()
         {
+            
             list = objLogica.getPedidosPorFecha(dtpFecha.Value, paginaActual, tamañoPagina);
+            
+            
             btnSig.Enabled = list.IsFirstPage;
             btnPrev.Enabled = list.IsLastPage;
             lblPagina.Text = string.Format("Página {0}/{1}", list.PageNumber, list.PageCount);
             //pedidosBindingSource.DataSource = list.ToList();
-
+            lista = list.ToList();
             cargarPedido();
-            
+            lista.Clear();
         }
 
         
@@ -84,7 +106,7 @@ namespace PedidosFacturacion
             contadorFilas = 0;
             dgvPedido.Rows.Clear();
             dgvPedido.Refresh();
-            foreach (var item in list)
+            foreach (var item in lista)
             {
                 dgvPedido.Rows.Insert(contadorFilas, item.Id, item.Numero_Local, item.Descripcion_Local,
                          item.Legajo_Vendedor, item.Descripcion_Vendedor, item.Estado, item.Prioridad_, item.Hombre, item.Mujer, item.Kids

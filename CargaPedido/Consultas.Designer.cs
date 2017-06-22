@@ -54,8 +54,6 @@
             this.creaciónToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.asignaciónToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.facturaciónToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.pedidosBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.estadosBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -71,6 +69,9 @@
             this.Column13 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column14 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column15 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.pedidosBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.estadosBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.dgvPedido)).BeginInit();
             this.panel1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
@@ -330,14 +331,6 @@
             this.facturaciónToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
             this.facturaciónToolStripMenuItem.Text = "Facturación";
             // 
-            // pedidosBindingSource
-            // 
-            this.pedidosBindingSource.DataSource = typeof(PedidosFacturacion.Pedidos);
-            // 
-            // estadosBindingSource
-            // 
-            this.estadosBindingSource.DataSource = typeof(PedidosFacturacion.Estados);
-            // 
             // Column1
             // 
             this.Column1.HeaderText = "Id";
@@ -428,6 +421,14 @@
             this.Column15.Name = "Column15";
             this.Column15.ReadOnly = true;
             // 
+            // pedidosBindingSource
+            // 
+            this.pedidosBindingSource.DataSource = typeof(PedidosFacturacion.Pedidos);
+            // 
+            // estadosBindingSource
+            // 
+            this.estadosBindingSource.DataSource = typeof(PedidosFacturacion.Estados);
+            // 
             // Consultas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -503,5 +504,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column13;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column14;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column15;
+        private System.Windows.Forms.Timer timer1;
     }
 }
