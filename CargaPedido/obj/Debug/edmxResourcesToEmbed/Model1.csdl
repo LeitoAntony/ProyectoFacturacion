@@ -3,11 +3,10 @@
   <EntityContainer Name="CargaPedidoDBEntities" p1:LazyLoadingEnabled="true">
     <EntitySet Name="Local" EntityType="CargaPedidoDBModel.Local" />
     <EntitySet Name="Pedidos" EntityType="CargaPedidoDBModel.Pedidos" />
-    <EntitySet Name="Asignador" EntityType="CargaPedidoDBModel.Asignador" />
-    <EntitySet Name="Facturista" EntityType="CargaPedidoDBModel.Facturista" />
     <EntitySet Name="Operario" EntityType="CargaPedidoDBModel.Operario" />
     <EntitySet Name="Segmentos" EntityType="CargaPedidoDBModel.Segmentos" />
     <EntitySet Name="Estados" EntityType="CargaPedidoDBModel.Estados" />
+    <EntitySet Name="Canasto" EntityType="CargaPedidoDBModel.Canasto" />
   </EntityContainer>
   <EntityType Name="Local">
     <Key>
@@ -44,22 +43,6 @@
     <Property Name="Comentario" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="Prioridad_" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
   </EntityType>
-  <EntityType Name="Asignador">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="Legajo" Type="Int32" Nullable="false" />
-    <Property Name="Descripcion" Type="String" Nullable="false" MaxLength="500" FixedLength="true" Unicode="true" />
-  </EntityType>
-  <EntityType Name="Facturista">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="Legajo" Type="Int32" Nullable="false" />
-    <Property Name="Descripcion" Type="String" Nullable="false" MaxLength="50" FixedLength="true" Unicode="true" />
-  </EntityType>
   <EntityType Name="Operario">
     <Key>
       <PropertyRef Name="Id" />
@@ -73,9 +56,7 @@
       <PropertyRef Name="Id" />
     </Key>
     <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Type="String" Name="Hombre" MaxLength="10" FixedLength="true" Unicode="true" />
-    <Property Type="String" Name="Mujer" MaxLength="10" FixedLength="true" Unicode="true" />
-    <Property Type="String" Name="Kids" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="Descripcion" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
   </EntityType>
   <EntityType Name="Estados">
     <Key>
@@ -83,5 +64,20 @@
     </Key>
     <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Type="String" Name="Estado" MaxLength="50" FixedLength="true" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Canasto">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Id_Local" Type="Int32" />
+    <Property Name="Numero_Local" Type="Int32" />
+    <Property Name="Descripcion_Local" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+    <Property Name="Id_Vendedor" Type="Int32" />
+    <Property Name="Legajo_Vendedor" Type="Int32" />
+    <Property Name="Descripcion_Vendedor" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+    <Property Name="Estado" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+    <Property Name="Segmento" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="Fecha" Type="DateTime" Precision="0" />
   </EntityType>
 </Schema>

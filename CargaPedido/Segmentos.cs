@@ -15,8 +15,6 @@ namespace PedidosFacturacion
     public partial class Segmentos
     {
         public int Id { get; set; }
-        public string Hombre { get; set; }
-        public string Mujer { get; set; }
-        public string Kids { get; set; }
+        public string Descripcion { get; set; }
     }
 }

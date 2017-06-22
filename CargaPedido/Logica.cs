@@ -12,33 +12,40 @@ namespace PedidosFacturacion
     {
         private CargaPedidoDBEntities context = new CargaPedidoDBEntities();
 
-        public int insertarPedido(Local local, Operario vendedor, String txtLocal, String txtVenedor,
-            String chkHombre, String chkMujer, String chkKids)
-    {
+    //    public int insertarPedido(Local local, Operario vendedor, String txtLocal, String txtVenedor,
+    //        String segmento)
+    //{
+            
+
+    //        //Adhiero mi objeto pedido a la base
+    //        //context.Pedidos.Add(canasto);
+            
+    //        //guardo
+    //        context.SaveChanges();
+    //        return canasto.Id;
+    //}
+
+        public void insertarCanasto(Local local, Operario vendedor, String txtLocal, String txtVenedor,
+            String segmento)
+        {
             Estados[] estado = context.Estados.ToArray();
             //creo mi objeto
-            Pedidos pedido = new Pedidos();
+            Canasto canasto = new Canasto();
             
             // completo mi objeto pedido con los datos de objetos seleccionados
-            pedido.Id_Local = local.Id;
-            pedido.Id_Vendedor = vendedor.Id;
-            pedido.Numero_Local = Convert.ToInt32(txtLocal);
-            pedido.Descripcion_Local = local.Descripcion;
-            pedido.Legajo_Vendedor = Convert.ToInt32(txtVenedor);
-            pedido.Descripcion_Vendedor = vendedor.Descripcion;
-            pedido.Estado = estado[0].Estado;
-            pedido.Fecha_creacion = DateTime.Today;
-            pedido.Hombre = chkHombre;
-            pedido.Mujer = chkMujer;
-            pedido.Kids = chkKids;
+            canasto.Id_Local = local.Id;
+            canasto.Id_Vendedor = vendedor.Id;
+            canasto.Numero_Local = Convert.ToInt32(txtLocal);
+            canasto.Descripcion_Local = local.Descripcion;
+            canasto.Legajo_Vendedor = Convert.ToInt32(txtVenedor);
+            canasto.Descripcion_Vendedor = vendedor.Descripcion;
+            canasto.Estado = estado[0].Estado;
+            canasto.Fecha = DateTime.Now;
+            canasto.Segmento = segmento;
 
-            //Adhiero mi objeto pedido a la base
-            context.Pedidos.Add(pedido);
             
-            //guardo
-            context.SaveChanges();
-            return pedido.Id;
-    }
+
+        }
        
         public void actualizarPedido(int Id, Local local, Operario vendedor, String txtLocal, String txtVenedor,
             String chkHombre, String chkMujer, String chkKids)
@@ -131,7 +138,7 @@ namespace PedidosFacturacion
         public IPagedList<Pedidos> getPedidosPorFecha(DateTime dtpFecha, int paginaActual, int tamañoPagina)
         {
             //manejar excepcion
-            IPagedList<Pedidos> lista1 = ( from q in context.Pedidos where (q.Fecha_creacion == dtpFecha.Date) orderby 
+            IPagedList<Pedidos> lista1 = ( from q in context.Pedidos where (q.Fecha_creacion == dtpFecha.Date.Date) orderby 
                                                q.Id select q).ToPagedList(paginaActual, tamañoPagina);
             return lista1;
         }

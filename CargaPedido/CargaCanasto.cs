@@ -11,7 +11,7 @@ using System.Windows.Forms;
 
 namespace PedidosFacturacion
 {
-    public partial class CargaPedido : Form
+    public partial class CargaCanasto : Form
     {
         private Logica objLogica = new Logica();
         private int contadorFilas = 0;
@@ -20,7 +20,7 @@ namespace PedidosFacturacion
         private int ValueIdFila;
 
 
-        public CargaPedido()
+        public CargaCanasto()
         {
             InitializeComponent();
         }
@@ -130,7 +130,7 @@ namespace PedidosFacturacion
         private void inicializarPedidos()
         {
             //traigo desde la base de datos
-            List<Pedidos> pedidos = objLogica.getPedidosPorFecha(DateTime.Today.Date);
+            List<Pedidos> pedidos = objLogica.getPedidosPorFecha(DateTime.Now);
             //los mapeo a la gilla
             foreach (var item in pedidos)
             {
@@ -174,8 +174,8 @@ namespace PedidosFacturacion
             if (chkKids.Checked)
                 kids = chkKids.Text;
             //inserto los datos en la DB y me guardo el id de ese pedido
-            Id = objLogica.insertarPedido(local, vendedor, txtLocal.Text,
-                txtVenedor.Text, hombre, mujer, kids);
+            //Id = objLogica.insertarPedido(local, vendedor, txtLocal.Text,
+            //    txtVenedor.Text, hombre, mujer, kids);
         }
 
         private void eliminarPedido()

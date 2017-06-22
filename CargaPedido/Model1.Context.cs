@@ -27,10 +27,9 @@ namespace PedidosFacturacion
     
         public DbSet<Local> Local { get; set; }
         public DbSet<Pedidos> Pedidos { get; set; }
-        public DbSet<Asignador> Asignador { get; set; }
-        public DbSet<Facturista> Facturista { get; set; }
         public DbSet<Operario> Operario { get; set; }
         public DbSet<Segmentos> Segmentos { get; set; }
         public DbSet<Estados> Estados { get; set; }
+        public DbSet<Canasto> Canasto { get; set; }
     }
 }

@@ -37,7 +37,7 @@ namespace PedidosFacturacion
 
         private void agregarToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Form frmCarga = new CargaPedido();
+            Form frmCarga = new CargaCanasto();
             frmCarga.MdiParent = this;
             frmCarga.Show();
         }

@@ -38,24 +38,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Asignador">
-      <EntityTypeMapping TypeName="CargaPedidoDBModel.Asignador">
-        <MappingFragment StoreEntitySet="Asignador">
-          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
-          <ScalarProperty Name="Legajo" ColumnName="Legajo" />
-          <ScalarProperty Name="Id" ColumnName="Id" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="Facturista">
-      <EntityTypeMapping TypeName="CargaPedidoDBModel.Facturista">
-        <MappingFragment StoreEntitySet="Facturista">
-          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
-          <ScalarProperty Name="Legajo" ColumnName="Legajo" />
-          <ScalarProperty Name="Id" ColumnName="Id" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="Operario">
       <EntityTypeMapping TypeName="CargaPedidoDBModel.Operario">
         <MappingFragment StoreEntitySet="Operario">
@@ -68,9 +50,7 @@
     <EntitySetMapping Name="Segmentos">
       <EntityTypeMapping TypeName="CargaPedidoDBModel.Segmentos">
         <MappingFragment StoreEntitySet="Segmentos">
-          <ScalarProperty Name="Kids" ColumnName="Kids" />
-          <ScalarProperty Name="Mujer" ColumnName="Mujer" />
-          <ScalarProperty Name="Hombre" ColumnName="Hombre" />
+          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
           <ScalarProperty Name="Id" ColumnName="Id" />
         </MappingFragment>
       </EntityTypeMapping>
@@ -79,6 +59,22 @@
       <EntityTypeMapping TypeName="CargaPedidoDBModel.Estados">
         <MappingFragment StoreEntitySet="Estados">
           <ScalarProperty Name="Estado" ColumnName="Estado" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Canasto">
+      <EntityTypeMapping TypeName="CargaPedidoDBModel.Canasto">
+        <MappingFragment StoreEntitySet="Canasto">
+          <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+          <ScalarProperty Name="Segmento" ColumnName="Segmento" />
+          <ScalarProperty Name="Estado" ColumnName="Estado" />
+          <ScalarProperty Name="Descripcion_Vendedor" ColumnName="Descripcion_Vendedor" />
+          <ScalarProperty Name="Legajo_Vendedor" ColumnName="Legajo_Vendedor" />
+          <ScalarProperty Name="Id_Vendedor" ColumnName="Id_Vendedor" />
+          <ScalarProperty Name="Descripcion_Local" ColumnName="Descripcion_Local" />
+          <ScalarProperty Name="Numero_Local" ColumnName="Numero_Local" />
+          <ScalarProperty Name="Id_Local" ColumnName="Id_Local" />
           <ScalarProperty Name="Id" ColumnName="Id" />
         </MappingFragment>
       </EntityTypeMapping>

@@ -12,10 +12,17 @@ namespace PedidosFacturacion
     using System;
     using System.Collections.Generic;
     
-    public partial class Asignador
+    public partial class Canasto
     {
         public int Id { get; set; }
-        public int Legajo { get; set; }
-        public string Descripcion { get; set; }
+        public Nullable<int> Id_Local { get; set; }
+        public Nullable<int> Numero_Local { get; set; }
+        public string Descripcion_Local { get; set; }
+        public Nullable<int> Id_Vendedor { get; set; }
+        public Nullable<int> Legajo_Vendedor { get; set; }
+        public string Descripcion_Vendedor { get; set; }
+        public string Estado { get; set; }
+        public string Segmento { get; set; }
+        public Nullable<System.DateTime> Fecha { get; set; }
     }
 }

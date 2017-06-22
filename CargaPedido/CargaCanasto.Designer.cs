@@ -1,7 +1,7 @@
 ﻿
 namespace PedidosFacturacion
 {
-    partial class CargaPedido
+    partial class CargaCanasto
     {
         /// <summary>
         /// Required designer variable.
@@ -308,9 +308,9 @@ namespace PedidosFacturacion
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.Location = new System.Drawing.Point(3, 5);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(109, 16);
+            this.label4.Size = new System.Drawing.Size(116, 16);
             this.label4.TabIndex = 19;
-            this.label4.Text = "Cargar Pedido";
+            this.label4.Text = "Cargar Canasto";
             // 
             // panel1
             // 
@@ -343,7 +343,7 @@ namespace PedidosFacturacion
             this.btnActualizar.UseVisualStyleBackColor = true;
             this.btnActualizar.Click += new System.EventHandler(this.btnActualizar_Click);
             // 
-            // CargaPedido
+            // CargaCanasto
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -352,9 +352,9 @@ namespace PedidosFacturacion
             this.ClientSize = new System.Drawing.Size(1364, 705);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.dgvPedido);
-            this.Name = "CargaPedido";
+            this.Name = "CargaCanasto";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "Carga Pedidos";
+            this.Text = "Carga Canastos";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.CargaPedido_Load);
             ((System.ComponentModel.ISupportInitialize)(this.localBindingSource)).EndInit();
