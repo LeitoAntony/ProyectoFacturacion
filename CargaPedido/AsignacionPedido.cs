@@ -66,7 +66,7 @@ namespace PedidosFacturacion
             objLogica = new Logica();
 
             //traigo los objetos de la DB
-            pedidos = objLogica.getPedidosFecha(dtpFecha.Value.Date);
+            pedidos = objLogica.getPedidosPorFecha(dtpFecha.Value.Date);
             //completo la grilla 
             foreach (var item in pedidos)
             {
@@ -106,9 +106,9 @@ namespace PedidosFacturacion
                 Operario asignador = (Operario)cmbAsignador.SelectedItem;
                 objLogica = new Logica();
                 //actualizo la DB con el facturista y la fecha/hora
-                objLogica.asignarFacturista(ValueIdFila, facturista, asignador, DateTime.Today.Date);
+                objLogica.setFacturista(ValueIdFila, facturista, asignador, DateTime.Today.Date);
                 //actualizo el estado del pedido
-                objLogica.cambiarEstado(ValueIdFila, "Asignado");
+                objLogica.actualizarEstado(ValueIdFila, "Asignado");
                 actualizarFila(facturista.Descripcion, asignador.Descripcion);
             }
             catch (Exception ex)
