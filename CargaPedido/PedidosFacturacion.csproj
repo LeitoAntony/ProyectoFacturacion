@@ -135,9 +135,6 @@
     <Compile Include="Segmentos.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Vendedor.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
     <EmbeddedResource Include="AsignacionPedido.resx">
       <DependentUpon>AsignacionPedido.cs</DependentUpon>
     </EmbeddedResource>

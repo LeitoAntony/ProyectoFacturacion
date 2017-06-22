@@ -7,7 +7,6 @@
     <EntitySet Name="Facturista" EntityType="CargaPedidoDBModel.Facturista" />
     <EntitySet Name="Operario" EntityType="CargaPedidoDBModel.Operario" />
     <EntitySet Name="Segmentos" EntityType="CargaPedidoDBModel.Segmentos" />
-    <EntitySet Name="Vendedor" EntityType="CargaPedidoDBModel.Vendedor" />
     <EntitySet Name="Estados" EntityType="CargaPedidoDBModel.Estados" />
   </EntityContainer>
   <EntityType Name="Local">
@@ -77,14 +76,6 @@
     <Property Type="String" Name="Hombre" MaxLength="10" FixedLength="true" Unicode="true" />
     <Property Type="String" Name="Mujer" MaxLength="10" FixedLength="true" Unicode="true" />
     <Property Type="String" Name="Kids" MaxLength="10" FixedLength="true" Unicode="true" />
-  </EntityType>
-  <EntityType Name="Vendedor">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Type="Int32" Name="Legajo" Nullable="false" />
-    <Property Type="String" Name="Descripcion" Nullable="false" MaxLength="50" FixedLength="true" Unicode="true" />
   </EntityType>
   <EntityType Name="Estados">
     <Key>

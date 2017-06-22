@@ -75,15 +75,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Vendedor">
-      <EntityTypeMapping TypeName="CargaPedidoDBModel.Vendedor">
-        <MappingFragment StoreEntitySet="Vendedor">
-          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
-          <ScalarProperty Name="Legajo" ColumnName="Legajo" />
-          <ScalarProperty Name="Id" ColumnName="Id" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="Estados">
       <EntityTypeMapping TypeName="CargaPedidoDBModel.Estados">
         <MappingFragment StoreEntitySet="Estados">

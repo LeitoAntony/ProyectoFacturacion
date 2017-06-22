@@ -33,9 +33,7 @@ namespace PedidosFacturacion
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.cmbLocal = new System.Windows.Forms.ComboBox();
-            this.localBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.cmbVendedor = new System.Windows.Forms.ComboBox();
-            this.operarioBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.label3 = new System.Windows.Forms.Label();
             this.btnGuardar = new System.Windows.Forms.Button();
             this.btnCancelar = new System.Windows.Forms.Button();
@@ -59,13 +57,13 @@ namespace PedidosFacturacion
             this.label4 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.btnActualizar = new System.Windows.Forms.Button();
-            this.pedidosBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            ((System.ComponentModel.ISupportInitialize)(this.localBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.operarioBindingSource)).BeginInit();
+            this.operarioBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.localBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.dgvPedido)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pedidosBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.operarioBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.localBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -99,10 +97,6 @@ namespace PedidosFacturacion
             this.cmbLocal.ValueMember = "Id";
             this.cmbLocal.SelectedIndexChanged += new System.EventHandler(this.cmbLocal_SelectedIndexChanged);
             // 
-            // localBindingSource
-            // 
-            this.localBindingSource.DataSource = typeof(PedidosFacturacion.Local);
-            // 
             // cmbVendedor
             // 
             this.cmbVendedor.DataSource = this.operarioBindingSource;
@@ -115,10 +109,6 @@ namespace PedidosFacturacion
             this.cmbVendedor.Tag = "Vendedor";
             this.cmbVendedor.ValueMember = "Id";
             this.cmbVendedor.SelectedIndexChanged += new System.EventHandler(this.cmbVendedor_SelectedIndexChanged);
-            // 
-            // operarioBindingSource
-            // 
-            this.operarioBindingSource.DataSource = typeof(PedidosFacturacion.Operario);
             // 
             // label3
             // 
@@ -345,9 +335,13 @@ namespace PedidosFacturacion
             this.btnActualizar.UseVisualStyleBackColor = true;
             this.btnActualizar.Click += new System.EventHandler(this.btnActualizar_Click);
             // 
-            // pedidosBindingSource
+            // operarioBindingSource
             // 
-            this.pedidosBindingSource.DataSource = typeof(PedidosFacturacion.Pedidos);
+            this.operarioBindingSource.DataSource = typeof(PedidosFacturacion.Operario);
+            // 
+            // localBindingSource
+            // 
+            this.localBindingSource.DataSource = typeof(PedidosFacturacion.Local);
             // 
             // CargaPedido
             // 
@@ -363,14 +357,13 @@ namespace PedidosFacturacion
             this.Text = "Carga Pedidos";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.CargaPedido_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.localBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.operarioBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPedido)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pedidosBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.operarioBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.localBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -394,8 +387,6 @@ namespace PedidosFacturacion
         private System.Windows.Forms.Button btnBorrar;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.BindingSource operarioBindingSource;
-        private System.Windows.Forms.BindingSource localBindingSource;
         private System.Windows.Forms.Button btnActualizar;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column9;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
@@ -406,6 +397,7 @@ namespace PedidosFacturacion
         private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column7;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column8;
-        private System.Windows.Forms.BindingSource pedidosBindingSource;
+        private System.Windows.Forms.BindingSource localBindingSource;
+        private System.Windows.Forms.BindingSource operarioBindingSource;
     }
 }

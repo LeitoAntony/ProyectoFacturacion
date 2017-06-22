@@ -11,7 +11,6 @@
         <EntityTypeShape EntityType="CargaPedidoDBModel.Facturista" Width="1.5" PointX="3.75" PointY="2" />
         <EntityTypeShape EntityType="CargaPedidoDBModel.Operario" Width="1.5" PointX="11.125" PointY="4.25" />
         <EntityTypeShape EntityType="CargaPedidoDBModel.Segmentos" Width="1.5" PointX="11.25" PointY="2" />
-        <EntityTypeShape EntityType="CargaPedidoDBModel.Vendedor" Width="1.5" PointX="1.4403215765209503" PointY="7.9773250408365044" />
         <EntityTypeShape EntityType="CargaPedidoDBModel.Estados" Width="1.5" PointX="8.875" PointY="2.875" />
       </Diagram>
     </edmx:Diagrams>
