@@ -25,7 +25,6 @@ namespace PedidosFacturacion
             InitializeComponent();
         }
 
-
         private void CargaPedido_Load(object sender, EventArgs e)
         {
             llenarCombo();
@@ -56,8 +55,6 @@ namespace PedidosFacturacion
             resetearCampos();
         }
 
-
-
         private void btnBorrar_Click(object sender, EventArgs e)
         {
             eliminarPedido();
@@ -69,6 +66,27 @@ namespace PedidosFacturacion
             actualizarPedido();
         }
 
+        private void dgvPedido_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            IdFila = dgvPedido.CurrentRow.Index;
+            ValueIdFila = Convert.ToInt32(dgvPedido.Rows[IdFila].Cells[0].Value);
+        }
+
+        private void cmbLocal_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Local local = (Local)cmbLocal.SelectedItem;
+            if (cmbLocal.SelectedItem != null)
+                txtLocal.Text = local.Numero.ToString();
+
+        }
+
+        private void cmbVendedor_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Operario vendedor = (Operario)cmbVendedor.SelectedItem;
+            if (cmbVendedor.SelectedItem != null)
+                txtVenedor.Text = vendedor.Legajo.ToString();
+        }
+        
         private void llenarCombo()
         {
             //completo los ComboBox
@@ -112,31 +130,15 @@ namespace PedidosFacturacion
         private void inicializarPedidos()
         {
             //traigo desde la base de datos
-            IQueryable<Pedidos> pedidos = objLogica.getPedidos();
-            var query = (from p in pedidos
-                         where (p.Fecha_creacion == DateTime.Today.Date)
-                         orderby p.Id
-                         select new
-                         {
-                             p.Id,
-                             p.Numero_Local,
-                             p.Descripcion_Local,
-                             p.Legajo_Vendedor,
-                             p.Descripcion_Vendedor,
-                             p.Hombre,
-                             p.Mujer,
-                             p.Kids,
-                             p.Fecha_creacion
-                         }).ToList();
-            foreach (var item in query)
+            List<Pedidos> pedidos = objLogica.getPedidosPorFecha(DateTime.Today.Date);
+            //los mapeo a la gilla
+            foreach (var item in pedidos)
             {
                 dgvPedido.Rows.Insert(contadorFilas, item.Id, item.Numero_Local, item.Descripcion_Local,
                    item.Legajo_Vendedor, item.Descripcion_Vendedor, item.Hombre, item.Mujer, item.Kids
                     , item.Fecha_creacion);
                 this.contadorFilas = contadorFilas + 1;
             }
-
-
         }
 
         private void cargarPedido(int conFilas)
@@ -209,11 +211,6 @@ namespace PedidosFacturacion
             resetearCampos();
         }
 
-        //private void actualizarFila(String estado)
-        //{
-        //    dgvPedido[4, IdFila].Value = estado;
-        //}
-
         private void resetearCampos()
         {
             cmbVendedor.SelectedIndex = -1;
@@ -226,27 +223,7 @@ namespace PedidosFacturacion
             cmbVendedor.Focus();
         }
 
-        private void dgvPedido_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-            IdFila = dgvPedido.CurrentRow.Index;
-            ValueIdFila = Convert.ToInt32(dgvPedido.Rows[IdFila].Cells[0].Value);
-        }
-
-        private void cmbLocal_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            Local local = (Local)cmbLocal.SelectedItem;
-            if (cmbLocal.SelectedItem != null)
-                txtLocal.Text = local.Numero.ToString();
-
-        }
-
-        private void cmbVendedor_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            Operario vendedor = (Operario)cmbVendedor.SelectedItem;
-            if (cmbVendedor.SelectedItem != null)
-                txtVenedor.Text = vendedor.Legajo.ToString();
-        }
-
+        
 
     }
 }

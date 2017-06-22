@@ -39,6 +39,7 @@ namespace PedidosFacturacion
             context.SaveChanges();
             return pedido.Id;
     }
+       
         public void actualizarPedido(int Id, Local local, Operario vendedor, String txtLocal, String txtVenedor,
             String chkHombre, String chkMujer, String chkKids)
         {
@@ -59,7 +60,6 @@ namespace PedidosFacturacion
             context.SaveChanges();
         }
 
-
         public void eliminarPedido(int Id)
         {
             //Borra en la base y guarda los cambios
@@ -68,99 +68,7 @@ namespace PedidosFacturacion
             context.SaveChanges();
         }
 
-        public void actualizarPedido(int Id)
-        {
-            Pedidos actualizarPedido = context.Pedidos.Find(Id);
-
-        }
-
-        public List<Operario> getOperarios()
-        {
-            return context.Operario.ToList();
-        }
-
-        public List<Estados> getEstados()
-        {
-           return context.Estados.ToList();
-        }
-
-        public List<Local> getLocales()
-        {
-            return context.Local.ToList();
-        }
-        
-        public IPagedList<Pedidos> getPedidosPorFecha(DateTime dtpFecha, int paginaActual, int tamañoPagina)
-        {
-
-            //maneja excepcion
-            IPagedList<Pedidos> lista1 = ( from q in context.Pedidos where (q.Fecha_creacion == dtpFecha.Date) orderby 
-                                               q.Id select q).ToPagedList(paginaActual, tamañoPagina);
-            return lista1;
-        }
-
-        public List<Pedidos> listaPedidosPorFacturista(Operario facturista)
-        {
-            List<Pedidos> lista = (from q in context.Pedidos
-                                          where (q.Descripcion_Facturista == facturista.Descripcion
-                                          && q.Estado.Trim() == "Asignado")
-                                          orderby
-                                              q.Id
-                                          select q).ToList();
-            return lista;
-        }
-
-        public List<Pedidos> pedidosAsignador(String fecha)
-        { 
-            var ped = (from q in context.Pedidos orderby q.Id where q.Fecha_creacion.ToString() == fecha select q).ToList();
-            return ped;
-        }
-
-        public List<Pedidos> getPedidosFecha(DateTime fecha)
-        {
-            var ped = (from q in context.Pedidos.Where(q => q.Fecha_creacion == fecha.Date) 
-                       orderby q.Id select q).ToList();
-            List<Pedidos> pFecha = new List<Pedidos>();
-            pFecha = ped;
-            return pFecha;
-        }
-
-        public IQueryable<Pedidos> getPedidos()
-        {
-            IQueryable<Pedidos> pedidos = context.Pedidos;
-            return pedidos;
-        }
-
-        public void cambiarEstado(int Id, String estado)
-        {
-            var pedidoEditar = context.Pedidos.FirstOrDefault(x => x.Id == Id);
-            pedidoEditar.Estado = estado;
-            context.SaveChanges();
-        }
-
-        public void cambiarEstadoFecha(int Id, String estado)
-        {
-            var pedidoEditar = context.Pedidos.FirstOrDefault(x => x.Id == Id);
-            pedidoEditar.Estado = estado;
-            pedidoEditar.Fecha_Facturacion = DateTime.Today.Date;
-            context.SaveChanges();
-        }
-
-        public void setPrioridad(int Id)
-        {
-            var pedidoEditar = context.Pedidos.FirstOrDefault(x => x.Id == Id);
-            pedidoEditar.Prioridad_ = "Prioridad";
-            context.SaveChanges();
-        }
-
-        public String getComentario(int Id)
-        {
-            String comentarioPedido = context.Pedidos.FirstOrDefault(x => x.Id == Id).Comentario;
-
-            return comentarioPedido;
-        }
-
-
-        public void asignarFacturista(int Id, Operario facturista, Operario asignador, DateTime fechaAsignacion)
+        public void setFacturista(int Id, Operario facturista, Operario asignador, DateTime fechaAsignacion)
         {
             try
             {
@@ -183,12 +91,93 @@ namespace PedidosFacturacion
             
         }
 
-        public void comentar(int Id, String comentario) 
+        public void setComentario(int Id, String comentario) 
         {
             var pedidoEditar = context.Pedidos.FirstOrDefault(x => x.Id == Id);
             pedidoEditar.Comentario = comentario;
             context.SaveChanges();
         }
+
+        public void actualizarEstado(int Id, String estado)
+        {
+            var pedidoEditar = context.Pedidos.FirstOrDefault(x => x.Id == Id);
+            pedidoEditar.Estado = estado;
+            context.SaveChanges();
+        }
+
+        public void actualizarEstadoPorFecha(int Id, String estado)
+        {
+            var pedidoEditar = context.Pedidos.FirstOrDefault(x => x.Id == Id);
+            pedidoEditar.Estado = estado;
+            pedidoEditar.Fecha_Facturacion = DateTime.Today.Date;
+            context.SaveChanges();
+        }
+        
+        public List<Operario> getOperarios()
+        {
+            return context.Operario.ToList();
+        }
+
+        public List<Estados> getEstados()
+        {
+           return context.Estados.ToList();
+        }
+
+        public List<Local> getLocales()
+        {
+            return context.Local.ToList();
+        }
+        
+        public IPagedList<Pedidos> getPedidosPorFecha(DateTime dtpFecha, int paginaActual, int tamañoPagina)
+        {
+            //manejar excepcion
+            IPagedList<Pedidos> lista1 = ( from q in context.Pedidos where (q.Fecha_creacion == dtpFecha.Date) orderby 
+                                               q.Id select q).ToPagedList(paginaActual, tamañoPagina);
+            return lista1;
+        }
+
+        public List<Pedidos> getPedidosPorFecha(DateTime fecha)
+        {
+            var ped = (from q in context.Pedidos.Where(q => q.Fecha_creacion == fecha.Date) 
+                       orderby q.Id select q).ToList();         
+            return ped;
+        }
+        
+        public List<Pedidos> getPedidosPorFacturista(Operario facturista)
+        {
+            List<Pedidos> lista = (from q in context.Pedidos
+                                          where (q.Descripcion_Facturista == facturista.Descripcion
+                                          && q.Estado.Trim() == "Asignado") orderby q.Id
+                                          select q).ToList();
+            return lista;
+        }
+
+        public List<Pedidos> getPedidosPorAsignador(String fecha)
+        { 
+            var ped = (from q in context.Pedidos orderby q.Id where q.Fecha_creacion.ToString() == fecha select q).ToList();
+            return ped;
+        }
+
+        public IQueryable<Pedidos> getPedidos()
+        {
+            IQueryable<Pedidos> pedidos = context.Pedidos;
+            return pedidos;
+        }  
+
+        public String getComentario(int Id)
+        {
+            String comentarioPedido = context.Pedidos.FirstOrDefault(x => x.Id == Id).Comentario;
+
+            return comentarioPedido;
+        }
+
+        public void setPrioridad(int Id)
+        {
+            var pedidoEditar = context.Pedidos.FirstOrDefault(x => x.Id == Id);
+            pedidoEditar.Prioridad_ = "Prioridad";
+            context.SaveChanges();
+        }
+        
     }
 
 

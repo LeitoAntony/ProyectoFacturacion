@@ -27,52 +27,28 @@ namespace PedidosFacturacion
         {
             InitializeComponent();
         }
-        
+
         private void Consultas_Load(object sender, EventArgs e)
         {
-            //llenarCmbEstados();
             actualizarListaTimer();
-
         }
 
         private void actualizarListaTimer()
         {
-
             timer1.Interval = 10000;
             timer1.Tick += new EventHandler(Timer1_Tick);
-
             timer1.Enabled = true;
-
-
         }
 
         private void Timer1_Tick(object Sender, EventArgs e)
         {
-            
             listarPedidos();
-
         }
-        
+
         private void btmConsultar_Click(object sender, EventArgs e)
         {
-            
             listarPedidos();
-            
         }
-        private void listarPedidos()
-        {
-            objLogica = new Logica();
-           list = objLogica.getPedidosPorFecha(dtpFecha.Value, paginaActual, tamañoPagina);
-            
-            
-            btnSig.Enabled = list.IsFirstPage;
-            btnPrev.Enabled = list.IsLastPage;
-            lblPagina.Text = string.Format("Página {0}/{1}", list.PageNumber, list.PageCount);
-            cargarPedido();
-        }
-
-        
-        
 
         private void btnPrev_Click(object sender, EventArgs e)
         {
@@ -86,12 +62,13 @@ namespace PedidosFacturacion
                 lblPagina.Text = string.Format("Página {0}/{1}", list.PageNumber, list.PageCount);
                 cargarPedido();
             }
-            
+
         }
 
         private void btnSig_Click(object sender, EventArgs e)
         {
-            if (btnSig.Enabled) {
+            if (btnSig.Enabled)
+            {
                 objLogica = new Logica();
                 paginaActual++;
                 list = objLogica.getPedidosPorFecha(dtpFecha.Value, paginaActual, tamañoPagina);
@@ -102,17 +79,85 @@ namespace PedidosFacturacion
             }
 
         }
+        
+        private void btnActualizar_Click(object sender, EventArgs e)
+        {
+            setPrioridad();
+        }
+
+        private void txtComentario_MouseEnter(object sender, EventArgs e)
+        {
+            txtComentario.Size = new System.Drawing.Size(557, 150);
+
+        }
+
+        private void txtComentario_MouseLeave(object sender, EventArgs e)
+        {
+            this.txtComentario.Size = new System.Drawing.Size(557, 20);
+        }
+
+        private void btnAceptar_Click(object sender, EventArgs e)
+        {
+            objLogica = new Logica();
+            objLogica.setComentario(ValueIdFila, txtComentario.Text);
+            txtComentario.Text = String.Empty;
+        }
+
+        private void btnCerrar_Click(object sender, EventArgs e)
+        {
+            Thread.Sleep(500);
+            txtPopUp.Visible = false;
+            txtPopUp.Text = string.Empty;
+            btnCerrar.Visible = false;
+        }
+        
+        private void btnImprimir_Click(object sender, EventArgs e)
+        {
+            int altura = dgvPedido.Height;
+            dgvPedido.Height = dgvPedido.RowCount * dgvPedido.RowTemplate.Height * 2;
+            bmp = new Bitmap(dgvPedido.Width, dgvPedido.Height);
+            dgvPedido.DrawToBitmap(bmp, new Rectangle(0, 0, dgvPedido.Width, dgvPedido.Height));
+            dgvPedido.Height = altura;
+            printPreviewDialog1.ShowDialog();
+        }
+
+        private void printDocument1_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)
+        {
+            e.Graphics.DrawImage(bmp, 0, 0);
+        }
+
+        private void dgvPedido_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            try
+            {
+                objLogica = new Logica();
+                //capturo el id de la fila y su valor(Id de cada pedido)
+                IdFila = dgvPedido.CurrentRow.Index;
+                ValueIdFila = Convert.ToInt32(dgvPedido.Rows[IdFila].Cells[0].Value);
+                //muestro el comentario en el caso que exista
+                Thread.Sleep(500);
+                string comentario = objLogica.getComentario(ValueIdFila).ToString();
+                txtPopUp.Text = comentario.ToString();
+                btnCerrar.Visible = true;
+                txtPopUp.Visible = true;
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("El pedido no contiene comentarios!");
+            }
+        }
+        
         private void cargarPedido()
         {
             contadorFilas = 0;
             dgvPedido.Rows.Clear();
             dgvPedido.Refresh();
+            //completo la grilla 
             foreach (var item in list)
             {
                 dgvPedido.Rows.Insert(contadorFilas, item.Id, item.Numero_Local, item.Descripcion_Local,
                          item.Legajo_Vendedor, item.Descripcion_Vendedor, item.Estado, item.Prioridad_, item.Hombre, item.Mujer, item.Kids
                           , item.Fecha_creacion, item.Fecha_Asignacion, item.Fecha_Facturacion, item.Descripcion_Asignador, item.Descripcion_Facturista);
-
                 if (item.Prioridad_ != null)
                 {
                     if (item.Prioridad_.Trim().ToString() == "Prioridad")
@@ -129,48 +174,23 @@ namespace PedidosFacturacion
             }
         }
 
-        private void btnImprimir_Click(object sender, EventArgs e)
+        private void listarPedidos()
         {
-            int altura = dgvPedido.Height;
-            dgvPedido.Height = dgvPedido.RowCount * dgvPedido.RowTemplate.Height * 2;
-            bmp = new Bitmap(dgvPedido.Width, dgvPedido.Height);
-            dgvPedido.DrawToBitmap(bmp, new Rectangle(0 , 0, dgvPedido.Width, dgvPedido.Height));
-            dgvPedido.Height = altura;
-            printPreviewDialog1.ShowDialog();
+            objLogica = new Logica();
+            //traigo los objetos de la DB
+            list = objLogica.getPedidosPorFecha(dtpFecha.Value, paginaActual, tamañoPagina);
+            btnSig.Enabled = list.IsFirstPage;
+            btnPrev.Enabled = list.IsLastPage;
+            lblPagina.Text = string.Format("Página {0}/{1}", list.PageNumber, list.PageCount);
+            //mapeo el pedido a la grilla
+            cargarPedido();
         }
-
-        private void printDocument1_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)
-        {
-            e.Graphics.DrawImage(bmp, 0, 0);
-        }
-
-        private void dgvPedido_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
-        {
-            try
-            {
-                objLogica = new Logica();
-                IdFila = dgvPedido.CurrentRow.Index;
-            ValueIdFila = Convert.ToInt32(dgvPedido.Rows[IdFila].Cells[0].Value);
-            Thread.Sleep(500);
-            string comentario = objLogica.getComentario(ValueIdFila).ToString();
-            txtPopUp.Text = comentario.ToString();
-                btnCerrar.Visible = true;
-            txtPopUp.Visible = true;
-            
-
-            }
-            catch (Exception)
-            {
-
-                MessageBox.Show("El pedido no contiene comentarios!");
-            }
-            
-        }
-
+        
         private void setPrioridad()
         {
             objLogica = new Logica();
             objLogica.setPrioridad(ValueIdFila);
+
             actualizarFila("Prioridad");
             dgvPedido.CurrentRow.DefaultCellStyle.BackColor = Color.Red;
         }
@@ -179,46 +199,6 @@ namespace PedidosFacturacion
         {
             dgvPedido[6, IdFila].Value = pri;
         }
-
-        private void btnActualizar_Click(object sender, EventArgs e)
-        {
-            setPrioridad();
-        }
-
-        private void txtComentario_MouseEnter(object sender, EventArgs e)
-        {
-            txtComentario.Size = new System.Drawing.Size(557, 150);
-            
-        }
-
-        private void txtComentario_MouseLeave(object sender, EventArgs e)
-        {
-            this.txtComentario.Size = new System.Drawing.Size(557, 20);
-        }
-
-        private void btnAceptar_Click(object sender, EventArgs e)
-        {
-            objLogica = new Logica();
-            objLogica.comentar(ValueIdFila, txtComentario.Text);
-            txtComentario.Text = String.Empty;
-        }
-
-        private void btnCerrar_Click(object sender, EventArgs e)
-        {
-            Thread.Sleep(500);
-            txtPopUp.Visible = false;
-            txtPopUp.Text = string.Empty;
-            btnCerrar.Visible = false;
-        }
-
-        //private void dgvPedido_CellMouseEnter(object sender, DataGridViewCellEventArgs e)
-        //{
-        //    Thread.Sleep(1000);
-        //    txtPopUp.Text = objLogica.getComentario(ValueIdFila);
-        //    txtPopUp.Visible = true;
-
-        //}
-
 
     }
 }
