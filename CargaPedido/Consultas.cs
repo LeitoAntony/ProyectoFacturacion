@@ -49,27 +49,27 @@ namespace PedidosFacturacion
 
         private void Timer1_Tick(object Sender, EventArgs e)
         {
+            list = objLogica.getPedidosPorFecha(dtpFecha.Value, paginaActual, tamañoPagina);
             listarPedidos();
+
         }
         
         private void btmConsultar_Click(object sender, EventArgs e)
         {
+            list = objLogica.getPedidosPorFecha(dtpFecha.Value, paginaActual, tamañoPagina);
             listarPedidos();
             
         }
         private void listarPedidos()
         {
             
-            list = objLogica.getPedidosPorFecha(dtpFecha.Value, paginaActual, tamañoPagina);
+           // list = objLogica.getPedidosPorFecha(dtpFecha.Value, paginaActual, tamañoPagina);
             
             
             btnSig.Enabled = list.IsFirstPage;
             btnPrev.Enabled = list.IsLastPage;
             lblPagina.Text = string.Format("Página {0}/{1}", list.PageNumber, list.PageCount);
-            //pedidosBindingSource.DataSource = list.ToList();
-            lista = list.ToList();
             cargarPedido();
-            lista.Clear();
         }
 
         
@@ -106,7 +106,7 @@ namespace PedidosFacturacion
             contadorFilas = 0;
             dgvPedido.Rows.Clear();
             dgvPedido.Refresh();
-            foreach (var item in lista)
+            foreach (var item in list)
             {
                 dgvPedido.Rows.Insert(contadorFilas, item.Id, item.Numero_Local, item.Descripcion_Local,
                          item.Legajo_Vendedor, item.Descripcion_Vendedor, item.Estado, item.Prioridad_, item.Hombre, item.Mujer, item.Kids

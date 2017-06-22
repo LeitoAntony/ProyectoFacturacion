@@ -12,11 +12,15 @@ namespace PedidosFacturacion
 {
     public partial class AsignacionPedido : Form
     {
-        private Logica objLogica= new Logica();
+        private Logica objLogica;
         private int contadorFilas = 0;
         private int IdFila;
         private int ValueIdFila;
+        private List<Pedidos> pedidos = new List<Pedidos>();
+
+
         public AsignacionPedido()
+            
         {
             InitializeComponent();
         }
@@ -51,11 +55,13 @@ namespace PedidosFacturacion
             contadorFilas = 0;
             dgvPedidosCargados.Rows.Clear();
             dgvPedidosCargados.Refresh();
+
+            pedidos.Clear();
             //traigo desde la base de datos
 
+           objLogica = new Logica();
+            pedidos = objLogica.getPedidosFecha(dtpFecha.Value.Date);
 
-            var pedidos = objLogica.getPedidosFecha(dtpFecha.Value.Date);
-            
             foreach (var item in pedidos)
             {  
                 dgvPedidosCargados.Rows.Insert(contadorFilas, item.Id, item.Numero_Local, item.Descripcion_Local,
@@ -102,6 +108,7 @@ namespace PedidosFacturacion
             Operario facturista = (Operario)cmbFacturista.SelectedItem;
             Operario asignador = (Operario)cmbAsignador.SelectedItem;
 
+            objLogica = new Logica();
             objLogica.asignarFacturista(ValueIdFila, facturista, asignador,DateTime.Today.Date);
             
             objLogica.cambiarEstado(ValueIdFila, "Asignado");
@@ -126,6 +133,7 @@ namespace PedidosFacturacion
         {
             try
             {
+                objLogica = new Logica();
                 //hace un bindig de los vendedores del context a una lista
                 List<Operario> operarios = objLogica.getOperarios();
                 //agrega los vendedores al combobox definido por el objeto vendedorBindngSource

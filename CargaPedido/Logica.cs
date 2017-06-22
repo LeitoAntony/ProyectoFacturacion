@@ -101,8 +101,8 @@ namespace PedidosFacturacion
         public List<Pedidos> listaPedidosPorFacturista(Operario facturista)
         {
             List<Pedidos> lista = (from q in context.Pedidos
-                                          where (q.Descripcion_Facturista == facturista.Descripcion)
-                                          //&& q.Estado.Trim() == "Asignado")// && q.Estado.Trim() == "Prioridad")
+                                          where (q.Descripcion_Facturista == facturista.Descripcion
+                                          && q.Estado.Trim() == "Asignado")
                                           orderby
                                               q.Id
                                           select q).ToList();
@@ -119,7 +119,9 @@ namespace PedidosFacturacion
         {
             var ped = (from q in context.Pedidos.Where(q => q.Fecha_creacion == fecha.Date) 
                        orderby q.Id select q).ToList();
-            return ped;
+            List<Pedidos> pFecha = new List<Pedidos>();
+            pFecha = ped;
+            return pFecha;
         }
 
         public IQueryable<Pedidos> getPedidos()
