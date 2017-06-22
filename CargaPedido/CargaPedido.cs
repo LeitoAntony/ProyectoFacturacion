@@ -83,7 +83,7 @@ namespace PedidosFacturacion
             try
             {
                 //hace un bindig de los vendedores del context a una lista
-                List<Operario> vendedores = objLogica.operarios();
+                List<Operario> vendedores = objLogica.getOperarios();
                 //agrega los vendedores al combobox definido por el objeto vendedorBindngSource
                 this.operarioBindingSource.DataSource = vendedores;
             }
@@ -98,7 +98,7 @@ namespace PedidosFacturacion
             try
             {
                 //hace un bindig de los locales del context a una lista
-                var locales = objLogica.locales();
+                var locales = objLogica.getLocales();
                 //agrega los locales al combobox definido por el objeto localBindngSource
                 this.localBindingSource.DataSource = locales;
             }

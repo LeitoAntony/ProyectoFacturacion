@@ -53,39 +53,26 @@ namespace PedidosFacturacion
             dgvPedidosCargados.Refresh();
             //traigo desde la base de datos
 
+
+            var pedidos = objLogica.getPedidosFecha(dtpFecha.Value.Date);
             
-            IQueryable<Pedidos> pedidos = objLogica.getPedidos();
-            var query = (from p in pedidos.Where( p => p.Fecha_creacion == dtpFecha.Value.Date)
-                         orderby p.Prioridad_ descending
-                         select new
-                         {
-                             p.Id,
-                             p.Numero_Local,
-                             p.Descripcion_Local,
-                             p.Legajo_Vendedor,
-                             p.Descripcion_Vendedor,
-                             p.Estado,
-                             p.Prioridad_,
-                             p.Hombre,
-                             p.Mujer,
-                             p.Kids,
-                             p.Fecha_creacion,
-                             p.Fecha_Asignacion,
-                             p.Descripcion_Facturista,
-                             p.Descripcion_Asignador
-                         }).ToList();
-            foreach (var item in query)
-            {
-                
+            foreach (var item in pedidos)
+            {  
                 dgvPedidosCargados.Rows.Insert(contadorFilas, item.Id, item.Numero_Local, item.Descripcion_Local,
                      item.Legajo_Vendedor, item.Descripcion_Vendedor, item.Estado,item.Prioridad_, item.Hombre, item.Mujer, item.Kids
                       , item.Fecha_creacion, item.Fecha_Asignacion, item.Descripcion_Facturista, item.Descripcion_Asignador);
                 
                 if (item.Prioridad_ != null) {
-                    if (item.Prioridad_.Trim().ToString() == "Prioridad")
-                    {
-                        dgvPedidosCargados.Rows[contadorFilas].DefaultCellStyle.BackColor = Color.Red;                     
-                    }              
+                    if (item.Prioridad_.Trim().ToString() == "Prioridad")                    
+                        dgvPedidosCargados.Rows[contadorFilas].DefaultCellStyle.BackColor = Color.Red;
+                    
+                }
+                if (item.Estado != null)
+                { 
+                    if (item.Estado.Trim().ToString().Equals("Asignado"))
+                        dgvPedidosCargados.Rows[contadorFilas].DefaultCellStyle.BackColor = Color.Yellow;
+                    if (item.Estado.Trim().ToString().Equals("Facturado"))
+                        dgvPedidosCargados.Rows[contadorFilas].DefaultCellStyle.BackColor = Color.LightGreen;
                 }
                 this.contadorFilas = contadorFilas + 1;  
             }
@@ -110,13 +97,21 @@ namespace PedidosFacturacion
 
         private void actualizarAsignacion()
         {
+            try
+            {
             Operario facturista = (Operario)cmbFacturista.SelectedItem;
             Operario asignador = (Operario)cmbAsignador.SelectedItem;
 
             objLogica.asignarFacturista(ValueIdFila, facturista, asignador,DateTime.Today.Date);
             
             objLogica.cambiarEstado(ValueIdFila, "Asignado");
-            actualizarFila(facturista.Descripcion, asignador.Descripcion); 
+            actualizarFila(facturista.Descripcion, asignador.Descripcion);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+             
         }
 
         private void actualizarFila(String facturista, string asignador)
@@ -132,7 +127,7 @@ namespace PedidosFacturacion
             try
             {
                 //hace un bindig de los vendedores del context a una lista
-                List<Operario> operarios = objLogica.operarios();
+                List<Operario> operarios = objLogica.getOperarios();
                 //agrega los vendedores al combobox definido por el objeto vendedorBindngSource
                 this.operarioBindingSource.DataSource = operarios;
                 this.operarioBindingSource1.DataSource = operarios;

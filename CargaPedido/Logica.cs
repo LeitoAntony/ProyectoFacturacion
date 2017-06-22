@@ -15,7 +15,6 @@ namespace PedidosFacturacion
         public int insertarPedido(Local local, Operario vendedor, String txtLocal, String txtVenedor,
             String chkHombre, String chkMujer, String chkKids)
     {
-            Segmentos[] segmentos = context.Segmentos.ToArray();
             Estados[] estado = context.Estados.ToArray();
             //creo mi objeto
             Pedidos pedido = new Pedidos();
@@ -75,23 +74,25 @@ namespace PedidosFacturacion
 
         }
 
-        public List<Operario> operarios()
+        public List<Operario> getOperarios()
         {
             return context.Operario.ToList();
         }
 
-        public List<Estados> estados()
+        public List<Estados> getEstados()
         {
            return context.Estados.ToList();
         }
 
-        public List<Local> locales()
+        public List<Local> getLocales()
         {
             return context.Local.ToList();
         }
-
-        public IPagedList<Pedidos> listaPedidosPorFecha(DateTime dtpFecha, int paginaActual, int tamañoPagina)
+        
+        public IPagedList<Pedidos> getPedidosPorFecha(DateTime dtpFecha, int paginaActual, int tamañoPagina)
         {
+
+            //maneja excepcion
             IPagedList<Pedidos> lista1 = ( from q in context.Pedidos where (q.Fecha_creacion == dtpFecha.Date) orderby 
                                                q.Id select q).ToPagedList(paginaActual, tamañoPagina);
             return lista1;
@@ -114,9 +115,10 @@ namespace PedidosFacturacion
             return ped;
         }
 
-        public List<Pedidos> pedidosPrioridad()
+        public List<Pedidos> getPedidosFecha(DateTime fecha)
         {
-            var ped = (from q in context.Pedidos orderby q.Prioridad_  descending select q).ToList();
+            var ped = (from q in context.Pedidos.Where(q => q.Fecha_creacion == fecha.Date) 
+                       orderby q.Id select q).ToList();
             return ped;
         }
 
@@ -158,7 +160,9 @@ namespace PedidosFacturacion
 
         public void asignarFacturista(int Id, Operario facturista, Operario asignador, DateTime fechaAsignacion)
         {
-            var pedidoEditar = context.Pedidos.FirstOrDefault(x => x.Id == Id);
+            try
+            {
+                var pedidoEditar = context.Pedidos.FirstOrDefault(x => x.Id == Id);
             pedidoEditar.Id_Facturista = facturista.Id;
             pedidoEditar.Legajo_Facturista = facturista.Legajo;
             pedidoEditar.Descripcion_Facturista = facturista.Descripcion;
@@ -167,6 +171,14 @@ namespace PedidosFacturacion
             pedidoEditar.Descripcion_Asignador = asignador.Descripcion;
             pedidoEditar.Fecha_Asignacion = fechaAsignacion;
             context.SaveChanges();
+
+            }
+            catch (Exception)
+            {
+                throw new NullReferenceException("Debe seleccionar un pedido y completar los campos! ");
+               
+            }
+            
         }
 
         public void comentar(int Id, String comentario) 

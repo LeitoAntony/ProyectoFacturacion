@@ -33,24 +33,6 @@
             this.dtpFecha = new System.Windows.Forms.DateTimePicker();
             this.btmConsultar = new System.Windows.Forms.Button();
             this.dgvPedido = new System.Windows.Forms.DataGridView();
-            this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.numeroLocalDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.descripcionLocalDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.legajoVendedorDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.descripcionVendedorDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.estadoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Prioridad = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.fechacreacionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.fechaAsignacionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.fechaFacturacionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.hombreDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.mujerDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.kidsDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.legajoAsignadorDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.descripcionAsignadorDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.legajoFacturistaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.descripcionFacturistaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.pedidosBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.btnPrev = new System.Windows.Forms.Button();
             this.btnSig = new System.Windows.Forms.Button();
             this.btnImprimir = new System.Windows.Forms.Button();
@@ -66,18 +48,34 @@
             this.btnCerrar = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.label3 = new System.Windows.Forms.Label();
-            this.estadosBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.consultasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.fechaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.creaciónToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.asignaciónToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.facturaciónToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.pedidosBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.estadosBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column11 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column12 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column13 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column14 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column15 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPedido)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pedidosBindingSource)).BeginInit();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.estadosBindingSource)).BeginInit();
             this.menuStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pedidosBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.estadosBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // dtpFecha
@@ -106,27 +104,24 @@
             this.dgvPedido.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.dgvPedido.AutoGenerateColumns = false;
+            this.dgvPedido.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvPedido.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvPedido.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Id,
-            this.numeroLocalDataGridViewTextBoxColumn,
-            this.descripcionLocalDataGridViewTextBoxColumn,
-            this.legajoVendedorDataGridViewTextBoxColumn,
-            this.descripcionVendedorDataGridViewTextBoxColumn,
-            this.estadoDataGridViewTextBoxColumn,
-            this.Prioridad,
-            this.fechacreacionDataGridViewTextBoxColumn,
-            this.fechaAsignacionDataGridViewTextBoxColumn,
-            this.fechaFacturacionDataGridViewTextBoxColumn,
-            this.hombreDataGridViewTextBoxColumn,
-            this.mujerDataGridViewTextBoxColumn,
-            this.kidsDataGridViewTextBoxColumn,
-            this.legajoAsignadorDataGridViewTextBoxColumn,
-            this.descripcionAsignadorDataGridViewTextBoxColumn,
-            this.legajoFacturistaDataGridViewTextBoxColumn,
-            this.descripcionFacturistaDataGridViewTextBoxColumn});
-            this.dgvPedido.DataSource = this.pedidosBindingSource;
+            this.Column1,
+            this.Column2,
+            this.Column3,
+            this.Column4,
+            this.Column5,
+            this.Column7,
+            this.Column6,
+            this.Column8,
+            this.Column9,
+            this.Column10,
+            this.Column11,
+            this.Column12,
+            this.Column13,
+            this.Column14,
+            this.Column15});
             this.dgvPedido.Location = new System.Drawing.Point(12, 91);
             this.dgvPedido.Name = "dgvPedido";
             this.dgvPedido.ReadOnly = true;
@@ -135,149 +130,9 @@
             this.dgvPedido.TabIndex = 2;
             this.dgvPedido.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvPedido_CellMouseClick);
             // 
-            // Id
-            // 
-            this.Id.DataPropertyName = "Id";
-            this.Id.HeaderText = "Id";
-            this.Id.Name = "Id";
-            this.Id.ReadOnly = true;
-            this.Id.Visible = false;
-            // 
-            // numeroLocalDataGridViewTextBoxColumn
-            // 
-            this.numeroLocalDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.numeroLocalDataGridViewTextBoxColumn.DataPropertyName = "Numero_Local";
-            this.numeroLocalDataGridViewTextBoxColumn.HeaderText = "Numero Local";
-            this.numeroLocalDataGridViewTextBoxColumn.Name = "numeroLocalDataGridViewTextBoxColumn";
-            this.numeroLocalDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // descripcionLocalDataGridViewTextBoxColumn
-            // 
-            this.descripcionLocalDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.descripcionLocalDataGridViewTextBoxColumn.DataPropertyName = "Descripcion_Local";
-            this.descripcionLocalDataGridViewTextBoxColumn.HeaderText = "Descripcion Local";
-            this.descripcionLocalDataGridViewTextBoxColumn.Name = "descripcionLocalDataGridViewTextBoxColumn";
-            this.descripcionLocalDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // legajoVendedorDataGridViewTextBoxColumn
-            // 
-            this.legajoVendedorDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.legajoVendedorDataGridViewTextBoxColumn.DataPropertyName = "Legajo_Vendedor";
-            this.legajoVendedorDataGridViewTextBoxColumn.HeaderText = "Legajo Vendedor";
-            this.legajoVendedorDataGridViewTextBoxColumn.Name = "legajoVendedorDataGridViewTextBoxColumn";
-            this.legajoVendedorDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // descripcionVendedorDataGridViewTextBoxColumn
-            // 
-            this.descripcionVendedorDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.descripcionVendedorDataGridViewTextBoxColumn.DataPropertyName = "Descripcion_Vendedor";
-            this.descripcionVendedorDataGridViewTextBoxColumn.HeaderText = "Descripcion Vendedor";
-            this.descripcionVendedorDataGridViewTextBoxColumn.Name = "descripcionVendedorDataGridViewTextBoxColumn";
-            this.descripcionVendedorDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // estadoDataGridViewTextBoxColumn
-            // 
-            this.estadoDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.estadoDataGridViewTextBoxColumn.DataPropertyName = "Estado";
-            this.estadoDataGridViewTextBoxColumn.HeaderText = "Estado";
-            this.estadoDataGridViewTextBoxColumn.Name = "estadoDataGridViewTextBoxColumn";
-            this.estadoDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // Prioridad
-            // 
-            this.Prioridad.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Prioridad.DataPropertyName = "Prioridad";
-            this.Prioridad.HeaderText = "Prioridad";
-            this.Prioridad.Name = "Prioridad";
-            this.Prioridad.ReadOnly = true;
-            // 
-            // fechacreacionDataGridViewTextBoxColumn
-            // 
-            this.fechacreacionDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.fechacreacionDataGridViewTextBoxColumn.DataPropertyName = "Fecha_creacion";
-            this.fechacreacionDataGridViewTextBoxColumn.HeaderText = "Fecha Creacion";
-            this.fechacreacionDataGridViewTextBoxColumn.Name = "fechacreacionDataGridViewTextBoxColumn";
-            this.fechacreacionDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // fechaAsignacionDataGridViewTextBoxColumn
-            // 
-            this.fechaAsignacionDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.fechaAsignacionDataGridViewTextBoxColumn.DataPropertyName = "Fecha_Asignacion";
-            this.fechaAsignacionDataGridViewTextBoxColumn.HeaderText = "Fecha Asignacion";
-            this.fechaAsignacionDataGridViewTextBoxColumn.Name = "fechaAsignacionDataGridViewTextBoxColumn";
-            this.fechaAsignacionDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // fechaFacturacionDataGridViewTextBoxColumn
-            // 
-            this.fechaFacturacionDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.fechaFacturacionDataGridViewTextBoxColumn.DataPropertyName = "Fecha_Facturacion";
-            this.fechaFacturacionDataGridViewTextBoxColumn.HeaderText = "Fecha Facturacion";
-            this.fechaFacturacionDataGridViewTextBoxColumn.Name = "fechaFacturacionDataGridViewTextBoxColumn";
-            this.fechaFacturacionDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // hombreDataGridViewTextBoxColumn
-            // 
-            this.hombreDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.hombreDataGridViewTextBoxColumn.DataPropertyName = "Hombre";
-            this.hombreDataGridViewTextBoxColumn.HeaderText = "Hombre";
-            this.hombreDataGridViewTextBoxColumn.Name = "hombreDataGridViewTextBoxColumn";
-            this.hombreDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // mujerDataGridViewTextBoxColumn
-            // 
-            this.mujerDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.mujerDataGridViewTextBoxColumn.DataPropertyName = "Mujer";
-            this.mujerDataGridViewTextBoxColumn.HeaderText = "Mujer";
-            this.mujerDataGridViewTextBoxColumn.Name = "mujerDataGridViewTextBoxColumn";
-            this.mujerDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // kidsDataGridViewTextBoxColumn
-            // 
-            this.kidsDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.kidsDataGridViewTextBoxColumn.DataPropertyName = "Kids";
-            this.kidsDataGridViewTextBoxColumn.HeaderText = "Kids";
-            this.kidsDataGridViewTextBoxColumn.Name = "kidsDataGridViewTextBoxColumn";
-            this.kidsDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // legajoAsignadorDataGridViewTextBoxColumn
-            // 
-            this.legajoAsignadorDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.legajoAsignadorDataGridViewTextBoxColumn.DataPropertyName = "Legajo_Asignador";
-            this.legajoAsignadorDataGridViewTextBoxColumn.HeaderText = "Legajo Asignador";
-            this.legajoAsignadorDataGridViewTextBoxColumn.Name = "legajoAsignadorDataGridViewTextBoxColumn";
-            this.legajoAsignadorDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // descripcionAsignadorDataGridViewTextBoxColumn
-            // 
-            this.descripcionAsignadorDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.descripcionAsignadorDataGridViewTextBoxColumn.DataPropertyName = "Descripcion_Asignador";
-            this.descripcionAsignadorDataGridViewTextBoxColumn.HeaderText = "Descripcion Asignador";
-            this.descripcionAsignadorDataGridViewTextBoxColumn.Name = "descripcionAsignadorDataGridViewTextBoxColumn";
-            this.descripcionAsignadorDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // legajoFacturistaDataGridViewTextBoxColumn
-            // 
-            this.legajoFacturistaDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.legajoFacturistaDataGridViewTextBoxColumn.DataPropertyName = "Legajo_Facturista";
-            this.legajoFacturistaDataGridViewTextBoxColumn.HeaderText = "Legajo Facturista";
-            this.legajoFacturistaDataGridViewTextBoxColumn.Name = "legajoFacturistaDataGridViewTextBoxColumn";
-            this.legajoFacturistaDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // descripcionFacturistaDataGridViewTextBoxColumn
-            // 
-            this.descripcionFacturistaDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.descripcionFacturistaDataGridViewTextBoxColumn.DataPropertyName = "Descripcion_Facturista";
-            this.descripcionFacturistaDataGridViewTextBoxColumn.HeaderText = "Descripcion Facturista";
-            this.descripcionFacturistaDataGridViewTextBoxColumn.Name = "descripcionFacturistaDataGridViewTextBoxColumn";
-            this.descripcionFacturistaDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // pedidosBindingSource
-            // 
-            this.pedidosBindingSource.DataSource = typeof(PedidosFacturacion.Pedidos);
-            // 
             // btnPrev
             // 
-            this.btnPrev.Location = new System.Drawing.Point(1070, 619);
+            this.btnPrev.Location = new System.Drawing.Point(1027, 619);
             this.btnPrev.Name = "btnPrev";
             this.btnPrev.Size = new System.Drawing.Size(75, 23);
             this.btnPrev.TabIndex = 3;
@@ -308,7 +163,7 @@
             // lblPagina
             // 
             this.lblPagina.AutoSize = true;
-            this.lblPagina.Location = new System.Drawing.Point(1151, 624);
+            this.lblPagina.Location = new System.Drawing.Point(1130, 624);
             this.lblPagina.Name = "lblPagina";
             this.lblPagina.Size = new System.Drawing.Size(40, 13);
             this.lblPagina.TabIndex = 6;
@@ -429,10 +284,6 @@
             this.label3.TabIndex = 0;
             this.label3.Text = "Consultas";
             // 
-            // estadosBindingSource
-            // 
-            this.estadosBindingSource.DataSource = typeof(PedidosFacturacion.Estados);
-            // 
             // menuStrip1
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -458,26 +309,124 @@
             this.asignaciónToolStripMenuItem,
             this.facturaciónToolStripMenuItem});
             this.fechaToolStripMenuItem.Name = "fechaToolStripMenuItem";
-            this.fechaToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.fechaToolStripMenuItem.Size = new System.Drawing.Size(105, 22);
             this.fechaToolStripMenuItem.Text = "Fecha";
             // 
             // creaciónToolStripMenuItem
             // 
             this.creaciónToolStripMenuItem.Name = "creaciónToolStripMenuItem";
-            this.creaciónToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.creaciónToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
             this.creaciónToolStripMenuItem.Text = "Creación";
             // 
             // asignaciónToolStripMenuItem
             // 
             this.asignaciónToolStripMenuItem.Name = "asignaciónToolStripMenuItem";
-            this.asignaciónToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.asignaciónToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
             this.asignaciónToolStripMenuItem.Text = "Asignación";
             // 
             // facturaciónToolStripMenuItem
             // 
             this.facturaciónToolStripMenuItem.Name = "facturaciónToolStripMenuItem";
-            this.facturaciónToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.facturaciónToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
             this.facturaciónToolStripMenuItem.Text = "Facturación";
+            // 
+            // pedidosBindingSource
+            // 
+            this.pedidosBindingSource.DataSource = typeof(PedidosFacturacion.Pedidos);
+            // 
+            // estadosBindingSource
+            // 
+            this.estadosBindingSource.DataSource = typeof(PedidosFacturacion.Estados);
+            // 
+            // Column1
+            // 
+            this.Column1.HeaderText = "Id";
+            this.Column1.Name = "Column1";
+            this.Column1.ReadOnly = true;
+            // 
+            // Column2
+            // 
+            this.Column2.HeaderText = "Numero Local";
+            this.Column2.Name = "Column2";
+            this.Column2.ReadOnly = true;
+            // 
+            // Column3
+            // 
+            this.Column3.HeaderText = "Local";
+            this.Column3.Name = "Column3";
+            this.Column3.ReadOnly = true;
+            // 
+            // Column4
+            // 
+            this.Column4.HeaderText = "Legajo";
+            this.Column4.Name = "Column4";
+            this.Column4.ReadOnly = true;
+            // 
+            // Column5
+            // 
+            this.Column5.HeaderText = "Vendedor";
+            this.Column5.Name = "Column5";
+            this.Column5.ReadOnly = true;
+            // 
+            // Column7
+            // 
+            this.Column7.HeaderText = "Estado";
+            this.Column7.Name = "Column7";
+            this.Column7.ReadOnly = true;
+            // 
+            // Column6
+            // 
+            this.Column6.HeaderText = "Prioridad";
+            this.Column6.Name = "Column6";
+            this.Column6.ReadOnly = true;
+            // 
+            // Column8
+            // 
+            this.Column8.HeaderText = "Hombre";
+            this.Column8.Name = "Column8";
+            this.Column8.ReadOnly = true;
+            // 
+            // Column9
+            // 
+            this.Column9.HeaderText = "Mujer";
+            this.Column9.Name = "Column9";
+            this.Column9.ReadOnly = true;
+            // 
+            // Column10
+            // 
+            this.Column10.HeaderText = "Kids";
+            this.Column10.Name = "Column10";
+            this.Column10.ReadOnly = true;
+            // 
+            // Column11
+            // 
+            this.Column11.HeaderText = "Fecha creación";
+            this.Column11.Name = "Column11";
+            this.Column11.ReadOnly = true;
+            // 
+            // Column12
+            // 
+            this.Column12.HeaderText = "Fecha asignación";
+            this.Column12.Name = "Column12";
+            this.Column12.ReadOnly = true;
+            // 
+            // Column13
+            // 
+            this.Column13.HeaderText = "Fecha facturación";
+            this.Column13.Name = "Column13";
+            this.Column13.ReadOnly = true;
+            // 
+            // Column14
+            // 
+            this.Column14.HeaderText = "Asignador";
+            this.Column14.Name = "Column14";
+            this.Column14.ReadOnly = true;
+            // 
+            // Column15
+            // 
+            this.Column15.HeaderText = "Facturista";
+            this.Column15.Name = "Column15";
+            this.Column15.ReadOnly = true;
             // 
             // Consultas
             // 
@@ -500,12 +449,12 @@
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.Consultas_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvPedido)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pedidosBindingSource)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.estadosBindingSource)).EndInit();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pedidosBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.estadosBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -528,23 +477,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txtComentario;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Id;
-        private System.Windows.Forms.DataGridViewTextBoxColumn numeroLocalDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn descripcionLocalDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn legajoVendedorDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn descripcionVendedorDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn estadoDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Prioridad;
-        private System.Windows.Forms.DataGridViewTextBoxColumn fechacreacionDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn fechaAsignacionDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn fechaFacturacionDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn hombreDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn mujerDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn kidsDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn legajoAsignadorDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn descripcionAsignadorDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn legajoFacturistaDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn descripcionFacturistaDataGridViewTextBoxColumn;
         private System.Windows.Forms.TextBox txtPopUp;
         private System.Windows.Forms.Button btnAceptar;
         private System.Windows.Forms.Button btnCerrar;
@@ -556,5 +488,20 @@
         private System.Windows.Forms.ToolStripMenuItem creaciónToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem asignaciónToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem facturaciónToolStripMenuItem;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column7;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column8;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column9;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column10;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column11;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column12;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column13;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column14;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column15;
     }
 }

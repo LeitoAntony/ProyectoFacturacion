@@ -48,7 +48,7 @@ namespace PedidosFacturacion
             try
             {
                 //hace un bindig de los vendedores del context a una lista
-                List<Operario> operarios = objLogica.operarios();
+                List<Operario> operarios = objLogica.getOperarios();
                 //agrega los vendedores al combobox definido por el objeto vendedorBindngSource
                 this.operarioBindingSource.DataSource = operarios;
                 
