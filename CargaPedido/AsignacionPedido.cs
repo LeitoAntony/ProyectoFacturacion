@@ -32,7 +32,7 @@ namespace PedidosFacturacion
         private void actualizarListaTimer()
         {
             
-            timer1.Interval = 100000;
+            timer1.Interval = 1000;
             timer1.Tick += new EventHandler(Timer1_Tick);
 
             timer1.Enabled = true;
@@ -42,7 +42,7 @@ namespace PedidosFacturacion
 
         private void Timer1_Tick(object Sender, EventArgs e)
         {
-            inicializarPedidos();
+            //inicializarPedidos();
         }
 
         private void inicializarPedidos()
@@ -55,8 +55,8 @@ namespace PedidosFacturacion
 
             
             IQueryable<Pedidos> pedidos = objLogica.getPedidos();
-            var query = (from p in pedidos
-                         orderby p.Prioridad_ descending where p.Fecha_creacion == dtpFecha.Value.Date
+            var query = (from p in pedidos.Where( p => p.Fecha_creacion == dtpFecha.Value.Date)
+                         orderby p.Prioridad_ descending
                          select new
                          {
                              p.Id,
