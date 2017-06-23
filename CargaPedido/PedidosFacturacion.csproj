@@ -69,11 +69,11 @@
     <Compile Include="Canasto.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="CargaCanasto.cs">
+    <Compile Include="CargaPedido.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="CargaCanasto.Designer.cs">
-      <DependentUpon>CargaCanasto.cs</DependentUpon>
+    <Compile Include="CargaPedido.Designer.cs">
+      <DependentUpon>CargaPedido.cs</DependentUpon>
     </Compile>
     <Compile Include="Consultas.cs">
       <SubType>Form</SubType>
@@ -121,9 +121,6 @@
     <Compile Include="Pedidos.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Pedidos2.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
     <Compile Include="Principal.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -138,8 +135,8 @@
     <EmbeddedResource Include="AsignacionPedido.resx">
       <DependentUpon>AsignacionPedido.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="CargaCanasto.resx">
-      <DependentUpon>CargaCanasto.cs</DependentUpon>
+    <EmbeddedResource Include="CargaPedido.resx">
+      <DependentUpon>CargaPedido.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Consultas.resx">
       <DependentUpon>Consultas.cs</DependentUpon>

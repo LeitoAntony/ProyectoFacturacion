@@ -10,8 +10,7 @@
         <EntityTypeShape EntityType="CargaPedidoDBModel.Segmentos" Width="1.5" PointX="8.5" PointY="2.25" />
         <EntityTypeShape EntityType="CargaPedidoDBModel.Estados" Width="1.5" PointX="6.125" PointY="3.125" />
         <EntityTypeShape EntityType="CargaPedidoDBModel.Canasto" Width="1.5" PointX="10.5" PointY="1.75" />
-        <EntityTypeShape EntityType="CargaPedidoDBModel.Pedidos2" Width="1.5" PointX="0.75" PointY="0.75" />
-        <EntityTypeShape EntityType="CargaPedidoDBModel.Pedidos" Width="1.5" PointX="3.625" PointY="1.375" />
+        <EntityTypeShape EntityType="CargaPedidoDBModel.Pedidos" Width="1.5" PointX="4" PointY="1.5" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

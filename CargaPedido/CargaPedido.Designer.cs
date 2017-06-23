@@ -1,7 +1,7 @@
 ﻿
 namespace PedidosFacturacion
 {
-    partial class CargaCanasto
+    partial class CargaPedido
     {
         /// <summary>
         /// Required designer variable.
@@ -40,7 +40,21 @@ namespace PedidosFacturacion
             this.btnGuardar = new System.Windows.Forms.Button();
             this.btnCancelar = new System.Windows.Forms.Button();
             this.dgvPedido = new System.Windows.Forms.DataGridView();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.rbKids = new System.Windows.Forms.RadioButton();
+            this.rbHombre = new System.Windows.Forms.RadioButton();
+            this.rbMujer = new System.Windows.Forms.RadioButton();
+            this.txtVenedor = new System.Windows.Forms.TextBox();
+            this.txtLocal = new System.Windows.Forms.TextBox();
+            this.btnBorrar = new System.Windows.Forms.Button();
+            this.label4 = new System.Windows.Forms.Label();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.btnActualizar = new System.Windows.Forms.Button();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.btnAgregarCanasto = new System.Windows.Forms.Button();
+            this.label5 = new System.Windows.Forms.Label();
             this.Column9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -48,22 +62,12 @@ namespace PedidosFacturacion
             this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.txtVenedor = new System.Windows.Forms.TextBox();
-            this.txtLocal = new System.Windows.Forms.TextBox();
-            this.btnBorrar = new System.Windows.Forms.Button();
-            this.label4 = new System.Windows.Forms.Label();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.rbKids = new System.Windows.Forms.RadioButton();
-            this.rbMujer = new System.Windows.Forms.RadioButton();
-            this.rbHombre = new System.Windows.Forms.RadioButton();
-            this.btnActualizar = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.localBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.operarioBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPedido)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.panel1.SuspendLayout();
+            this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -121,7 +125,7 @@ namespace PedidosFacturacion
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(4, 113);
+            this.label3.Location = new System.Drawing.Point(4, 35);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(58, 13);
             this.label3.TabIndex = 12;
@@ -129,9 +133,9 @@ namespace PedidosFacturacion
             // 
             // btnGuardar
             // 
-            this.btnGuardar.Location = new System.Drawing.Point(6, 148);
+            this.btnGuardar.Location = new System.Drawing.Point(6, 92);
             this.btnGuardar.Name = "btnGuardar";
-            this.btnGuardar.Size = new System.Drawing.Size(75, 23);
+            this.btnGuardar.Size = new System.Drawing.Size(105, 23);
             this.btnGuardar.TabIndex = 5;
             this.btnGuardar.Text = "Guardar";
             this.btnGuardar.UseVisualStyleBackColor = true;
@@ -139,7 +143,7 @@ namespace PedidosFacturacion
             // 
             // btnCancelar
             // 
-            this.btnCancelar.Location = new System.Drawing.Point(250, 148);
+            this.btnCancelar.Location = new System.Drawing.Point(280, 92);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(75, 23);
             this.btnCancelar.TabIndex = 6;
@@ -157,20 +161,161 @@ namespace PedidosFacturacion
             this.dgvPedido.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvPedido.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Column9,
+            this.Column8,
             this.Column1,
             this.Column2,
             this.Column3,
             this.Column4,
             this.Column5,
             this.Column6,
-            this.Column7,
-            this.Column8});
-            this.dgvPedido.Location = new System.Drawing.Point(12, 197);
+            this.Column7});
+            this.dgvPedido.Location = new System.Drawing.Point(12, 229);
             this.dgvPedido.Name = "dgvPedido";
             this.dgvPedido.ReadOnly = true;
-            this.dgvPedido.Size = new System.Drawing.Size(1340, 445);
+            this.dgvPedido.Size = new System.Drawing.Size(1340, 413);
             this.dgvPedido.TabIndex = 14;
             this.dgvPedido.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvPedido_CellClick);
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.rbKids);
+            this.groupBox1.Controls.Add(this.rbHombre);
+            this.groupBox1.Controls.Add(this.rbMujer);
+            this.groupBox1.Location = new System.Drawing.Point(87, 23);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(276, 33);
+            this.groupBox1.TabIndex = 15;
+            this.groupBox1.TabStop = false;
+            // 
+            // rbKids
+            // 
+            this.rbKids.AutoSize = true;
+            this.rbKids.Location = new System.Drawing.Point(193, 10);
+            this.rbKids.Name = "rbKids";
+            this.rbKids.Size = new System.Drawing.Size(45, 17);
+            this.rbKids.TabIndex = 21;
+            this.rbKids.TabStop = true;
+            this.rbKids.Text = "Kids";
+            this.rbKids.UseVisualStyleBackColor = true;
+            // 
+            // rbHombre
+            // 
+            this.rbHombre.AutoSize = true;
+            this.rbHombre.Location = new System.Drawing.Point(13, 10);
+            this.rbHombre.Name = "rbHombre";
+            this.rbHombre.Size = new System.Drawing.Size(62, 17);
+            this.rbHombre.TabIndex = 21;
+            this.rbHombre.TabStop = true;
+            this.rbHombre.Text = "Hombre";
+            this.rbHombre.UseVisualStyleBackColor = true;
+            // 
+            // rbMujer
+            // 
+            this.rbMujer.AutoSize = true;
+            this.rbMujer.Location = new System.Drawing.Point(106, 10);
+            this.rbMujer.Name = "rbMujer";
+            this.rbMujer.Size = new System.Drawing.Size(51, 17);
+            this.rbMujer.TabIndex = 21;
+            this.rbMujer.TabStop = true;
+            this.rbMujer.Text = "Mujer";
+            this.rbMujer.UseVisualStyleBackColor = true;
+            // 
+            // txtVenedor
+            // 
+            this.txtVenedor.Location = new System.Drawing.Point(746, 29);
+            this.txtVenedor.Name = "txtVenedor";
+            this.txtVenedor.ReadOnly = true;
+            this.txtVenedor.Size = new System.Drawing.Size(123, 20);
+            this.txtVenedor.TabIndex = 16;
+            // 
+            // txtLocal
+            // 
+            this.txtLocal.Location = new System.Drawing.Point(746, 65);
+            this.txtLocal.Name = "txtLocal";
+            this.txtLocal.ReadOnly = true;
+            this.txtLocal.Size = new System.Drawing.Size(123, 20);
+            this.txtLocal.TabIndex = 17;
+            // 
+            // btnBorrar
+            // 
+            this.btnBorrar.Location = new System.Drawing.Point(117, 92);
+            this.btnBorrar.Name = "btnBorrar";
+            this.btnBorrar.Size = new System.Drawing.Size(75, 23);
+            this.btnBorrar.TabIndex = 18;
+            this.btnBorrar.Text = "Borrar";
+            this.btnBorrar.UseVisualStyleBackColor = true;
+            this.btnBorrar.Click += new System.EventHandler(this.btnBorrar_Click);
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(3, 5);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(109, 16);
+            this.label4.TabIndex = 19;
+            this.label4.Text = "Cargar Pedido";
+            // 
+            // panel1
+            // 
+            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Controls.Add(this.btnActualizar);
+            this.panel1.Controls.Add(this.label4);
+            this.panel1.Controls.Add(this.label2);
+            this.panel1.Controls.Add(this.btnBorrar);
+            this.panel1.Controls.Add(this.txtLocal);
+            this.panel1.Controls.Add(this.btnCancelar);
+            this.panel1.Controls.Add(this.label1);
+            this.panel1.Controls.Add(this.btnGuardar);
+            this.panel1.Controls.Add(this.txtVenedor);
+            this.panel1.Controls.Add(this.cmbVendedor);
+            this.panel1.Controls.Add(this.cmbLocal);
+            this.panel1.Location = new System.Drawing.Point(12, 3);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(1340, 123);
+            this.panel1.TabIndex = 20;
+            // 
+            // btnActualizar
+            // 
+            this.btnActualizar.Location = new System.Drawing.Point(199, 92);
+            this.btnActualizar.Name = "btnActualizar";
+            this.btnActualizar.Size = new System.Drawing.Size(75, 23);
+            this.btnActualizar.TabIndex = 20;
+            this.btnActualizar.Text = "Actualizar";
+            this.btnActualizar.UseVisualStyleBackColor = true;
+            this.btnActualizar.Click += new System.EventHandler(this.btnActualizar_Click);
+            // 
+            // panel2
+            // 
+            this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel2.Controls.Add(this.label5);
+            this.panel2.Controls.Add(this.btnAgregarCanasto);
+            this.panel2.Controls.Add(this.groupBox1);
+            this.panel2.Controls.Add(this.label3);
+            this.panel2.Location = new System.Drawing.Point(12, 132);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(1340, 91);
+            this.panel2.TabIndex = 21;
+            // 
+            // btnAgregarCanasto
+            // 
+            this.btnAgregarCanasto.Location = new System.Drawing.Point(6, 60);
+            this.btnAgregarCanasto.Name = "btnAgregarCanasto";
+            this.btnAgregarCanasto.Size = new System.Drawing.Size(75, 23);
+            this.btnAgregarCanasto.TabIndex = 16;
+            this.btnAgregarCanasto.Text = "Agregar";
+            this.btnAgregarCanasto.UseVisualStyleBackColor = true;
+            this.btnAgregarCanasto.Click += new System.EventHandler(this.btnAgregarCanasto_Click);
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(3, 4);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(125, 16);
+            this.label5.TabIndex = 17;
+            this.label5.Text = "Agregar Canasto";
             // 
             // Column9
             // 
@@ -178,6 +323,13 @@ namespace PedidosFacturacion
             this.Column9.HeaderText = "";
             this.Column9.Name = "Column9";
             this.Column9.ReadOnly = true;
+            // 
+            // Column8
+            // 
+            this.Column8.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Column8.HeaderText = "Fecha";
+            this.Column8.Name = "Column8";
+            this.Column8.ReadOnly = true;
             // 
             // Column1
             // 
@@ -224,140 +376,23 @@ namespace PedidosFacturacion
             // Column7
             // 
             this.Column7.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Column7.HeaderText = "Hombre";
+            this.Column7.HeaderText = "Kids";
             this.Column7.Name = "Column7";
             this.Column7.ReadOnly = true;
             // 
-            // Column8
-            // 
-            this.Column8.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Column8.HeaderText = "Fecha";
-            this.Column8.Name = "Column8";
-            this.Column8.ReadOnly = true;
-            // 
-            // groupBox1
-            // 
-            this.groupBox1.Controls.Add(this.rbKids);
-            this.groupBox1.Controls.Add(this.rbHombre);
-            this.groupBox1.Controls.Add(this.rbMujer);
-            this.groupBox1.Location = new System.Drawing.Point(87, 93);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(276, 49);
-            this.groupBox1.TabIndex = 15;
-            this.groupBox1.TabStop = false;
-            // 
-            // txtVenedor
-            // 
-            this.txtVenedor.Location = new System.Drawing.Point(746, 29);
-            this.txtVenedor.Name = "txtVenedor";
-            this.txtVenedor.ReadOnly = true;
-            this.txtVenedor.Size = new System.Drawing.Size(123, 20);
-            this.txtVenedor.TabIndex = 16;
-            // 
-            // txtLocal
-            // 
-            this.txtLocal.Location = new System.Drawing.Point(746, 65);
-            this.txtLocal.Name = "txtLocal";
-            this.txtLocal.ReadOnly = true;
-            this.txtLocal.Size = new System.Drawing.Size(123, 20);
-            this.txtLocal.TabIndex = 17;
-            // 
-            // btnBorrar
-            // 
-            this.btnBorrar.Location = new System.Drawing.Point(87, 148);
-            this.btnBorrar.Name = "btnBorrar";
-            this.btnBorrar.Size = new System.Drawing.Size(75, 23);
-            this.btnBorrar.TabIndex = 18;
-            this.btnBorrar.Text = "Borrar";
-            this.btnBorrar.UseVisualStyleBackColor = true;
-            this.btnBorrar.Click += new System.EventHandler(this.btnBorrar_Click);
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(3, 5);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(116, 16);
-            this.label4.TabIndex = 19;
-            this.label4.Text = "Cargar Canasto";
-            // 
-            // panel1
-            // 
-            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel1.Controls.Add(this.btnActualizar);
-            this.panel1.Controls.Add(this.label4);
-            this.panel1.Controls.Add(this.label2);
-            this.panel1.Controls.Add(this.groupBox1);
-            this.panel1.Controls.Add(this.btnBorrar);
-            this.panel1.Controls.Add(this.txtLocal);
-            this.panel1.Controls.Add(this.btnCancelar);
-            this.panel1.Controls.Add(this.label1);
-            this.panel1.Controls.Add(this.btnGuardar);
-            this.panel1.Controls.Add(this.txtVenedor);
-            this.panel1.Controls.Add(this.cmbVendedor);
-            this.panel1.Controls.Add(this.cmbLocal);
-            this.panel1.Controls.Add(this.label3);
-            this.panel1.Location = new System.Drawing.Point(12, 3);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1340, 178);
-            this.panel1.TabIndex = 20;
-            // 
-            // rbKids
-            // 
-            this.rbKids.AutoSize = true;
-            this.rbKids.Location = new System.Drawing.Point(193, 20);
-            this.rbKids.Name = "rbKids";
-            this.rbKids.Size = new System.Drawing.Size(45, 17);
-            this.rbKids.TabIndex = 21;
-            this.rbKids.TabStop = true;
-            this.rbKids.Text = "Kids";
-            this.rbKids.UseVisualStyleBackColor = true;
-            // 
-            // rbMujer
-            // 
-            this.rbMujer.AutoSize = true;
-            this.rbMujer.Location = new System.Drawing.Point(106, 19);
-            this.rbMujer.Name = "rbMujer";
-            this.rbMujer.Size = new System.Drawing.Size(51, 17);
-            this.rbMujer.TabIndex = 21;
-            this.rbMujer.TabStop = true;
-            this.rbMujer.Text = "Mujer";
-            this.rbMujer.UseVisualStyleBackColor = true;
-            // 
-            // rbHombre
-            // 
-            this.rbHombre.AutoSize = true;
-            this.rbHombre.Location = new System.Drawing.Point(13, 18);
-            this.rbHombre.Name = "rbHombre";
-            this.rbHombre.Size = new System.Drawing.Size(62, 17);
-            this.rbHombre.TabIndex = 21;
-            this.rbHombre.TabStop = true;
-            this.rbHombre.Text = "Hombre";
-            this.rbHombre.UseVisualStyleBackColor = true;
-            // 
-            // btnActualizar
-            // 
-            this.btnActualizar.Location = new System.Drawing.Point(169, 148);
-            this.btnActualizar.Name = "btnActualizar";
-            this.btnActualizar.Size = new System.Drawing.Size(75, 23);
-            this.btnActualizar.TabIndex = 20;
-            this.btnActualizar.Text = "Actualizar";
-            this.btnActualizar.UseVisualStyleBackColor = true;
-            this.btnActualizar.Click += new System.EventHandler(this.btnActualizar_Click);
-            // 
-            // CargaCanasto
+            // CargaPedido
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.ClientSize = new System.Drawing.Size(1364, 705);
-            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.panel2);
             this.Controls.Add(this.dgvPedido);
-            this.Name = "CargaCanasto";
+            this.Controls.Add(this.panel1);
+            this.Name = "CargaPedido";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "Carga Canastos";
+            this.Text = "Carga Pedido";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.CargaPedido_Load);
             ((System.ComponentModel.ISupportInitialize)(this.localBindingSource)).EndInit();
@@ -367,6 +402,8 @@ namespace PedidosFacturacion
             this.groupBox1.PerformLayout();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -388,7 +425,16 @@ namespace PedidosFacturacion
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button btnActualizar;
+        private System.Windows.Forms.BindingSource localBindingSource;
+        private System.Windows.Forms.BindingSource operarioBindingSource;
+        private System.Windows.Forms.RadioButton rbKids;
+        private System.Windows.Forms.RadioButton rbMujer;
+        private System.Windows.Forms.RadioButton rbHombre;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Button btnAgregarCanasto;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column9;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column8;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
@@ -396,11 +442,5 @@ namespace PedidosFacturacion
         private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column7;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column8;
-        private System.Windows.Forms.BindingSource localBindingSource;
-        private System.Windows.Forms.BindingSource operarioBindingSource;
-        private System.Windows.Forms.RadioButton rbKids;
-        private System.Windows.Forms.RadioButton rbMujer;
-        private System.Windows.Forms.RadioButton rbHombre;
     }
 }
