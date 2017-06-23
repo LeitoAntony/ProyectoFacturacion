@@ -17,7 +17,6 @@ namespace PedidosFacturacion
         Pedidos pedido = new Pedidos();
         pedido.Fecha = DateTime.Now;
         pedido.Descripcion_local = local.Descripcion;
-        pedido.Descripcion_vendedor = vendedor.Descripcion;
         //Adhiero mi objeto pedido a la base
         context.Pedidos.Add(pedido);
  
@@ -32,18 +31,7 @@ namespace PedidosFacturacion
             Estado[] estado = context.Estado.ToArray();
             //creo mi objeto
             Canasto canasto = new Canasto();
-            Pedidos pedido = this.getPedido(IdPedido);
-            // completo mi objeto pedido con los datos de objetos seleccionados
-            //canasto.Id_local = local.Id;
-            //canasto.Id_vendedor = vendedor.Id;
-            //canasto.Numero_local = Convert.ToInt32(txtLocal);
-            //canasto.Descripcion_local = local.Descripcion;
-            //canasto.Legajo_vendedor = Convert.ToInt32(txtVenedor);
-            //canasto.Descripcion_vendedor = vendedor.Descripcion;
-            //canasto.Estado = estado[0].Estado;
-            //canasto.Fecha = DateTime.Today.Date;
-            //canasto.Segmento = segmento;
-
+            
 
             canasto.Id_local = local.Id;
             canasto.Numero_local = local.Numero;
@@ -54,7 +42,7 @@ namespace PedidosFacturacion
             canasto.Estado = estado[0].Descripcion;
             canasto.Fecha = DateTime.Now;
             canasto.Segmento = segmento;
-            canasto.Id_pedido = pedido.Id;
+            canasto.Id_pedido = IdPedido;
             
 
 
@@ -100,28 +88,28 @@ namespace PedidosFacturacion
             context.SaveChanges();
         }
 
-        //public void setFacturista(int Id, Operario facturista, Operario asignador, DateTime fechaAsignacion)
-        //{
-        //    try
-        //    {
-        //        var pedidoEditar = context.Pedidos.FirstOrDefault(x => x.Id == Id);
-        //        pedidoEditar.Id_Facturista = facturista.Id;
-        //        pedidoEditar.Legajo_Facturista = facturista.Legajo;
-        //        pedidoEditar.Descripcion_Facturista = facturista.Descripcion;
-        //        pedidoEditar.Id_Asignador = asignador.Id;
-        //        pedidoEditar.Legajo_Asignador = asignador.Legajo;
-        //        pedidoEditar.Descripcion_Asignador = asignador.Descripcion;
-        //        pedidoEditar.Fecha_Asignacion = fechaAsignacion;
-        //    context.SaveChanges();
+        public void setFacturista(int Id, Operario facturista, Operario asignador, DateTime fechaAsignacion)
+        {
+            try
+            {
+                var canastoEditar = context.Canasto.FirstOrDefault(x => x.Id == Id);
+                canastoEditar.Id_facturista = facturista.Id;
+                canastoEditar.Legajo_facturista = facturista.Legajo;
+                canastoEditar.Descripcion_facturista = facturista.Descripcion;
+                canastoEditar.Id_asignador = asignador.Id;
+                canastoEditar.Legajo_asignador = asignador.Legajo;
+                canastoEditar.Descripcion_asignador = asignador.Descripcion;
+                canastoEditar.Fecha_asignacion = fechaAsignacion;
+                context.SaveChanges();
 
-        //    }
-        //    catch (Exception)
-        //    {
-        //        throw new NullReferenceException("Debe seleccionar un pedido y completar los campos! ");
-               
-        //    }
-            
-        //}
+            }
+            catch (Exception)
+            {
+                throw new NullReferenceException("Debe seleccionar un pedido y completar los campos! ");
+
+            }
+
+        }
 
         //public void setComentario(int Id, String comentario) 
         //{
@@ -130,20 +118,20 @@ namespace PedidosFacturacion
         //    context.SaveChanges();
         //}
 
-        //public void actualizarEstado(int Id, String estado)
-        //{
-        //    var pedidoEditar = context.Pedidos.FirstOrDefault(x => x.Id == Id);
-        //    pedidoEditar.Estado = estado;
-        //    context.SaveChanges();
-        //}
+        public void actualizarEstado(int Id, String estado)
+        {
+            var canastoEditar = context.Canasto.FirstOrDefault(x => x.Id == Id);
+            canastoEditar.Estado = estado;
+            context.SaveChanges();
+        }
 
-        //public void actualizarEstadoPorFecha(int Id, String estado)
-        //{
-        //    var pedidoEditar = context.Pedidos.FirstOrDefault(x => x.Id == Id);
-        //    pedidoEditar.Estado = estado;
-        //    pedidoEditar.Fecha_Facturacion = DateTime.Today.Date;
-        //    context.SaveChanges();
-        //}
+        public void actualizarEstadoPorFecha(int Id, String estado)
+        {
+            var canastoEditar = context.Canasto.FirstOrDefault(x => x.Id == Id);
+            canastoEditar.Estado = estado;
+            canastoEditar.Fecha_facturacion = DateTime.Now;
+            context.SaveChanges();
+        }
         
         public List<Operario> getOperarios()
         {
@@ -158,6 +146,11 @@ namespace PedidosFacturacion
         public List<Local> getLocales()
         {
             return context.Local.ToList();
+        }
+
+        public Local getLocal(String descripcion)
+        {
+            return context.Local.FirstOrDefault(q => q.Descripcion == descripcion);
         }
 
         public IPagedList<Pedidos> getPedidosPorFecha(DateTime dtpFecha, int paginaActual, int tamañoPagina)
@@ -187,15 +180,20 @@ namespace PedidosFacturacion
             return ped;
         }
 
-        //public List<Pedidos> getPedidosPorFacturista(Operario facturista)
-        //{
-        //    List<Pedidos> lista = (from q in context.Pedidos
-        //                           where (q.Descripcion_Facturista == facturista.Descripcion
-        //                           && q.Estado.Trim() == "Asignado")
-        //                           orderby q.Id
-        //                           select q).ToList();
-        //    return lista;
-        //}
+        public Canasto getCanastoPorIdPedido(int IdPedido)
+        {
+    return context.Canasto.FirstOrDefault(x => x.Id_pedido == IdPedido);
+    }
+
+        public List<Canasto> getPedidosPorFacturista(Operario facturista)
+        {
+            List<Canasto> lista = (from q in context.Canasto
+                                   where (q.Descripcion_facturista == facturista.Descripcion
+                                   && q.Estado.Trim() == "Asignado")
+                                   orderby q.Id
+                                   select q).ToList();
+            return lista;
+        }
 
         public List<Pedidos> getPedidosPorAsignador(String fecha)
         {
@@ -232,9 +230,6 @@ namespace PedidosFacturacion
         {
             return context.Segmento.ToArray();
         }
-
-
-
         
     }
 

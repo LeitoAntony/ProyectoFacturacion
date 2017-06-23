@@ -60,7 +60,6 @@
           <Property Name="Prioridad" Type="nvarchar(max)" />
           <Property Name="Comentario" Type="nvarchar(max)" />
           <Property Name="Descripcion_local" Type="nchar" MaxLength="50" />
-          <Property Name="Descripcion_vendedor" Type="nchar" MaxLength="50" />
           <Property Name="Fecha" Type="date" />
         </EntityType>
         <EntityType Name="Segmento">
@@ -144,7 +143,6 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Prioridad" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Descripcion_local" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
-          <Property Name="Descripcion_vendedor" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
           <Property Name="Fecha" Type="DateTime" Precision="0" />
           <Property Name="Comentario" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
@@ -217,7 +215,6 @@
               <MappingFragment StoreEntitySet="Pedidos">
                 <ScalarProperty Name="Comentario" ColumnName="Comentario" />
                 <ScalarProperty Name="Fecha" ColumnName="Fecha" />
-                <ScalarProperty Name="Descripcion_vendedor" ColumnName="Descripcion_vendedor" />
                 <ScalarProperty Name="Descripcion_local" ColumnName="Descripcion_local" />
                 <ScalarProperty Name="Prioridad" ColumnName="Prioridad" />
                 <ScalarProperty Name="Id" ColumnName="Id" />

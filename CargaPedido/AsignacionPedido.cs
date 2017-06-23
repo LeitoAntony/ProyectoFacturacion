@@ -13,10 +13,18 @@ namespace PedidosFacturacion
     public partial class AsignacionPedido : Form
     {
         private Logica objLogica;
+      //  private List<Pedidos> pedidos = new List<Pedidos>();
+      //  private List<Canasto> canastos = new List<Canasto>();
+
         private int contadorFilas = 0;
         private int IdFila;
         private int ValueIdFila;
-        private List<Pedidos> pedidos = new List<Pedidos>();
+        private bool bandera = false;
+
+        private int contadorFilasCanasto = 0;
+        private int IdFilaCanasto;
+        private int ValueIdFilaCanasto;
+        private bool banderaCanasto = false;
 
 
         public AsignacionPedido()
@@ -34,7 +42,8 @@ namespace PedidosFacturacion
 
         private void btnConsultar_Click(object sender, EventArgs e)
         {
-            inicializarPedidos();
+            inicializarPedidos(); 
+            
         }
 
         private void btnAsignar_Click(object sender, EventArgs e)
@@ -43,53 +52,128 @@ namespace PedidosFacturacion
             cmbFacturista.SelectedIndex = -1;
         }
 
-        private void dgvPedidosCargados_CellClick(object sender, DataGridViewCellEventArgs e)
+
+        private void dgvPedido_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            //capturo el id de la fila y su valor(Id de cada pedido)
-            IdFila = dgvPedidosCargados.CurrentRow.Index;
-            ValueIdFila = Convert.ToInt32(dgvPedidosCargados.Rows[IdFila].Cells[0].Value);
+            bandera = true;
+            IdFila = dgvPedido.CurrentRow.Index;
+            ValueIdFila = Convert.ToInt32(dgvPedido.Rows[IdFila].Cells[0].Value);
+            getCanastos();
+            //dgvPedido.Rows[IdFila].DefaultCellStyle.BackColor = Color.LightGreen;
+        }
+
+        private void dgvCanasto_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            banderaCanasto = true;
+            IdFilaCanasto = dgvCanasto.CurrentRow.Index;
+            ValueIdFilaCanasto = Convert.ToInt32(dgvCanasto.Rows[IdFilaCanasto].Cells[0].Value);
+            //dgvCanasto.Rows[IdFilaCanasto].DefaultCellStyle.BackColor = Color.LightGreen;
+
         }
 
         private void Timer1_Tick(object Sender, EventArgs e)
         {
             inicializarPedidos();
+            getCanastos();
+        }
+
+        private void getCanastos()
+        {
+            dgvCanasto.Rows.Clear();
+            dgvCanasto.Refresh();
+            contadorFilasCanasto = 0;
+            objLogica = new Logica();
+            List<Canasto> canastos = objLogica.getCanastosPorIdPedido(ValueIdFila);
+            
+            foreach (var item in canastos)
+            {
+                dgvCanasto.Rows.Insert(contadorFilasCanasto, item.Id, ValueIdFila, item.Numero_local, 
+                    item.Descripcion_local, item.Legajo_vendedor,
+                    item.Descripcion_vendedor, item.Segmento, item.Fecha, item.Estado, item.Fecha_asignacion,
+                    item.Descripcion_asignador, item.Descripcion_facturista);
+                if (item.Estado != null)
+                {
+                    if (item.Estado.Trim().ToString().Equals("Asignado"))
+                    { 
+                    dgvCanasto.Rows[contadorFilasCanasto].DefaultCellStyle.BackColor = Color.Yellow;
+                    this.contadorFilasCanasto = contadorFilasCanasto + 1;
+                    }
+                        
+                    if (item.Estado.Trim().ToString().Equals("Facturado"))
+                    { 
+                        dgvCanasto.Rows[contadorFilasCanasto].DefaultCellStyle.BackColor = Color.LightGreen;
+                        
+                        this.contadorFilasCanasto = contadorFilasCanasto + 1;
+                    }
+                        
+                    
+                }
+                
+                //this.contadorFilasCanasto = contadorFilasCanasto + 1;
+            }
+            if(contadorFilasCanasto == dgvCanasto.Rows.Count)
+                            dgvPedido.Rows[IdFila].DefaultCellStyle.BackColor = Color.LightGreen;
+                
         }
 
         private void inicializarPedidos()
         {
-            //Limpio mi grilla y reseteo el contador
+            dgvPedido.Rows.Clear();
+            dgvPedido.Refresh();
             contadorFilas = 0;
-            dgvPedidosCargados.Rows.Clear();
-            dgvPedidosCargados.Refresh();
-            pedidos.Clear();
-
             objLogica = new Logica();
+            //traigo desde la base de datos
+            List<Pedidos> pedidos = objLogica.getPedidosPorFecha(DateTime.Now);
 
-            //traigo los objetos de la DB
-           // pedidos = objLogica.getPedidosPorFecha(dtpFecha.Value.Date);
-            //completo la grilla 
-            //foreach (var item in pedidos)
-            //{
-            //    dgvPedidosCargados.Rows.Insert(contadorFilas, item.Id, item.Numero_Local, item.Descripcion_Local,
-            //         item.Legajo_Vendedor, item.Descripcion_Vendedor, item.Estado, item.Prioridad_, item.Hombre, item.Mujer, item.Kids
-            //          , item.Fecha_creacion, item.Fecha_Asignacion, item.Descripcion_Facturista, item.Descripcion_Asignador);
-            //    //por cada fila verifica su estado y prioridad
-            //    if (item.Prioridad_ != null)
-            //    {
-            //        if (item.Prioridad_.Trim().ToString() == "Prioridad")
-            //            dgvPedidosCargados.Rows[contadorFilas].DefaultCellStyle.BackColor = Color.Red;
-
-            //    }
-            //    if (item.Estado != null)
-            //    {
-            //        if (item.Estado.Trim().ToString().Equals("Asignado"))
-            //            dgvPedidosCargados.Rows[contadorFilas].DefaultCellStyle.BackColor = Color.Yellow;
-            //        if (item.Estado.Trim().ToString().Equals("Facturado"))
-            //            dgvPedidosCargados.Rows[contadorFilas].DefaultCellStyle.BackColor = Color.LightGreen;
-            //    }
-            //    this.contadorFilas = contadorFilas + 1;
-            //}
+            //los mapeo a la gilla
+            foreach (var item in pedidos)
+            {
+                dgvPedido.Rows.Insert(contadorFilas, item.Id, item.Descripcion_local, item.Prioridad);
+                if (item.Prioridad != null)
+                {
+                    if (item.Prioridad.Trim().ToString() == "Prioridad")
+                       dgvPedido.Rows[contadorFilas].DefaultCellStyle.BackColor = Color.Red;
+                }
+                
+                this.contadorFilas = contadorFilas + 1;
+            }
         }
+
+        //private void inicializarPedidos()
+        //{
+        //    //Limpio mi grilla y reseteo el contador
+        //    contadorFilas = 0;
+        //    dgvPedidosCargados.Rows.Clear();
+        //    dgvPedidosCargados.Refresh();
+        //    pedidos.Clear();
+
+        //    objLogica = new Logica();
+
+        //    //traigo los objetos de la DB
+        //   // pedidos = objLogica.getPedidosPorFecha(dtpFecha.Value.Date);
+        //    //completo la grilla 
+        //    //foreach (var item in pedidos)
+        //    //{
+        //    //    dgvPedidosCargados.Rows.Insert(contadorFilas, item.Id, item.Numero_Local, item.Descripcion_Local,
+        //    //         item.Legajo_Vendedor, item.Descripcion_Vendedor, item.Estado, item.Prioridad_, item.Hombre, item.Mujer, item.Kids
+        //    //          , item.Fecha_creacion, item.Fecha_Asignacion, item.Descripcion_Facturista, item.Descripcion_Asignador);
+        //    //    //por cada fila verifica su estado y prioridad
+        //    //    if (item.Prioridad_ != null)
+        //    //    {
+        //    //        if (item.Prioridad_.Trim().ToString() == "Prioridad")
+        //    //            dgvPedidosCargados.Rows[contadorFilas].DefaultCellStyle.BackColor = Color.Red;
+
+        //    //    }
+        //    //    if (item.Estado != null)
+        //    //    {
+        //    //        if (item.Estado.Trim().ToString().Equals("Asignado"))
+        //    //            dgvPedidosCargados.Rows[contadorFilas].DefaultCellStyle.BackColor = Color.Yellow;
+        //    //        if (item.Estado.Trim().ToString().Equals("Facturado"))
+        //    //            dgvPedidosCargados.Rows[contadorFilas].DefaultCellStyle.BackColor = Color.LightGreen;
+        //    //    }
+        //    //    this.contadorFilas = contadorFilas + 1;
+        //    //}
+        //}
 
         private void actualizarListaTimer()
         {
@@ -106,9 +190,9 @@ namespace PedidosFacturacion
                 Operario asignador = (Operario)cmbAsignador.SelectedItem;
                 objLogica = new Logica();
                 //actualizo la DB con el facturista y la fecha/hora
-                //objLogica.setFacturista(ValueIdFila, facturista, asignador, DateTime.Today.Date);
+                objLogica.setFacturista(ValueIdFilaCanasto, facturista, asignador, DateTime.Now);
                 //actualizo el estado del pedido
-                //objLogica.actualizarEstado(ValueIdFila, "Asignado");
+                objLogica.actualizarEstado(ValueIdFilaCanasto, "Asignado");
                 actualizarFila(facturista.Descripcion, asignador.Descripcion);
             }
             catch (Exception ex)
@@ -118,13 +202,14 @@ namespace PedidosFacturacion
 
         }
 
-        private void actualizarFila(String facturista, string asignador)
+        private void actualizarFila(String facturista, String asignador)
         {
             //actualizo datos de la grilla
-            dgvPedidosCargados[5, IdFila].Value = "Asignado";
-            dgvPedidosCargados[11, IdFila].Value = DateTime.Today.Date.ToString();
-            dgvPedidosCargados[12, IdFila].Value = facturista;
-            dgvPedidosCargados[13, IdFila].Value = asignador;
+            dgvCanasto[8, IdFilaCanasto].Value = "Asignado";
+            dgvCanasto[9, IdFilaCanasto].Value = DateTime.Now;
+            dgvCanasto[10, IdFilaCanasto].Value = asignador;
+            dgvCanasto[11, IdFilaCanasto].Value = facturista;
+            
         }
 
         private void llenarComboBox()
@@ -143,6 +228,8 @@ namespace PedidosFacturacion
                 Console.WriteLine("No se puede generar la lista: " + e.Message);
             }
         }
+
+  
 
     }
 }

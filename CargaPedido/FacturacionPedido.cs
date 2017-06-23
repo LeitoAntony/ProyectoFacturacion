@@ -31,7 +31,7 @@ namespace PedidosFacturacion
         private void btnFacturado_Click(object sender, EventArgs e)
         {
             //colocar como facturado el pedido
-            //objLogica.actualizarEstadoPorFecha(ValueIdFila, "Facturado");
+            objLogica.actualizarEstadoPorFecha(ValueIdFila, "Facturado");
             actualizarFila();
         }
 
@@ -49,7 +49,7 @@ namespace PedidosFacturacion
         private void actualizarFila()
         {
             dataGridView1[4, IdFila].Value = "Facturado";
-            dataGridView1[11, IdFila].Value = DateTime.Today.Date;
+            dataGridView1[8, IdFila].Value = DateTime.Now;
             dataGridView1.Rows[IdFila].DefaultCellStyle.BackColor = Color.LightGreen;
         }
 
@@ -78,29 +78,23 @@ namespace PedidosFacturacion
             
 
             Operario facturista = (Operario)cmbFacturista.SelectedItem;
-            List<Pedidos> lista = new List<Pedidos>();
+            List<Canasto> lista = new List<Canasto>();
             //traigo desde la base de datos
-            //lista = objLogica.getPedidosPorFacturista(facturista);
+            lista = objLogica.getPedidosPorFacturista(facturista);
 
-            //foreach (var item in lista)
-            //{
-            //    dataGridView1.Rows.Insert(contadorFilas, item.Id, item.Numero_Local, item.Descripcion_Local,
-            //          item.Descripcion_Vendedor, item.Estado, item.Prioridad_, item.Hombre, item.Mujer, item.Kids
-            //          , item.Fecha_creacion, item.Fecha_Asignacion, item.Fecha_Facturacion,
-            //          item.Descripcion_Facturista, item.Descripcion_Asignador);
-
-            //    if (item.Prioridad_ != null)
-            //    {
-            //        if (item.Prioridad_.Trim().ToString() == "Prioridad")
-            //            dataGridView1.Rows[contadorFilas].DefaultCellStyle.BackColor = Color.Red;
-            //    }
-            //    if (item.Estado != null)
-            //    {
-            //        if (item.Estado.Trim().ToString() == "Facturado")                    
-            //            dataGridView1.Rows[contadorFilas].DefaultCellStyle.BackColor = Color.LightGreen;                   
-            //    }
-            //    this.contadorFilas = contadorFilas + 1;
-            //}
+            foreach (var item in lista)
+            {
+                dataGridView1.Rows.Insert(contadorFilas, item.Id, item.Numero_local, item.Descripcion_local,
+                      item.Descripcion_vendedor, item.Estado, item.Segmento
+                      , item.Fecha, item.Fecha_asignacion, item.Fecha_facturacion,
+                       item.Descripcion_asignador,item.Descripcion_facturista);
+                if (item.Estado != null)
+                {
+                    if (item.Estado.Trim().ToString() == "Facturado")
+                        dataGridView1.Rows[contadorFilas].DefaultCellStyle.BackColor = Color.LightGreen;
+                }
+                this.contadorFilas = contadorFilas + 1;
+            }
 
         }
 

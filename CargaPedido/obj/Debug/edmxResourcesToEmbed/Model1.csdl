@@ -62,7 +62,6 @@
     <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="Prioridad" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="Descripcion_local" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
-    <Property Name="Descripcion_vendedor" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
     <Property Name="Fecha" Type="DateTime" Precision="0" />
     <Property Name="Comentario" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
   </EntityType>

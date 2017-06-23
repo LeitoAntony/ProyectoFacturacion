@@ -14,17 +14,21 @@ namespace PedidosFacturacion
     public partial class CargaPedido : Form
     {
         private Logica objLogica;
+        private Local local = new Local();
+
         private int contadorFilas = 0;
         private int IdPedido;
-        private int IdFila;
-        private int ValueIdFila;
+        private static int IdFila;
+        private static int ValueIdFila;
+        private bool bandera = false;
 
         private int contadorFilasCanasto = 0;
         private int IdCanasto;
         private int IdFilaCanasto;
         private int ValueIdFilaCanasto;
+        private bool banderaCanasto = false;
 
-
+        Form frmCargaCanasto;
         public CargaPedido()
         {
             InitializeComponent();
@@ -45,7 +49,7 @@ namespace PedidosFacturacion
         private void btnGuardar_Click(object sender, EventArgs e)
         {
             //chequeo de campos completos
-            if (cmbVendedor.SelectedItem != null && cmbLocal.SelectedItem != null)
+            if (cmbLocal.SelectedItem != null)
             {
                 //inserto los objetos en la base
                 insertarPedidoDB();
@@ -55,7 +59,7 @@ namespace PedidosFacturacion
             }
             else
             {
-                MessageBox.Show("Complete todos los campos! ", "Advertencia!");
+                MessageBox.Show("Complete el campo Local! ");
             }
         }
 
@@ -72,7 +76,7 @@ namespace PedidosFacturacion
 
         private void btnBorrar_Click(object sender, EventArgs e)
         {
-            if (contadorFilas > 0)
+            if (contadorFilas > 0 && bandera)
                 if (contadorFilasCanasto == 0)
                 {
                     if (MessageBox.Show("Estas seguro que desas eliminar?", "AVISO", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
@@ -80,18 +84,22 @@ namespace PedidosFacturacion
                         eliminarPedido();
                         eliminarPedidoDB();
                     }
-
                 }
                 else
                     MessageBox.Show("Tiene canastos relacionados. Eliminelos primero!", "Advertencia!");
             else
-                MessageBox.Show("No tiene pedidos para eliminar! ", "Advertencia!");
+                MessageBox.Show("Debe seleccionar un pedido para borrar! ", "Advertencia!");
+            bandera = false;
         }
 
         private void btnBorrarCanasto_Click(object sender, EventArgs e)
         {
-            eliminarCanasto();
-            eliminarCanastoDB();
+            if(bandera && banderaCanasto)
+            {
+                eliminarCanasto();
+                eliminarCanastoDB();
+            }
+            banderaCanasto = false;
         }
 
         private void btnActualizar_Click(object sender, EventArgs e)
@@ -101,15 +109,19 @@ namespace PedidosFacturacion
 
         private void dgvPedido_CellClick(object sender, DataGridViewCellEventArgs e)
         {
+            bandera = true;
             IdFila = dgvPedido.CurrentRow.Index;
             ValueIdFila = Convert.ToInt32(dgvPedido.Rows[IdFila].Cells[0].Value);
             getCanastos();
+            //dgvPedido.Rows[IdFila].DefaultCellStyle.BackColor = Color.LightGreen;
         }
 
         private void dgvCanasto_CellClick(object sender, DataGridViewCellEventArgs e)
         {
+            banderaCanasto = true;
             IdFilaCanasto = dgvCanasto.CurrentRow.Index;
             ValueIdFilaCanasto = Convert.ToInt32(dgvCanasto.Rows[IdFilaCanasto].Cells[0].Value);
+            //dgvCanasto.Rows[IdFilaCanasto].DefaultCellStyle.BackColor = Color.LightGreen;
             
         }
 
@@ -188,11 +200,9 @@ namespace PedidosFacturacion
             //los mapeo a la gilla
             foreach (var item in pedidos)
             {
-                dgvPedido.Rows.Insert(contadorFilas, item.Id, item.Descripcion_local, item.Descripcion_vendedor);
+                dgvPedido.Rows.Insert(contadorFilas, item.Id, item.Descripcion_local);
                 this.contadorFilas = contadorFilas + 1;
-            }
-
-            
+            }   
         }
         private void getCanastos()
         {
@@ -203,7 +213,7 @@ namespace PedidosFacturacion
             List<Canasto> canastos = objLogica.getCanastosPorIdPedido(ValueIdFila);
             foreach (var item in canastos)
             {
-                dgvCanasto.Rows.Insert(contadorFilasCanasto, ValueIdFila, item.Numero_local, item.Descripcion_local, item.Legajo_vendedor,
+                dgvCanasto.Rows.Insert(contadorFilasCanasto,item.Id, ValueIdFila, item.Numero_local, item.Descripcion_local, item.Legajo_vendedor,
                     item.Descripcion_vendedor, item.Segmento, item.Fecha);
                 this.contadorFilasCanasto = contadorFilasCanasto + 1;
             }
@@ -215,33 +225,17 @@ namespace PedidosFacturacion
             Operario vendedor = (Operario)cmbVendedor.SelectedItem;
 
             //se carga en el dataGrdView los elemenos 
-            dgvPedido.Rows.Insert(contadorFilas, IdPedido, local.Descripcion, vendedor.Descripcion);
+            dgvPedido.Rows.Insert(contadorFilas, IdPedido, local.Descripcion);
             contadorFilas++;
         }
 
         private void cargarCanasto()
         {
-            Local local = (Local)cmbLocal.SelectedItem;
-            Operario vendedor = (Operario)cmbVendedor.SelectedItem;
-            string hombre = "", mujer = "", kids = "";
-            if (rbHombre.Checked)
-            {
-                hombre = rbHombre.Text;
-                dgvCanasto.Rows.Insert(contadorFilasCanasto, IdCanasto, local.Numero, local.Descripcion, vendedor.Legajo,
-                vendedor.Descripcion, hombre, DateTime.Now);
-            }
-            if (rbMujer.Checked)
-            {
-                mujer = rbMujer.Text;
-                dgvCanasto.Rows.Insert(contadorFilasCanasto, IdCanasto, local.Numero, local.Descripcion, vendedor.Legajo,
-                vendedor.Descripcion, mujer, DateTime.Now);
-            }
-            if (rbKids.Checked)
-            {
-                kids = rbKids.Text;
-                dgvCanasto.Rows.Insert(contadorFilasCanasto, IdCanasto, local.Numero, local.Descripcion, vendedor.Legajo,
-                vendedor.Descripcion, kids, DateTime.Now);
-            }
+            objLogica = new Logica();
+            Canasto canasto = objLogica.getCanastoPorIdPedido(IdPedido);
+
+                dgvCanasto.Rows.Insert(contadorFilasCanasto, canasto.Id, canasto.Numero_local, canasto.Descripcion_local, canasto.Legajo_vendedor
+                    ,canasto.Descripcion_vendedor, canasto.Segmento, canasto.Fecha);
             contadorFilasCanasto++;
         }
 
@@ -339,10 +333,25 @@ namespace PedidosFacturacion
             cmbVendedor.Focus();
         }
 
+        public int getValuePedido()
+        {
+            return ValueIdFila;    
+        }
 
+        public int getIdPedido()
+        {
+            return IdPedido;
+        }
 
+        private void dgvPedido_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            bandera = true;
+            IdFila = dgvPedido.CurrentRow.Index;
+            ValueIdFila = Convert.ToInt32(dgvPedido.Rows[IdFila].Cells[0].Value);
+            MessageBox.Show("IdFila " + IdFila + "ValueIdFila " +ValueIdFila);
 
-
-
+            frmCargaCanasto = new AgregarCanasto();
+            frmCargaCanasto.Visible = true;
+        }
     }
 }

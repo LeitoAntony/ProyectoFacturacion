@@ -55,7 +55,6 @@
     <Property Name="Prioridad" Type="nvarchar(max)" />
     <Property Name="Comentario" Type="nvarchar(max)" />
     <Property Name="Descripcion_local" Type="nchar" MaxLength="50" />
-    <Property Name="Descripcion_vendedor" Type="nchar" MaxLength="50" />
     <Property Name="Fecha" Type="date" />
   </EntityType>
   <EntityType Name="Segmento">
