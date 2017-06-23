@@ -6,7 +6,7 @@
     <EntitySet Name="Local" EntityType="CargaPedidoDBModel.Store.Local" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Operario" EntityType="CargaPedidoDBModel.Store.Operario" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Pedidos" EntityType="CargaPedidoDBModel.Store.Pedidos" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="Segmentos" EntityType="CargaPedidoDBModel.Store.Segmentos" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Segmento" EntityType="CargaPedidoDBModel.Store.Segmento" store:Type="Tables" Schema="dbo" />
   </EntityContainer>
   <EntityType Name="Canasto">
     <Key>
@@ -64,13 +64,11 @@
     <Property Name="Descripcion_Facturista" Type="nchar" MaxLength="50" />
     <Property Name="Comentario" Type="varchar(max)" />
   </EntityType>
-  <EntityType Name="Segmentos">
+  <EntityType Name="Segmento">
     <Key>
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-    <Property Name="Hombre" Type="nchar" MaxLength="10" />
-    <Property Name="Mujer" Type="nchar" MaxLength="10" />
-    <Property Name="Kids" Type="nchar" MaxLength="10" />
+    <Property Name="Descripcion" Type="nchar" MaxLength="50" />
   </EntityType>
 </Schema>

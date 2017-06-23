@@ -11,7 +11,7 @@
           <EntitySet Name="Local" EntityType="CargaPedidoDBModel.Store.Local" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Operario" EntityType="CargaPedidoDBModel.Store.Operario" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Pedidos" EntityType="CargaPedidoDBModel.Store.Pedidos" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="Segmentos" EntityType="CargaPedidoDBModel.Store.Segmentos" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Segmento" EntityType="CargaPedidoDBModel.Store.Segmento" store:Type="Tables" Schema="dbo" />
         </EntityContainer>
         <EntityType Name="Canasto">
           <Key>
@@ -69,49 +69,39 @@
           <Property Name="Descripcion_Facturista" Type="nchar" MaxLength="50" />
           <Property Name="Comentario" Type="varchar(max)" />
         </EntityType>
-        <EntityType Name="Segmentos">
+        <EntityType Name="Segmento">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="Hombre" Type="nchar" MaxLength="10" />
-          <Property Name="Mujer" Type="nchar" MaxLength="10" />
-          <Property Name="Kids" Type="nchar" MaxLength="10" />
+          <Property Name="Descripcion" Type="nchar" MaxLength="50" />
         </EntityType>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="CargaPedidoDBModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="CargaPedidoDBEntities" p1:LazyLoadingEnabled="true">
+          <EntitySet Name="Canasto" EntityType="CargaPedidoDBModel.Canasto" />
+          <EntitySet Name="Estados" EntityType="CargaPedidoDBModel.Estados" />
           <EntitySet Name="Local" EntityType="CargaPedidoDBModel.Local" />
           <EntitySet Name="Operario" EntityType="CargaPedidoDBModel.Operario" />
-          <EntitySet Name="Segmentos" EntityType="CargaPedidoDBModel.Segmentos" />
-          <EntitySet Name="Estados" EntityType="CargaPedidoDBModel.Estados" />
-          <EntitySet Name="Canasto" EntityType="CargaPedidoDBModel.Canasto" />
           <EntitySet Name="Pedidos" EntityType="CargaPedidoDBModel.Pedidos" />
+          <EntitySet Name="Segmento" EntityType="CargaPedidoDBModel.Segmento" />
         </EntityContainer>
-        <EntityType Name="Local">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
-          <Property Name="Numero" Type="Int32" Nullable="false" />
-          <Property Name="Descripcion" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="true" />
-        </EntityType>
-        <EntityType Name="Operario">
+        <EntityType Name="Canasto">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="Int32" Name="Legajo" />
-          <Property Type="String" Name="Descripcion" MaxLength="50" FixedLength="true" Unicode="true" />
-        </EntityType>
-        <EntityType Name="Segmentos">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Descripcion" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Type="Int32" Name="Id_local" />
+          <Property Type="Int32" Name="Numero_local" />
+          <Property Type="String" Name="Descripcion_local" MaxLength="50" FixedLength="true" Unicode="true" />
+          <Property Type="Int32" Name="Id_vendedor" />
+          <Property Type="Int32" Name="Legajo_vendedor" />
+          <Property Type="String" Name="Descripcion_vendedor" MaxLength="50" FixedLength="true" Unicode="true" />
+          <Property Type="String" Name="Estado" MaxLength="50" FixedLength="true" Unicode="true" />
+          <Property Type="DateTime" Name="Fecha" Precision="0" />
+          <Property Type="String" Name="Segmento" MaxLength="10" FixedLength="true" Unicode="true" />
         </EntityType>
         <EntityType Name="Estados">
           <Key>
@@ -120,26 +110,21 @@
           <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Type="String" Name="Estado" MaxLength="50" FixedLength="true" Unicode="true" />
         </EntityType>
-        <EntityType Name="Canasto">
+        <EntityType Name="Local">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Id_Local" Type="Int32" />
-          <Property Name="Numero_Local" Type="Int32" />
-          <Property Name="Descripcion_Local" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
-          <Property Name="Id_Vendedor" Type="Int32" />
-          <Property Name="Legajo_Vendedor" Type="Int32" />
-          <Property Name="Descripcion_Vendedor" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
-          <Property Name="Estado" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
-          <Property Name="Segmento" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
-          <Property Name="Fecha" Type="DateTime" Precision="0" />
-          <Property Type="Int32" Name="Id_local" />
-          <Property Type="Int32" Name="Numero_local" />
-          <Property Type="String" Name="Descripcion_local" MaxLength="50" FixedLength="true" Unicode="true" />
-          <Property Type="Int32" Name="Id_vendedor" />
-          <Property Type="Int32" Name="Legajo_vendedor" />
-          <Property Type="String" Name="Descripcion_vendedor" MaxLength="50" FixedLength="true" Unicode="true" />
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="Numero" Nullable="false" />
+          <Property Type="String" Name="Descripcion" Nullable="false" MaxLength="50" FixedLength="true" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Operario">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="Legajo" />
+          <Property Type="String" Name="Descripcion" MaxLength="50" FixedLength="true" Unicode="true" />
         </EntityType>
         <EntityType Name="Pedidos">
           <Key>
@@ -159,33 +144,31 @@
           <Property Type="String" Name="Descripcion_Facturista" MaxLength="50" FixedLength="true" Unicode="true" />
           <Property Type="String" Name="Comentario" MaxLength="Max" FixedLength="false" Unicode="false" />
         </EntityType>
-      </Schema>
+        <EntityType Name="Segmento">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Descripcion" MaxLength="50" FixedLength="true" Unicode="true" />
+        </EntityType>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="CargaPedidoDBModelStoreContainer" CdmEntityContainer="CargaPedidoDBEntities">
-          <EntitySetMapping Name="Local">
-            <EntityTypeMapping TypeName="CargaPedidoDBModel.Local">
-              <MappingFragment StoreEntitySet="Local">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Numero" ColumnName="Numero" />
-                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Operario">
-            <EntityTypeMapping TypeName="CargaPedidoDBModel.Operario">
-              <MappingFragment StoreEntitySet="Operario">
-                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
-                <ScalarProperty Name="Legajo" ColumnName="Legajo" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Segmentos">
-            <EntityTypeMapping TypeName="CargaPedidoDBModel.Segmentos">
-              <MappingFragment StoreEntitySet="Segmentos">
+          <EntitySetMapping Name="Canasto">
+            <EntityTypeMapping TypeName="CargaPedidoDBModel.Canasto">
+              <MappingFragment StoreEntitySet="Canasto">
+                <ScalarProperty Name="Segmento" ColumnName="Segmento" />
+                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+                <ScalarProperty Name="Descripcion_vendedor" ColumnName="Descripcion_vendedor" />
+                <ScalarProperty Name="Legajo_vendedor" ColumnName="Legajo_vendedor" />
+                <ScalarProperty Name="Id_vendedor" ColumnName="Id_vendedor" />
+                <ScalarProperty Name="Descripcion_local" ColumnName="Descripcion_local" />
+                <ScalarProperty Name="Numero_local" ColumnName="Numero_local" />
+                <ScalarProperty Name="Id_local" ColumnName="Id_local" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -198,18 +181,20 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Canasto">
-            <EntityTypeMapping TypeName="CargaPedidoDBModel.Canasto">
-              <MappingFragment StoreEntitySet="Canasto">
-                <ScalarProperty Name="Descripcion_vendedor" ColumnName="Descripcion_vendedor" />
-                <ScalarProperty Name="Legajo_vendedor" ColumnName="Legajo_vendedor" />
-                <ScalarProperty Name="Id_vendedor" ColumnName="Id_vendedor" />
-                <ScalarProperty Name="Descripcion_local" ColumnName="Descripcion_local" />
-                <ScalarProperty Name="Numero_local" ColumnName="Numero_local" />
-                <ScalarProperty Name="Id_local" ColumnName="Id_local" />
-                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
-                <ScalarProperty Name="Segmento" ColumnName="Segmento" />
-                <ScalarProperty Name="Estado" ColumnName="Estado" />
+          <EntitySetMapping Name="Local">
+            <EntityTypeMapping TypeName="CargaPedidoDBModel.Local">
+              <MappingFragment StoreEntitySet="Local">
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Numero" ColumnName="Numero" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Operario">
+            <EntityTypeMapping TypeName="CargaPedidoDBModel.Operario">
+              <MappingFragment StoreEntitySet="Operario">
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Legajo" ColumnName="Legajo" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -233,7 +218,15 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          </EntityContainerMapping>
+          <EntitySetMapping Name="Segmento">
+            <EntityTypeMapping TypeName="CargaPedidoDBModel.Segmento">
+              <MappingFragment StoreEntitySet="Segmento">
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
   </edmx:Runtime>

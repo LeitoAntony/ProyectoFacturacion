@@ -29,7 +29,7 @@ namespace PedidosFacturacion
         {
             llenarCombo();
             setRButton();
-            inicializarPedidos();
+            //inicializarPedidos();
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)
@@ -53,7 +53,7 @@ namespace PedidosFacturacion
             {
                 MessageBox.Show("Complete todos los campos! ", "Advertencia!");
             }
-            resetearCampos();
+            //resetearCampos();
         }
 
         private void btnBorrar_Click(object sender, EventArgs e)
@@ -94,7 +94,7 @@ namespace PedidosFacturacion
             llenarCmbVendedor();
             llenarCmbLocales();
 
-            resetearCampos();
+            //resetearCampos();
         }
 
         private void llenarCmbVendedor()
@@ -133,8 +133,7 @@ namespace PedidosFacturacion
         private void setRButton()
         {
             objLogica = new Logica();
-            objLogica = new Logica();
-            Segmentos[] array = objLogica.getSegmentos();
+            Segmento[] array = objLogica.getSegmentos();
             rbHombre.Text = array[0].Descripcion;
             rbMujer.Text = array[1].Descripcion;
             rbKids.Text = array[2].Descripcion;
@@ -181,10 +180,10 @@ namespace PedidosFacturacion
 
         private void actualizarPedido(Local local, Operario vendedor, String hombre, String mujer, String kids)
         {
-            dgvPedido[2, IdFila].Value = local.Numero;
-            dgvPedido[3, IdFila].Value = local.Descripcion;
-            dgvPedido[4, IdFila].Value = vendedor.Legajo;
-            dgvPedido[5, IdFila].Value = vendedor.Descripcion;
+            dgvPedido[2, IdFila].Value = 14;
+            dgvPedido[3, IdFila].Value = "loca";
+            dgvPedido[4, IdFila].Value = 15;
+            dgvPedido[5, IdFila].Value = "vendedor";
             dgvPedido[6, IdFila].Value = hombre;
             dgvPedido[7, IdFila].Value = mujer;
             dgvPedido[8, IdFila].Value = kids;
@@ -205,16 +204,21 @@ namespace PedidosFacturacion
             Local local = (Local)cmbLocal.SelectedItem;
             Operario vendedor = (Operario)cmbVendedor.SelectedItem;
             string hombre = "", mujer = "", kids = "";
-            if (rbHombre.Checked){
+            if (rbHombre.Checked)
+            {
                 hombre = rbHombre.Text;
+                objLogica.insertarCanasto(Id, local, vendedor, txtLocal.Text, txtVenedor.Text, hombre);
+            }
             if (rbMujer.Checked)
+            {
                 mujer = rbMujer.Text;
+                objLogica.insertarCanasto(Id, local, vendedor, txtLocal.Text, txtVenedor.Text, mujer);
+            }
             if (rbKids.Checked)
+            {
                 kids = rbKids.Text;
-
-            objLogica.insertarCanasto(Id, local, vendedor, txtLocal.Text, txtVenedor.Text, hombre);
-
-
+                objLogica.insertarCanasto(Id, local, vendedor, txtLocal.Text, txtVenedor.Text, kids);
+            }
         }
 
         private void eliminarPedido()
@@ -266,7 +270,8 @@ namespace PedidosFacturacion
 
         private void btnAgregarCanasto_Click(object sender, EventArgs e)
         {
-
+            cargarCanasto();
+            insertarCanastoDB();
         }
 
 

@@ -31,7 +31,7 @@ namespace PedidosFacturacion
         private void btnFacturado_Click(object sender, EventArgs e)
         {
             //colocar como facturado el pedido
-            objLogica.actualizarEstadoPorFecha(ValueIdFila, "Facturado");
+            //objLogica.actualizarEstadoPorFecha(ValueIdFila, "Facturado");
             actualizarFila();
         }
 

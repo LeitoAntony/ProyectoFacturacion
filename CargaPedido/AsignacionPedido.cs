@@ -106,7 +106,7 @@ namespace PedidosFacturacion
                 Operario asignador = (Operario)cmbAsignador.SelectedItem;
                 objLogica = new Logica();
                 //actualizo la DB con el facturista y la fecha/hora
-                objLogica.setFacturista(ValueIdFila, facturista, asignador, DateTime.Today.Date);
+                //objLogica.setFacturista(ValueIdFila, facturista, asignador, DateTime.Today.Date);
                 //actualizo el estado del pedido
                 //objLogica.actualizarEstado(ValueIdFila, "Asignado");
                 actualizarFila(facturista.Descripcion, asignador.Descripcion);

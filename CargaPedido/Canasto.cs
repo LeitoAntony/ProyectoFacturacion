@@ -15,20 +15,14 @@ namespace PedidosFacturacion
     public partial class Canasto
     {
         public int Id { get; set; }
-        public Nullable<int> Id_Local { get; set; }
-        public Nullable<int> Numero_Local { get; set; }
-        public string Descripcion_Local { get; set; }
-        public Nullable<int> Id_Vendedor { get; set; }
-        public Nullable<int> Legajo_Vendedor { get; set; }
-        public string Descripcion_Vendedor { get; set; }
-        public string Estado { get; set; }
-        public string Segmento { get; set; }
-        public Nullable<System.DateTime> Fecha { get; set; }
         public Nullable<int> Id_local { get; set; }
         public Nullable<int> Numero_local { get; set; }
         public string Descripcion_local { get; set; }
         public Nullable<int> Id_vendedor { get; set; }
         public Nullable<int> Legajo_vendedor { get; set; }
         public string Descripcion_vendedor { get; set; }
+        public string Estado { get; set; }
+        public Nullable<System.DateTime> Fecha { get; set; }
+        public string Segmento { get; set; }
     }
 }

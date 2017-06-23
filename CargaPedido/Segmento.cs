@@ -12,7 +12,7 @@ namespace PedidosFacturacion
     using System;
     using System.Collections.Generic;
     
-    public partial class Segmentos
+    public partial class Segmento
     {
         public int Id { get; set; }
         public string Descripcion { get; set; }
