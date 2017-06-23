@@ -42,8 +42,8 @@ namespace PedidosFacturacion
             this.dgvPedido = new System.Windows.Forms.DataGridView();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.rbKids = new System.Windows.Forms.RadioButton();
-            this.rbHombre = new System.Windows.Forms.RadioButton();
             this.rbMujer = new System.Windows.Forms.RadioButton();
+            this.rbHombre = new System.Windows.Forms.RadioButton();
             this.txtVenedor = new System.Windows.Forms.TextBox();
             this.txtLocal = new System.Windows.Forms.TextBox();
             this.btnBorrar = new System.Windows.Forms.Button();
@@ -51,23 +51,27 @@ namespace PedidosFacturacion
             this.panel1 = new System.Windows.Forms.Panel();
             this.btnActualizar = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.btnAgregarCanasto = new System.Windows.Forms.Button();
+            this.btnBorrarCanasto = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
-            this.Column9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btnAgregarCanasto = new System.Windows.Forms.Button();
+            this.dgvCanasto = new System.Windows.Forms.DataGridView();
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column11 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column12 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.localBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.operarioBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPedido)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvCanasto)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -135,7 +139,7 @@ namespace PedidosFacturacion
             // 
             this.btnGuardar.Location = new System.Drawing.Point(6, 92);
             this.btnGuardar.Name = "btnGuardar";
-            this.btnGuardar.Size = new System.Drawing.Size(105, 23);
+            this.btnGuardar.Size = new System.Drawing.Size(75, 23);
             this.btnGuardar.TabIndex = 5;
             this.btnGuardar.Text = "Guardar";
             this.btnGuardar.UseVisualStyleBackColor = true;
@@ -143,7 +147,7 @@ namespace PedidosFacturacion
             // 
             // btnCancelar
             // 
-            this.btnCancelar.Location = new System.Drawing.Point(280, 92);
+            this.btnCancelar.Location = new System.Drawing.Point(250, 92);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(75, 23);
             this.btnCancelar.TabIndex = 6;
@@ -158,29 +162,24 @@ namespace PedidosFacturacion
             this.dgvPedido.AllowUserToResizeColumns = false;
             this.dgvPedido.AllowUserToResizeRows = false;
             this.dgvPedido.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.dgvPedido.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvPedido.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvPedido.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Column9,
-            this.Column8,
-            this.Column1,
             this.Column2,
-            this.Column3,
-            this.Column4,
-            this.Column5,
-            this.Column6,
-            this.Column7});
+            this.Column4});
             this.dgvPedido.Location = new System.Drawing.Point(12, 229);
             this.dgvPedido.Name = "dgvPedido";
             this.dgvPedido.ReadOnly = true;
-            this.dgvPedido.Size = new System.Drawing.Size(1340, 413);
+            this.dgvPedido.Size = new System.Drawing.Size(496, 413);
             this.dgvPedido.TabIndex = 14;
             this.dgvPedido.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvPedido_CellClick);
             // 
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.rbKids);
-            this.groupBox1.Controls.Add(this.rbHombre);
             this.groupBox1.Controls.Add(this.rbMujer);
+            this.groupBox1.Controls.Add(this.rbHombre);
             this.groupBox1.Location = new System.Drawing.Point(87, 23);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(276, 33);
@@ -198,17 +197,6 @@ namespace PedidosFacturacion
             this.rbKids.Text = "Kids";
             this.rbKids.UseVisualStyleBackColor = true;
             // 
-            // rbHombre
-            // 
-            this.rbHombre.AutoSize = true;
-            this.rbHombre.Location = new System.Drawing.Point(13, 10);
-            this.rbHombre.Name = "rbHombre";
-            this.rbHombre.Size = new System.Drawing.Size(62, 17);
-            this.rbHombre.TabIndex = 21;
-            this.rbHombre.TabStop = true;
-            this.rbHombre.Text = "Hombre";
-            this.rbHombre.UseVisualStyleBackColor = true;
-            // 
             // rbMujer
             // 
             this.rbMujer.AutoSize = true;
@@ -219,6 +207,17 @@ namespace PedidosFacturacion
             this.rbMujer.TabStop = true;
             this.rbMujer.Text = "Mujer";
             this.rbMujer.UseVisualStyleBackColor = true;
+            // 
+            // rbHombre
+            // 
+            this.rbHombre.AutoSize = true;
+            this.rbHombre.Location = new System.Drawing.Point(13, 10);
+            this.rbHombre.Name = "rbHombre";
+            this.rbHombre.Size = new System.Drawing.Size(62, 17);
+            this.rbHombre.TabIndex = 21;
+            this.rbHombre.TabStop = true;
+            this.rbHombre.Text = "Hombre";
+            this.rbHombre.UseVisualStyleBackColor = true;
             // 
             // txtVenedor
             // 
@@ -238,7 +237,7 @@ namespace PedidosFacturacion
             // 
             // btnBorrar
             // 
-            this.btnBorrar.Location = new System.Drawing.Point(117, 92);
+            this.btnBorrar.Location = new System.Drawing.Point(87, 92);
             this.btnBorrar.Name = "btnBorrar";
             this.btnBorrar.Size = new System.Drawing.Size(75, 23);
             this.btnBorrar.TabIndex = 18;
@@ -277,7 +276,7 @@ namespace PedidosFacturacion
             // 
             // btnActualizar
             // 
-            this.btnActualizar.Location = new System.Drawing.Point(199, 92);
+            this.btnActualizar.Location = new System.Drawing.Point(169, 92);
             this.btnActualizar.Name = "btnActualizar";
             this.btnActualizar.Size = new System.Drawing.Size(75, 23);
             this.btnActualizar.TabIndex = 20;
@@ -288,6 +287,7 @@ namespace PedidosFacturacion
             // panel2
             // 
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel2.Controls.Add(this.btnBorrarCanasto);
             this.panel2.Controls.Add(this.label5);
             this.panel2.Controls.Add(this.btnAgregarCanasto);
             this.panel2.Controls.Add(this.groupBox1);
@@ -297,15 +297,15 @@ namespace PedidosFacturacion
             this.panel2.Size = new System.Drawing.Size(1340, 91);
             this.panel2.TabIndex = 21;
             // 
-            // btnAgregarCanasto
+            // btnBorrarCanasto
             // 
-            this.btnAgregarCanasto.Location = new System.Drawing.Point(6, 60);
-            this.btnAgregarCanasto.Name = "btnAgregarCanasto";
-            this.btnAgregarCanasto.Size = new System.Drawing.Size(75, 23);
-            this.btnAgregarCanasto.TabIndex = 16;
-            this.btnAgregarCanasto.Text = "Agregar";
-            this.btnAgregarCanasto.UseVisualStyleBackColor = true;
-            this.btnAgregarCanasto.Click += new System.EventHandler(this.btnAgregarCanasto_Click);
+            this.btnBorrarCanasto.Location = new System.Drawing.Point(87, 60);
+            this.btnBorrarCanasto.Name = "btnBorrarCanasto";
+            this.btnBorrarCanasto.Size = new System.Drawing.Size(75, 23);
+            this.btnBorrarCanasto.TabIndex = 18;
+            this.btnBorrarCanasto.Text = "Borrar";
+            this.btnBorrarCanasto.UseVisualStyleBackColor = true;
+            this.btnBorrarCanasto.Click += new System.EventHandler(this.btnBorrarCanasto_Click);
             // 
             // label5
             // 
@@ -317,68 +317,110 @@ namespace PedidosFacturacion
             this.label5.TabIndex = 17;
             this.label5.Text = "Agregar Canasto";
             // 
-            // Column9
+            // btnAgregarCanasto
             // 
-            this.Column9.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Column9.HeaderText = "";
-            this.Column9.Name = "Column9";
-            this.Column9.ReadOnly = true;
+            this.btnAgregarCanasto.Location = new System.Drawing.Point(6, 60);
+            this.btnAgregarCanasto.Name = "btnAgregarCanasto";
+            this.btnAgregarCanasto.Size = new System.Drawing.Size(75, 23);
+            this.btnAgregarCanasto.TabIndex = 16;
+            this.btnAgregarCanasto.Text = "Agregar";
+            this.btnAgregarCanasto.UseVisualStyleBackColor = true;
+            this.btnAgregarCanasto.Click += new System.EventHandler(this.btnAgregarCanasto_Click);
             // 
-            // Column8
+            // dgvCanasto
             // 
-            this.Column8.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Column8.HeaderText = "Fecha";
-            this.Column8.Name = "Column8";
-            this.Column8.ReadOnly = true;
-            // 
-            // Column1
-            // 
-            this.Column1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Column1.HeaderText = "Número Local";
-            this.Column1.Name = "Column1";
-            this.Column1.ReadOnly = true;
-            // 
-            // Column2
-            // 
-            this.Column2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Column2.HeaderText = "Local";
-            this.Column2.Name = "Column2";
-            this.Column2.ReadOnly = true;
+            this.dgvCanasto.AllowUserToAddRows = false;
+            this.dgvCanasto.AllowUserToDeleteRows = false;
+            this.dgvCanasto.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvCanasto.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCells;
+            this.dgvCanasto.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvCanasto.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Column3,
+            this.Column5,
+            this.Column6,
+            this.Column7,
+            this.Column10,
+            this.Column11,
+            this.Column12});
+            this.dgvCanasto.Location = new System.Drawing.Point(514, 229);
+            this.dgvCanasto.Name = "dgvCanasto";
+            this.dgvCanasto.ReadOnly = true;
+            this.dgvCanasto.Size = new System.Drawing.Size(838, 413);
+            this.dgvCanasto.TabIndex = 22;
+            this.dgvCanasto.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvCanasto_CellClick);
             // 
             // Column3
             // 
-            this.Column3.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Column3.HeaderText = "Legajo";
+            this.Column3.FillWeight = 71.06599F;
+            this.Column3.HeaderText = "Nº Pedido";
             this.Column3.Name = "Column3";
             this.Column3.ReadOnly = true;
             // 
-            // Column4
-            // 
-            this.Column4.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Column4.HeaderText = "Vendedor";
-            this.Column4.Name = "Column4";
-            this.Column4.ReadOnly = true;
-            // 
             // Column5
             // 
-            this.Column5.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Column5.HeaderText = "Hombre";
+            this.Column5.FillWeight = 104.8223F;
+            this.Column5.HeaderText = "Nº Local";
             this.Column5.Name = "Column5";
             this.Column5.ReadOnly = true;
             // 
             // Column6
             // 
-            this.Column6.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Column6.HeaderText = "Mujer";
+            this.Column6.FillWeight = 104.8223F;
+            this.Column6.HeaderText = "Local";
             this.Column6.Name = "Column6";
             this.Column6.ReadOnly = true;
             // 
             // Column7
             // 
-            this.Column7.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Column7.HeaderText = "Kids";
+            this.Column7.FillWeight = 104.8223F;
+            this.Column7.HeaderText = "Legajo";
             this.Column7.Name = "Column7";
             this.Column7.ReadOnly = true;
+            // 
+            // Column10
+            // 
+            this.Column10.FillWeight = 104.8223F;
+            this.Column10.HeaderText = "Vendedor";
+            this.Column10.Name = "Column10";
+            this.Column10.ReadOnly = true;
+            // 
+            // Column11
+            // 
+            this.Column11.FillWeight = 104.8223F;
+            this.Column11.HeaderText = "Segmento";
+            this.Column11.Name = "Column11";
+            this.Column11.ReadOnly = true;
+            // 
+            // Column12
+            // 
+            this.Column12.FillWeight = 104.8223F;
+            this.Column12.HeaderText = "Fecha";
+            this.Column12.Name = "Column12";
+            this.Column12.ReadOnly = true;
+            // 
+            // Column9
+            // 
+            this.Column9.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Column9.FillWeight = 53.2995F;
+            this.Column9.HeaderText = "Nº Pedido";
+            this.Column9.Name = "Column9";
+            this.Column9.ReadOnly = true;
+            // 
+            // Column2
+            // 
+            this.Column2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Column2.FillWeight = 123.3503F;
+            this.Column2.HeaderText = "Local";
+            this.Column2.Name = "Column2";
+            this.Column2.ReadOnly = true;
+            // 
+            // Column4
+            // 
+            this.Column4.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Column4.FillWeight = 123.3503F;
+            this.Column4.HeaderText = "Vendedor";
+            this.Column4.Name = "Column4";
+            this.Column4.ReadOnly = true;
             // 
             // CargaPedido
             // 
@@ -387,6 +429,7 @@ namespace PedidosFacturacion
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.ClientSize = new System.Drawing.Size(1364, 705);
+            this.Controls.Add(this.dgvCanasto);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.dgvPedido);
             this.Controls.Add(this.panel1);
@@ -404,6 +447,7 @@ namespace PedidosFacturacion
             this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvCanasto)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -433,14 +477,17 @@ namespace PedidosFacturacion
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Button btnAgregarCanasto;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column9;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column8;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
+        private System.Windows.Forms.DataGridView dgvCanasto;
+        private System.Windows.Forms.Button btnBorrarCanasto;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column7;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column10;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column11;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column12;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column9;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
     }
 }

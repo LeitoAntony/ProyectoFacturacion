@@ -15,9 +15,14 @@ namespace PedidosFacturacion
     {
         private Logica objLogica;
         private int contadorFilas = 0;
-        private int Id;
+        private int IdPedido;
         private int IdFila;
         private int ValueIdFila;
+
+        private int contadorFilasCanasto = 0;
+        private int IdCanasto;
+        private int IdFilaCanasto;
+        private int ValueIdFilaCanasto;
 
 
         public CargaPedido()
@@ -29,7 +34,7 @@ namespace PedidosFacturacion
         {
             llenarCombo();
             setRButton();
-            //inicializarPedidos();
+            inicializarPedidos();
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)
@@ -41,25 +46,52 @@ namespace PedidosFacturacion
         {
             //chequeo de campos completos
             if (cmbVendedor.SelectedItem != null && cmbLocal.SelectedItem != null)
-            //&& (rbHombre.Checked || rbMujer.Checked || rbKids.Checked))
             {
                 //inserto los objetos en la base
                 insertarPedidoDB();
                 //cargo el pedido en los comboBox
-                cargarPedido(contadorFilas);
+                cargarPedido();
 
             }
             else
             {
                 MessageBox.Show("Complete todos los campos! ", "Advertencia!");
             }
-            //resetearCampos();
+        }
+
+        private void btnAgregarCanasto_Click(object sender, EventArgs e)
+        {
+            if (rbHombre.Checked || rbMujer.Checked || rbKids.Checked)
+            {
+                insertarCanastoDB();
+                cargarCanasto();
+            }
+            else
+                MessageBox.Show("Complete todos los campos! ", "Advertencia!");
         }
 
         private void btnBorrar_Click(object sender, EventArgs e)
         {
-            eliminarPedido();
-            eliminarPedidoDB();
+            if (contadorFilas > 0)
+                if (contadorFilasCanasto == 0)
+                {
+                    if (MessageBox.Show("Estas seguro que desas eliminar?", "AVISO", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                    {
+                        eliminarPedido();
+                        eliminarPedidoDB();
+                    }
+
+                }
+                else
+                    MessageBox.Show("Tiene canastos relacionados. Eliminelos primero!", "Advertencia!");
+            else
+                MessageBox.Show("No tiene pedidos para eliminar! ", "Advertencia!");
+        }
+
+        private void btnBorrarCanasto_Click(object sender, EventArgs e)
+        {
+            eliminarCanasto();
+            eliminarCanastoDB();
         }
 
         private void btnActualizar_Click(object sender, EventArgs e)
@@ -71,6 +103,14 @@ namespace PedidosFacturacion
         {
             IdFila = dgvPedido.CurrentRow.Index;
             ValueIdFila = Convert.ToInt32(dgvPedido.Rows[IdFila].Cells[0].Value);
+            getCanastos();
+        }
+
+        private void dgvCanasto_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            IdFilaCanasto = dgvCanasto.CurrentRow.Index;
+            ValueIdFilaCanasto = Convert.ToInt32(dgvCanasto.Rows[IdFilaCanasto].Cells[0].Value);
+            
         }
 
         private void cmbLocal_SelectedIndexChanged(object sender, EventArgs e)
@@ -94,7 +134,7 @@ namespace PedidosFacturacion
             llenarCmbVendedor();
             llenarCmbLocales();
 
-            //resetearCampos();
+            resetearCampos();
         }
 
         private void llenarCmbVendedor()
@@ -139,64 +179,80 @@ namespace PedidosFacturacion
             rbKids.Text = array[2].Descripcion;
         }
 
-        //private void inicializarPedidos()
-        //{
-        //    objLogica = new Logica();
-        //    //traigo desde la base de datos
-        //    List<Pedidos> pedidos = objLogica.getPedidosPorFecha(DateTime.Now);
-        //    //los mapeo a la gilla
-        //    foreach (var item in pedidos)
-        //    {
-        //        dgvPedido.Rows.Insert(contadorFilas, item.Id, item.Numero_Local, item.Descripcion_Local,
-        //           item.Legajo_Vendedor, item.Descripcion_Vendedor, item.Hombre, item.Mujer, item.Kids
-        //            , item.Fecha_creacion);
-        //        this.contadorFilas = contadorFilas + 1;
-        //    }
-        //}
-
-        private void cargarPedido(int conFilas)
+        private void inicializarPedidos()
         {
-            //se carga en el dataGrdView los elemenos 
-            dgvPedido.Rows.Insert(conFilas, Id, DateTime.Now);
-            contadorFilas = contadorFilas + 1;
+            objLogica = new Logica();
+            //traigo desde la base de datos
+            List<Pedidos> pedidos = objLogica.getPedidosPorFecha(DateTime.Now);
+            
+            //los mapeo a la gilla
+            foreach (var item in pedidos)
+            {
+                dgvPedido.Rows.Insert(contadorFilas, item.Id, item.Descripcion_local, item.Descripcion_vendedor);
+                this.contadorFilas = contadorFilas + 1;
+            }
 
-            //String.Format("{0:d/M/yyyy HH:mm:ss}", DateTime.Today)
+            
+        }
+        private void getCanastos()
+        {
+            dgvCanasto.Rows.Clear();
+            dgvCanasto.Refresh();
+            contadorFilasCanasto = 0;
+            objLogica = new Logica();
+            List<Canasto> canastos = objLogica.getCanastosPorIdPedido(ValueIdFila);
+            foreach (var item in canastos)
+            {
+                dgvCanasto.Rows.Insert(contadorFilasCanasto, ValueIdFila, item.Numero_local, item.Descripcion_local, item.Legajo_vendedor,
+                    item.Descripcion_vendedor, item.Segmento, item.Fecha);
+                this.contadorFilasCanasto = contadorFilasCanasto + 1;
+            }
+        }
+
+        private void cargarPedido()
+        {
+            Local local = (Local)cmbLocal.SelectedItem;
+            Operario vendedor = (Operario)cmbVendedor.SelectedItem;
+
+            //se carga en el dataGrdView los elemenos 
+            dgvPedido.Rows.Insert(contadorFilas, IdPedido, local.Descripcion, vendedor.Descripcion);
+            contadorFilas++;
         }
 
         private void cargarCanasto()
         {
-            objLogica = new Logica();
             Local local = (Local)cmbLocal.SelectedItem;
             Operario vendedor = (Operario)cmbVendedor.SelectedItem;
-            MessageBox.Show("Datos " + local.Numero);
             string hombre = "", mujer = "", kids = "";
             if (rbHombre.Checked)
+            {
                 hombre = rbHombre.Text;
+                dgvCanasto.Rows.Insert(contadorFilasCanasto, IdCanasto, local.Numero, local.Descripcion, vendedor.Legajo,
+                vendedor.Descripcion, hombre, DateTime.Now);
+            }
             if (rbMujer.Checked)
+            {
                 mujer = rbMujer.Text;
+                dgvCanasto.Rows.Insert(contadorFilasCanasto, IdCanasto, local.Numero, local.Descripcion, vendedor.Legajo,
+                vendedor.Descripcion, mujer, DateTime.Now);
+            }
             if (rbKids.Checked)
+            {
                 kids = rbKids.Text;
-            actualizarPedido(local, vendedor, hombre, mujer, kids);
+                dgvCanasto.Rows.Insert(contadorFilasCanasto, IdCanasto, local.Numero, local.Descripcion, vendedor.Legajo,
+                vendedor.Descripcion, kids, DateTime.Now);
+            }
+            contadorFilasCanasto++;
         }
 
-        private void actualizarPedido(Local local, Operario vendedor, String hombre, String mujer, String kids)
-        {
-            dgvPedido[2, IdFila].Value = local.Numero.ToString();
-            dgvPedido[3, IdFila].Value = local.Descripcion;
-            dgvPedido[4, IdFila].Value = vendedor.Legajo.ToString();
-            dgvPedido[5, IdFila].Value = vendedor.Descripcion;
-            dgvPedido[6, IdFila].Value = hombre;
-            dgvPedido[7, IdFila].Value = mujer;
-            dgvPedido[8, IdFila].Value = kids;
-
-        }
 
         private void insertarPedidoDB()
         {
             objLogica = new Logica();
-
+            Local local = (Local)cmbLocal.SelectedItem;
+            Operario vendedor = (Operario)cmbVendedor.SelectedItem;
             //inserto los datos en la DB y me guardo el id de ese pedido
-            Id = objLogica.insertarPedido();
+            IdPedido = objLogica.insertarPedido(local, vendedor);
         }
 
         private void insertarCanastoDB()
@@ -208,17 +264,17 @@ namespace PedidosFacturacion
             if (rbHombre.Checked)
             {
                 hombre = rbHombre.Text;
-                objLogica.insertarCanasto(Id, local, vendedor, txtLocal.Text, txtVenedor.Text, hombre);
+                IdCanasto = objLogica.insertarCanasto(IdPedido, local, vendedor, hombre);
             }
             if (rbMujer.Checked)
             {
                 mujer = rbMujer.Text;
-                objLogica.insertarCanasto(Id, local, vendedor, txtLocal.Text, txtVenedor.Text, mujer);
+                IdCanasto = objLogica.insertarCanasto(IdPedido, local, vendedor, mujer);
             }
             if (rbKids.Checked)
             {
                 kids = rbKids.Text;
-                objLogica.insertarCanasto(Id, local, vendedor, txtLocal.Text, txtVenedor.Text, kids);
+                IdCanasto = objLogica.insertarCanasto(IdPedido, local, vendedor, kids);
             }
         }
 
@@ -234,6 +290,20 @@ namespace PedidosFacturacion
             objLogica = new Logica();
             //elimino los datos de la base de datos
             objLogica.eliminarPedido(ValueIdFila);
+        }
+
+        private void eliminarCanasto()
+        {
+            //elimino la fila por su id
+            dgvCanasto.Rows.RemoveAt(IdFilaCanasto);
+            contadorFilasCanasto--;
+        }
+
+        private void eliminarCanastoDB()
+        {
+            objLogica = new Logica();
+            //elimino los datos de la base de datos
+            objLogica.eliminarCanasto(ValueIdFilaCanasto);
         }
 
         //private void actualizarPedido()
@@ -269,11 +339,8 @@ namespace PedidosFacturacion
             cmbVendedor.Focus();
         }
 
-        private void btnAgregarCanasto_Click(object sender, EventArgs e)
-        {
-            cargarCanasto();
-            insertarCanastoDB();
-        }
+
+
 
 
 

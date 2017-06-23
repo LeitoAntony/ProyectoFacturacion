@@ -12,22 +12,24 @@ namespace PedidosFacturacion
     {
         private CargaPedidoDBEntities context = new CargaPedidoDBEntities();
 
-        public int insertarPedido()
+        public int insertarPedido(Local local, Operario vendedor)
     {
         Pedidos pedido = new Pedidos();
-        pedido.Fecha_creacion = DateTime.Now;
+        pedido.Fecha = DateTime.Now;
+        pedido.Descripcion_local = local.Descripcion;
+        pedido.Descripcion_vendedor = vendedor.Descripcion;
         //Adhiero mi objeto pedido a la base
         context.Pedidos.Add(pedido);
+ 
 
         //guardo
         context.SaveChanges();
             return pedido.Id;
     }
 
-        public void insertarCanasto(int IdPedido, Local local, Operario vendedor, String txtLocal, String txtVenedor,
-            String segmento)
+        public int insertarCanasto(int IdPedido, Local local, Operario vendedor, String segmento)
         {
-            Estados[] estado = context.Estados.ToArray();
+            Estado[] estado = context.Estado.ToArray();
             //creo mi objeto
             Canasto canasto = new Canasto();
             Pedidos pedido = this.getPedido(IdPedido);
@@ -44,15 +46,15 @@ namespace PedidosFacturacion
 
 
             canasto.Id_local = local.Id;
-            canasto.Numero_local =Convert.ToInt32(txtLocal);
+            canasto.Numero_local = local.Numero;
             canasto.Descripcion_local = local.Descripcion;
-            canasto.Id_vendedor = Convert.ToInt32(txtVenedor);
+            canasto.Id_vendedor = vendedor.Id;
             canasto.Legajo_vendedor = vendedor.Legajo;
             canasto.Descripcion_vendedor = vendedor.Descripcion;
-            canasto.Estado = estado[0].Estado;
+            canasto.Estado = estado[0].Descripcion;
             canasto.Fecha = DateTime.Now;
             canasto.Segmento = segmento;
-            canasto.Id_Pedido = pedido.Id;
+            canasto.Id_pedido = pedido.Id;
             
 
 
@@ -60,6 +62,7 @@ namespace PedidosFacturacion
             
       
             context.SaveChanges();
+            return canasto.Id;
         }
        
         //public void actualizarPedido(int Id, Local local, Operario vendedor, String txtLocal, String txtVenedor,
@@ -90,6 +93,13 @@ namespace PedidosFacturacion
             context.SaveChanges();
         }
 
+        public void eliminarCanasto(int Id)
+        {
+            Canasto BorrarCanasto = (from q in context.Canasto where q.Id == Id select q).First();
+            context.Canasto.Remove(BorrarCanasto);
+            context.SaveChanges();
+        }
+
         //public void setFacturista(int Id, Operario facturista, Operario asignador, DateTime fechaAsignacion)
         //{
         //    try
@@ -113,12 +123,12 @@ namespace PedidosFacturacion
             
         //}
 
-        public void setComentario(int Id, String comentario) 
-        {
-            var pedidoEditar = context.Pedidos.FirstOrDefault(x => x.Id == Id);
-            pedidoEditar.Comentario = comentario;
-            context.SaveChanges();
-        }
+        //public void setComentario(int Id, String comentario) 
+        //{
+        //    var pedidoEditar = context.Pedidos.FirstOrDefault(x => x.Id == Id);
+        //    pedidoEditar.Comentario = comentario;
+        //    context.SaveChanges();
+        //}
 
         //public void actualizarEstado(int Id, String estado)
         //{
@@ -140,9 +150,9 @@ namespace PedidosFacturacion
             return context.Operario.ToList();
         }
 
-        public List<Estados> getEstados()
+        public List<Estado> getEstados()
         {
-           return context.Estados.ToList();
+           return context.Estado.ToList();
         }
 
         public List<Local> getLocales()
@@ -154,7 +164,7 @@ namespace PedidosFacturacion
         {
             //manejar excepcion
             IPagedList<Pedidos> lista1 = (from q in context.Pedidos
-                                          where (q.Fecha_creacion == dtpFecha.Date.Date)
+                                          where (q.Fecha == dtpFecha.Date.Date)
                                           orderby
                                               q.Id
                                           select q).ToPagedList(paginaActual, tamañoPagina);
@@ -163,7 +173,15 @@ namespace PedidosFacturacion
 
         public List<Pedidos> getPedidosPorFecha(DateTime fecha)
         {
-            var ped = (from q in context.Pedidos.Where(q => q.Fecha_creacion == fecha.Date)
+            var ped = (from q in context.Pedidos.Where(q => q.Fecha == fecha.Date)
+                       orderby q.Id
+                       select q).ToList();
+            return ped;
+        }
+
+        public List<Canasto> getCanastosPorIdPedido(int IdPedido)
+        {
+            var ped = (from q in context.Canasto.Where(q => q.Id_pedido == IdPedido)
                        orderby q.Id
                        select q).ToList();
             return ped;
@@ -181,7 +199,7 @@ namespace PedidosFacturacion
 
         public List<Pedidos> getPedidosPorAsignador(String fecha)
         {
-            var ped = (from q in context.Pedidos orderby q.Id where q.Fecha_creacion.ToString() == fecha select q).ToList();
+            var ped = (from q in context.Pedidos orderby q.Id where q.Fecha.ToString() == fecha select q).ToList();
             return ped;
         }
 
@@ -214,6 +232,10 @@ namespace PedidosFacturacion
         {
             return context.Segmento.ToArray();
         }
+
+
+
+        
     }
 
 

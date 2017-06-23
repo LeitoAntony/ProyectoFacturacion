@@ -427,7 +427,7 @@
             // 
             // estadosBindingSource
             // 
-            this.estadosBindingSource.DataSource = typeof(PedidosFacturacion.Estados);
+            this.estadosBindingSource.DataSource = typeof(PedidosFacturacion.Estado);
             // 
             // Consultas
             // 

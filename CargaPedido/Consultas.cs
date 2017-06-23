@@ -99,7 +99,7 @@ namespace PedidosFacturacion
         private void btnAceptar_Click(object sender, EventArgs e)
         {
             objLogica = new Logica();
-            objLogica.setComentario(ValueIdFila, txtComentario.Text);
+           // objLogica.setComentario(ValueIdFila, txtComentario.Text);
             txtComentario.Text = String.Empty;
         }
 

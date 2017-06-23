@@ -1,75 +1,76 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Schema Namespace="CargaPedidoDBModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-  <EntityContainer Name="CargaPedidoDBModelStoreContainer">
-    <EntitySet Name="Canasto" EntityType="CargaPedidoDBModel.Store.Canasto" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="Estados" EntityType="CargaPedidoDBModel.Store.Estados" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="Local" EntityType="CargaPedidoDBModel.Store.Local" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="Operario" EntityType="CargaPedidoDBModel.Store.Operario" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="Pedidos" EntityType="CargaPedidoDBModel.Store.Pedidos" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="Segmento" EntityType="CargaPedidoDBModel.Store.Segmento" store:Type="Tables" Schema="dbo" />
-  </EntityContainer>
+<Schema Namespace="CargaPedidoDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
   <EntityType Name="Canasto">
     <Key>
       <PropertyRef Name="Id" />
     </Key>
-    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Id_pedido" Type="int" />
     <Property Name="Id_local" Type="int" />
     <Property Name="Numero_local" Type="int" />
     <Property Name="Descripcion_local" Type="nchar" MaxLength="50" />
     <Property Name="Id_vendedor" Type="int" />
     <Property Name="Legajo_vendedor" Type="int" />
     <Property Name="Descripcion_vendedor" Type="nchar" MaxLength="50" />
-    <Property Name="Estado" Type="nchar" MaxLength="50" />
+    <Property Name="Segmento" Type="nchar" MaxLength="50" />
     <Property Name="Fecha" Type="date" />
-    <Property Name="Segmento" Type="nchar" MaxLength="10" />
-    <Property Name="Id_Pedido" Type="int" />
-  </EntityType>
-  <EntityType Name="Estados">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
     <Property Name="Estado" Type="nchar" MaxLength="50" />
-  </EntityType>
-  <EntityType Name="Local">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-    <Property Name="Numero" Type="int" Nullable="false" />
-    <Property Name="Descripcion" Type="nchar" Nullable="false" MaxLength="50" />
-  </EntityType>
-  <EntityType Name="Operario">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-    <Property Name="Legajo" Type="int" />
-    <Property Name="Descripcion" Type="nchar" MaxLength="50" />
-  </EntityType>
-  <EntityType Name="Pedidos">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-    <Property Name="Fecha_creacion" Type="date" />
     <Property Name="Fecha_asignacion" Type="date" />
     <Property Name="Fecha_facturacion" Type="date" />
-    <Property Name="Prioridad" Type="nchar" MaxLength="50" />
     <Property Name="Id_asignador" Type="int" />
     <Property Name="Legajo_asignador" Type="int" />
     <Property Name="Descripcion_asignador" Type="nchar" MaxLength="50" />
     <Property Name="Id_facturista" Type="int" />
     <Property Name="Legajo_facturista" Type="int" />
-    <Property Name="Descripcion_Facturista" Type="nchar" MaxLength="50" />
-    <Property Name="Comentario" Type="varchar(max)" />
-    <Property Name="Canasto" Type="int" />
+    <Property Name="Descripcion_facturista" Type="nchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Estado">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Descripcion" Type="nchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Local">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Numero" Type="int" Nullable="false" />
+    <Property Name="Descripcion" Type="nchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Operario">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Legajo" Type="int" Nullable="false" />
+    <Property Name="Descripcion" Type="nchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Pedidos">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Prioridad" Type="nvarchar(max)" />
+    <Property Name="Comentario" Type="nvarchar(max)" />
+    <Property Name="Descripcion_local" Type="nchar" MaxLength="50" />
+    <Property Name="Descripcion_vendedor" Type="nchar" MaxLength="50" />
+    <Property Name="Fecha" Type="date" />
   </EntityType>
   <EntityType Name="Segmento">
     <Key>
       <PropertyRef Name="Id" />
     </Key>
-    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Descripcion" Type="nchar" MaxLength="50" />
   </EntityType>
+  <EntityContainer Name="CargaPedidoDBModelStoreContainer">
+    <EntitySet Name="Canasto" EntityType="Self.Canasto" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Estado" EntityType="Self.Estado" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Local" EntityType="Self.Local" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Operario" EntityType="Self.Operario" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Pedidos" EntityType="Self.Pedidos" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Segmento" EntityType="Self.Segmento" Schema="dbo" store:Type="Tables" />
+  </EntityContainer>
 </Schema>
