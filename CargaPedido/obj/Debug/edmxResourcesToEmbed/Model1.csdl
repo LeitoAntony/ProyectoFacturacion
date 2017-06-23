@@ -22,6 +22,7 @@
     <Property Type="String" Name="Estado" MaxLength="50" FixedLength="true" Unicode="true" />
     <Property Type="DateTime" Name="Fecha" Precision="0" />
     <Property Type="String" Name="Segmento" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Type="Int32" Name="Id_Pedido" />
   </EntityType>
   <EntityType Name="Estados">
     <Key>
@@ -51,7 +52,6 @@
       <PropertyRef Name="Id" />
     </Key>
     <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Type="Int32" Name="Id_canasto" />
     <Property Type="DateTime" Name="Fecha_creacion" Precision="0" />
     <Property Type="DateTime" Name="Fecha_asignacion" Precision="0" />
     <Property Type="DateTime" Name="Fecha_facturacion" Precision="0" />
@@ -63,6 +63,7 @@
     <Property Type="Int32" Name="Legajo_facturista" />
     <Property Type="String" Name="Descripcion_Facturista" MaxLength="50" FixedLength="true" Unicode="true" />
     <Property Type="String" Name="Comentario" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Type="Int32" Name="Canasto" />
   </EntityType>
   <EntityType Name="Segmento">
     <Key>

@@ -22,6 +22,7 @@
     <Property Name="Estado" Type="nchar" MaxLength="50" />
     <Property Name="Fecha" Type="date" />
     <Property Name="Segmento" Type="nchar" MaxLength="10" />
+    <Property Name="Id_Pedido" Type="int" />
   </EntityType>
   <EntityType Name="Estados">
     <Key>
@@ -51,7 +52,6 @@
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-    <Property Name="Id_canasto" Type="int" />
     <Property Name="Fecha_creacion" Type="date" />
     <Property Name="Fecha_asignacion" Type="date" />
     <Property Name="Fecha_facturacion" Type="date" />
@@ -63,6 +63,7 @@
     <Property Name="Legajo_facturista" Type="int" />
     <Property Name="Descripcion_Facturista" Type="nchar" MaxLength="50" />
     <Property Name="Comentario" Type="varchar(max)" />
+    <Property Name="Canasto" Type="int" />
   </EntityType>
   <EntityType Name="Segmento">
     <Key>

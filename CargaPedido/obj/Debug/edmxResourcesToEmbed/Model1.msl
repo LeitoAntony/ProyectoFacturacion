@@ -4,6 +4,7 @@
     <EntitySetMapping Name="Canasto">
       <EntityTypeMapping TypeName="CargaPedidoDBModel.Canasto">
         <MappingFragment StoreEntitySet="Canasto">
+          <ScalarProperty Name="Id_Pedido" ColumnName="Id_Pedido" />
           <ScalarProperty Name="Segmento" ColumnName="Segmento" />
           <ScalarProperty Name="Fecha" ColumnName="Fecha" />
           <ScalarProperty Name="Estado" ColumnName="Estado" />
@@ -46,6 +47,7 @@
     <EntitySetMapping Name="Pedidos">
       <EntityTypeMapping TypeName="CargaPedidoDBModel.Pedidos">
         <MappingFragment StoreEntitySet="Pedidos">
+          <ScalarProperty Name="Canasto" ColumnName="Canasto" />
           <ScalarProperty Name="Comentario" ColumnName="Comentario" />
           <ScalarProperty Name="Descripcion_Facturista" ColumnName="Descripcion_Facturista" />
           <ScalarProperty Name="Legajo_facturista" ColumnName="Legajo_facturista" />
@@ -57,7 +59,6 @@
           <ScalarProperty Name="Fecha_facturacion" ColumnName="Fecha_facturacion" />
           <ScalarProperty Name="Fecha_asignacion" ColumnName="Fecha_asignacion" />
           <ScalarProperty Name="Fecha_creacion" ColumnName="Fecha_creacion" />
-          <ScalarProperty Name="Id_canasto" ColumnName="Id_canasto" />
           <ScalarProperty Name="Id" ColumnName="Id" />
         </MappingFragment>
       </EntityTypeMapping>

@@ -24,5 +24,6 @@ namespace PedidosFacturacion
         public string Estado { get; set; }
         public Nullable<System.DateTime> Fecha { get; set; }
         public string Segmento { get; set; }
+        public Nullable<int> Id_Pedido { get; set; }
     }
 }

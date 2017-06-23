@@ -15,7 +15,6 @@ namespace PedidosFacturacion
     public partial class Pedidos
     {
         public int Id { get; set; }
-        public Nullable<int> Id_canasto { get; set; }
         public Nullable<System.DateTime> Fecha_creacion { get; set; }
         public Nullable<System.DateTime> Fecha_asignacion { get; set; }
         public Nullable<System.DateTime> Fecha_facturacion { get; set; }
@@ -27,5 +26,6 @@ namespace PedidosFacturacion
         public Nullable<int> Legajo_facturista { get; set; }
         public string Descripcion_Facturista { get; set; }
         public string Comentario { get; set; }
+        public Nullable<int> Canasto { get; set; }
     }
 }

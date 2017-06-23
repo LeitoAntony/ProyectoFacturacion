@@ -168,6 +168,7 @@ namespace PedidosFacturacion
             objLogica = new Logica();
             Local local = (Local)cmbLocal.SelectedItem;
             Operario vendedor = (Operario)cmbVendedor.SelectedItem;
+            MessageBox.Show("Datos " + local.Numero);
             string hombre = "", mujer = "", kids = "";
             if (rbHombre.Checked)
                 hombre = rbHombre.Text;
@@ -180,10 +181,10 @@ namespace PedidosFacturacion
 
         private void actualizarPedido(Local local, Operario vendedor, String hombre, String mujer, String kids)
         {
-            dgvPedido[2, IdFila].Value = 14;
-            dgvPedido[3, IdFila].Value = "loca";
-            dgvPedido[4, IdFila].Value = 15;
-            dgvPedido[5, IdFila].Value = "vendedor";
+            dgvPedido[2, IdFila].Value = local.Numero.ToString();
+            dgvPedido[3, IdFila].Value = local.Descripcion;
+            dgvPedido[4, IdFila].Value = vendedor.Legajo.ToString();
+            dgvPedido[5, IdFila].Value = vendedor.Descripcion;
             dgvPedido[6, IdFila].Value = hombre;
             dgvPedido[7, IdFila].Value = mujer;
             dgvPedido[8, IdFila].Value = kids;

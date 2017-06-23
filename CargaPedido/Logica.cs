@@ -24,13 +24,13 @@ namespace PedidosFacturacion
             return pedido.Id;
     }
 
-        public void insertarCanasto(int Id, Local local, Operario vendedor, String txtLocal, String txtVenedor,
+        public void insertarCanasto(int IdPedido, Local local, Operario vendedor, String txtLocal, String txtVenedor,
             String segmento)
         {
             Estados[] estado = context.Estados.ToArray();
             //creo mi objeto
             Canasto canasto = new Canasto();
-            Pedidos pedido = this.getPedido(Id);
+            Pedidos pedido = this.getPedido(IdPedido);
             // completo mi objeto pedido con los datos de objetos seleccionados
             //canasto.Id_local = local.Id;
             //canasto.Id_vendedor = vendedor.Id;
@@ -42,20 +42,23 @@ namespace PedidosFacturacion
             //canasto.Fecha = DateTime.Today.Date;
             //canasto.Segmento = segmento;
 
-            canasto.Id_local = 123;
-            canasto.Id_vendedor = 321;
-            canasto.Numero_local = 147;
-            canasto.Descripcion_local = "Local";
-            canasto.Legajo_vendedor = 741;
-            canasto.Descripcion_vendedor = "Vendedor";
-            canasto.Estado = "Venta Terminada";
-            canasto.Fecha = DateTime.Today.Date;
-            canasto.Segmento = "Hombre";
+
+            canasto.Id_local = local.Id;
+            canasto.Numero_local =Convert.ToInt32(txtLocal);
+            canasto.Descripcion_local = local.Descripcion;
+            canasto.Id_vendedor = Convert.ToInt32(txtVenedor);
+            canasto.Legajo_vendedor = vendedor.Legajo;
+            canasto.Descripcion_vendedor = vendedor.Descripcion;
+            canasto.Estado = estado[0].Estado;
+            canasto.Fecha = DateTime.Now;
+            canasto.Segmento = segmento;
+            canasto.Id_Pedido = pedido.Id;
+            
 
 
             context.Canasto.Add(canasto);
             
-            pedido.Id_canasto = canasto.Id;
+      
             context.SaveChanges();
         }
        

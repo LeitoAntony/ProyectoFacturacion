@@ -27,6 +27,7 @@
           <Property Name="Estado" Type="nchar" MaxLength="50" />
           <Property Name="Fecha" Type="date" />
           <Property Name="Segmento" Type="nchar" MaxLength="10" />
+          <Property Name="Id_Pedido" Type="int" />
         </EntityType>
         <EntityType Name="Estados">
           <Key>
@@ -56,7 +57,6 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="Id_canasto" Type="int" />
           <Property Name="Fecha_creacion" Type="date" />
           <Property Name="Fecha_asignacion" Type="date" />
           <Property Name="Fecha_facturacion" Type="date" />
@@ -68,6 +68,7 @@
           <Property Name="Legajo_facturista" Type="int" />
           <Property Name="Descripcion_Facturista" Type="nchar" MaxLength="50" />
           <Property Name="Comentario" Type="varchar(max)" />
+          <Property Name="Canasto" Type="int" />
         </EntityType>
         <EntityType Name="Segmento">
           <Key>
@@ -102,6 +103,7 @@
           <Property Type="String" Name="Estado" MaxLength="50" FixedLength="true" Unicode="true" />
           <Property Type="DateTime" Name="Fecha" Precision="0" />
           <Property Type="String" Name="Segmento" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Type="Int32" Name="Id_Pedido" />
         </EntityType>
         <EntityType Name="Estados">
           <Key>
@@ -131,7 +133,6 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="Int32" Name="Id_canasto" />
           <Property Type="DateTime" Name="Fecha_creacion" Precision="0" />
           <Property Type="DateTime" Name="Fecha_asignacion" Precision="0" />
           <Property Type="DateTime" Name="Fecha_facturacion" Precision="0" />
@@ -143,6 +144,7 @@
           <Property Type="Int32" Name="Legajo_facturista" />
           <Property Type="String" Name="Descripcion_Facturista" MaxLength="50" FixedLength="true" Unicode="true" />
           <Property Type="String" Name="Comentario" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="Canasto" />
         </EntityType>
         <EntityType Name="Segmento">
           <Key>
@@ -160,6 +162,7 @@
           <EntitySetMapping Name="Canasto">
             <EntityTypeMapping TypeName="CargaPedidoDBModel.Canasto">
               <MappingFragment StoreEntitySet="Canasto">
+                <ScalarProperty Name="Id_Pedido" ColumnName="Id_Pedido" />
                 <ScalarProperty Name="Segmento" ColumnName="Segmento" />
                 <ScalarProperty Name="Fecha" ColumnName="Fecha" />
                 <ScalarProperty Name="Estado" ColumnName="Estado" />
@@ -202,6 +205,7 @@
           <EntitySetMapping Name="Pedidos">
             <EntityTypeMapping TypeName="CargaPedidoDBModel.Pedidos">
               <MappingFragment StoreEntitySet="Pedidos">
+                <ScalarProperty Name="Canasto" ColumnName="Canasto" />
                 <ScalarProperty Name="Comentario" ColumnName="Comentario" />
                 <ScalarProperty Name="Descripcion_Facturista" ColumnName="Descripcion_Facturista" />
                 <ScalarProperty Name="Legajo_facturista" ColumnName="Legajo_facturista" />
@@ -213,7 +217,6 @@
                 <ScalarProperty Name="Fecha_facturacion" ColumnName="Fecha_facturacion" />
                 <ScalarProperty Name="Fecha_asignacion" ColumnName="Fecha_asignacion" />
                 <ScalarProperty Name="Fecha_creacion" ColumnName="Fecha_creacion" />
-                <ScalarProperty Name="Id_canasto" ColumnName="Id_canasto" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
