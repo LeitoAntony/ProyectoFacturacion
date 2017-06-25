@@ -104,3 +104,4 @@ C:\Users\userrfid\Documents\ProyectosVisualStudio2013\ProyectoFacturacion\Proyec
 C:\Users\userrfid\Documents\ProyectosVisualStudio2013\ProyectoFacturacion\ProyectoFacturacion\ProyectoFacturacion\CargaPedido\bin\Debug\EntityFramework.xml
 C:\Users\userrfid\Documents\ProyectosVisualStudio2013\ProyectoFacturacion\ProyectoFacturacion\ProyectoFacturacion\CargaPedido\bin\Debug\PagedList.xml
 C:\Users\userrfid\Documents\ProyectosVisualStudio2013\ProyectoFacturacion\ProyectoFacturacion\ProyectoFacturacion\CargaPedido\obj\Debug\PedidosFacturacion.AgregarCanasto.resources
+G:\Proyectos\Proyectos_C#\GitHub\ProyectoFacturacion\CargaPedido\obj\Debug\PedidosFacturacion.AgregarCanasto.resources

@@ -5,12 +5,12 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="7ba89ba08faf4c04bf144d490dd84401" Name="Diagrama1" ZoomLevel="61">
-        <EntityTypeShape EntityType="CargaPedidoDBModel.Canasto" Width="1.5" PointX="0.75" PointY="0.75" />
-        <EntityTypeShape EntityType="CargaPedidoDBModel.Estado" Width="1.5" PointX="2.75" PointY="0.75" />
-        <EntityTypeShape EntityType="CargaPedidoDBModel.Local" Width="1.5" PointX="2.75" PointY="3.75" />
-        <EntityTypeShape EntityType="CargaPedidoDBModel.Operario" Width="1.5" PointX="4.75" PointY="0.75" />
-        <EntityTypeShape EntityType="CargaPedidoDBModel.Pedidos" Width="1.5" PointX="4.75" PointY="3.75" />
-        <EntityTypeShape EntityType="CargaPedidoDBModel.Segmento" Width="1.5" PointX="6.75" PointY="0.75" />
+        <EntityTypeShape EntityType="CargaPedidoDBModel.Canasto" Width="1.5" PointX="2.447595483831873" PointY="14.943128503366898" />
+        <EntityTypeShape EntityType="CargaPedidoDBModel.Estado" Width="1.5" PointX="0.31015150077182407" PointY="13.488129070721627" />
+        <EntityTypeShape EntityType="CargaPedidoDBModel.Local" Width="1.5" PointX="8.1135345735184536" PointY="11.596712862884958" />
+        <EntityTypeShape EntityType="CargaPedidoDBModel.Operario" Width="1.5" PointX="4.58848482025251" PointY="1.4969270087298596" />
+        <EntityTypeShape EntityType="CargaPedidoDBModel.Pedidos" Width="1.5" PointX="5.8496608575105951" PointY="19.659491369342195" />
+        <EntityTypeShape EntityType="CargaPedidoDBModel.Segmento" Width="1.5" PointX="7.4222089235774282" PointY="1.9565255949071263" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -174,7 +174,6 @@ namespace PedidosFacturacion
             this.dgvPedido.ReadOnly = true;
             this.dgvPedido.Size = new System.Drawing.Size(496, 561);
             this.dgvPedido.TabIndex = 14;
-            //this.dgvPedido.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvPedido_CellClick);
             this.dgvPedido.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvPedido_CellDoubleClick);
             // 
             // Column9

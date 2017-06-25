@@ -55,9 +55,9 @@
     <EntitySetMapping Name="Pedidos">
       <EntityTypeMapping TypeName="CargaPedidoDBModel.Pedidos">
         <MappingFragment StoreEntitySet="Pedidos">
-          <ScalarProperty Name="Comentario" ColumnName="Comentario" />
           <ScalarProperty Name="Fecha" ColumnName="Fecha" />
           <ScalarProperty Name="Descripcion_local" ColumnName="Descripcion_local" />
+          <ScalarProperty Name="Comentario" ColumnName="Comentario" />
           <ScalarProperty Name="Prioridad" ColumnName="Prioridad" />
           <ScalarProperty Name="Id" ColumnName="Id" />
         </MappingFragment>
