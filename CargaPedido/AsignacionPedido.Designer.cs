@@ -31,12 +31,7 @@
             this.components = new System.ComponentModel.Container();
             this.dtpFecha = new System.Windows.Forms.DateTimePicker();
             this.btnBuscar = new System.Windows.Forms.Button();
-            this.cmbFacturista = new System.Windows.Forms.ComboBox();
             this.operarioBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.btnAsignar = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.cmbAsignador = new System.Windows.Forms.ComboBox();
             this.operarioBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.panel1 = new System.Windows.Forms.Panel();
             this.label3 = new System.Windows.Forms.Label();
@@ -83,59 +78,9 @@
             this.btnBuscar.UseVisualStyleBackColor = true;
             this.btnBuscar.Click += new System.EventHandler(this.btnConsultar_Click);
             // 
-            // cmbFacturista
-            // 
-            this.cmbFacturista.DataSource = this.operarioBindingSource;
-            this.cmbFacturista.DisplayMember = "Descripcion";
-            this.cmbFacturista.FormattingEnabled = true;
-            this.cmbFacturista.Location = new System.Drawing.Point(718, 39);
-            this.cmbFacturista.Name = "cmbFacturista";
-            this.cmbFacturista.Size = new System.Drawing.Size(261, 21);
-            this.cmbFacturista.TabIndex = 3;
-            this.cmbFacturista.ValueMember = "Id";
-            // 
             // operarioBindingSource
             // 
             this.operarioBindingSource.DataSource = typeof(PedidosFacturacion.Operario);
-            // 
-            // btnAsignar
-            // 
-            this.btnAsignar.Location = new System.Drawing.Point(985, 37);
-            this.btnAsignar.Name = "btnAsignar";
-            this.btnAsignar.Size = new System.Drawing.Size(75, 23);
-            this.btnAsignar.TabIndex = 4;
-            this.btnAsignar.Text = "Asignar";
-            this.btnAsignar.UseVisualStyleBackColor = true;
-            this.btnAsignar.Click += new System.EventHandler(this.btnAsignar_Click);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(656, 42);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(56, 13);
-            this.label1.TabIndex = 5;
-            this.label1.Text = "Facturista:";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(290, 42);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(57, 13);
-            this.label2.TabIndex = 6;
-            this.label2.Text = "Asignador:";
-            // 
-            // cmbAsignador
-            // 
-            this.cmbAsignador.DataSource = this.operarioBindingSource1;
-            this.cmbAsignador.DisplayMember = "Descripcion";
-            this.cmbAsignador.FormattingEnabled = true;
-            this.cmbAsignador.Location = new System.Drawing.Point(353, 39);
-            this.cmbAsignador.Name = "cmbAsignador";
-            this.cmbAsignador.Size = new System.Drawing.Size(287, 21);
-            this.cmbAsignador.TabIndex = 7;
-            this.cmbAsignador.ValueMember = "Id";
             // 
             // operarioBindingSource1
             // 
@@ -145,13 +90,8 @@
             // 
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel1.Controls.Add(this.label3);
-            this.panel1.Controls.Add(this.btnAsignar);
             this.panel1.Controls.Add(this.dtpFecha);
-            this.panel1.Controls.Add(this.label1);
-            this.panel1.Controls.Add(this.cmbFacturista);
-            this.panel1.Controls.Add(this.cmbAsignador);
             this.panel1.Controls.Add(this.btnBuscar);
-            this.panel1.Controls.Add(this.label2);
             this.panel1.Location = new System.Drawing.Point(12, 12);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1340, 73);
@@ -353,12 +293,7 @@
 
         private System.Windows.Forms.DateTimePicker dtpFecha;
         private System.Windows.Forms.Button btnBuscar;
-        private System.Windows.Forms.ComboBox cmbFacturista;
-        private System.Windows.Forms.Button btnAsignar;
         private System.Windows.Forms.BindingSource operarioBindingSource;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.ComboBox cmbAsignador;
         private System.Windows.Forms.BindingSource operarioBindingSource1;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label label3;
