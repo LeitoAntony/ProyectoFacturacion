@@ -30,20 +30,10 @@ namespace PedidosFacturacion
 
         private void Consultas_Load(object sender, EventArgs e)
         {
-            actualizarListaTimer();
+            
         }
 
-        private void actualizarListaTimer()
-        {
-            timer1.Interval = 10000;
-            timer1.Tick += new EventHandler(Timer1_Tick);
-            timer1.Enabled = true;
-        }
-
-        private void Timer1_Tick(object Sender, EventArgs e)
-        {
-            listarPedidos();
-        }
+       
 
         private void btmConsultar_Click(object sender, EventArgs e)
         {
@@ -178,7 +168,7 @@ namespace PedidosFacturacion
         {
             objLogica = new Logica();
             //traigo los objetos de la DB
-           // list = objLogica.getPedidosPorFecha(dtpFecha.Value, paginaActual, tamañoPagina);
+            list = objLogica.getPedidosPorFecha(dtpFecha.Value, paginaActual, tamañoPagina);
             btnSig.Enabled = list.IsFirstPage;
             btnPrev.Enabled = list.IsLastPage;
             lblPagina.Text = string.Format("Página {0}/{1}", list.PageNumber, list.PageCount);

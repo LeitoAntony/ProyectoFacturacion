@@ -160,7 +160,7 @@ namespace PedidosFacturacion
                                           where (q.Fecha == dtpFecha.Date.Date)
                                           orderby
                                               q.Id
-                                          select q).ToPagedList(paginaActual, tamañoPagina);
+                                          select q ).ToPagedList(paginaActual, tamañoPagina);
             return lista1;
         }
 
