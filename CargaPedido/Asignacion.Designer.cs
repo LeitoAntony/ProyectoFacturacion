@@ -1,6 +1,6 @@
 ﻿namespace PedidosFacturacion
 {
-    partial class AsignacionPedido
+    partial class Asignacion
     {
         /// <summary>
         /// Required designer variable.
@@ -127,6 +127,7 @@
             this.dgvPedido.Size = new System.Drawing.Size(496, 602);
             this.dgvPedido.TabIndex = 15;
             this.dgvPedido.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvPedido_CellClick);
+            this.dgvPedido.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvPedido_CellDoubleClick);
             // 
             // dataGridViewTextBoxColumn1
             // 

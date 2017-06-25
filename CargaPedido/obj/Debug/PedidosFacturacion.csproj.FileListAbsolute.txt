@@ -62,7 +62,6 @@ G:\Proyectos\Proyectos_C#\GitHub\ProyectoFacturacion\CargaPedido\bin\Debug\Paged
 G:\Proyectos\Proyectos_C#\GitHub\ProyectoFacturacion\CargaPedido\bin\Debug\EntityFramework.xml
 G:\Proyectos\Proyectos_C#\GitHub\ProyectoFacturacion\CargaPedido\bin\Debug\PagedList.xml
 G:\Proyectos\Proyectos_C#\GitHub\ProyectoFacturacion\CargaPedido\obj\Debug\PedidosFacturacion.csprojResolveAssemblyReference.cache
-G:\Proyectos\Proyectos_C#\GitHub\ProyectoFacturacion\CargaPedido\obj\Debug\PedidosFacturacion.AsignacionPedido.resources
 G:\Proyectos\Proyectos_C#\GitHub\ProyectoFacturacion\CargaPedido\obj\Debug\PedidosFacturacion.CargaPedido.resources
 G:\Proyectos\Proyectos_C#\GitHub\ProyectoFacturacion\CargaPedido\obj\Debug\PedidosFacturacion.Consultas.resources
 G:\Proyectos\Proyectos_C#\GitHub\ProyectoFacturacion\CargaPedido\obj\Debug\PedidosFacturacion.FacturacionPedido.resources
@@ -105,4 +104,5 @@ C:\Users\userrfid\Documents\ProyectosVisualStudio2013\ProyectoFacturacion\Proyec
 C:\Users\userrfid\Documents\ProyectosVisualStudio2013\ProyectoFacturacion\ProyectoFacturacion\ProyectoFacturacion\CargaPedido\bin\Debug\PagedList.xml
 C:\Users\userrfid\Documents\ProyectosVisualStudio2013\ProyectoFacturacion\ProyectoFacturacion\ProyectoFacturacion\CargaPedido\obj\Debug\PedidosFacturacion.AgregarCanasto.resources
 G:\Proyectos\Proyectos_C#\GitHub\ProyectoFacturacion\CargaPedido\obj\Debug\PedidosFacturacion.AgregarCanasto.resources
-G:\Proyectos\Proyectos_C#\GitHub\ProyectoFacturacion\CargaPedido\obj\Debug\PedidosFacturacion.AsignarPedido.resources
+G:\Proyectos\Proyectos_C#\GitHub\ProyectoFacturacion\CargaPedido\obj\Debug\PedidosFacturacion.AsignarCanasto.resources
+G:\Proyectos\Proyectos_C#\GitHub\ProyectoFacturacion\CargaPedido\obj\Debug\PedidosFacturacion.Asignacion.resources

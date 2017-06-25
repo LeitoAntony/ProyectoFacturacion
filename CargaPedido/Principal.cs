@@ -44,7 +44,7 @@ namespace PedidosFacturacion
 
         private void asignarToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Form frmAsignacion = new AsignacionPedido();
+            Form frmAsignacion = new Asignacion();
             frmAsignacion.MdiParent = this;
             frmAsignacion.Show();
         }

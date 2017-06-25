@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace PedidosFacturacion
 {
-    public partial class AsignacionPedido : Form
+    public partial class Asignacion : Form
     {
         private Logica objLogica;
       //  private List<Pedidos> pedidos = new List<Pedidos>();
@@ -27,7 +27,7 @@ namespace PedidosFacturacion
         private bool banderaCanasto = false;
 
 
-        public AsignacionPedido()
+        public Asignacion()
         {
             InitializeComponent();
         }
@@ -35,8 +35,6 @@ namespace PedidosFacturacion
         private void AsignacionPedido_Load(object sender, EventArgs e)
         {
             llenarComboBox();
-            cmbAsignador.SelectedIndex = -1;
-            cmbFacturista.SelectedIndex = -1;
             actualizarListaTimer();
         }
 
@@ -48,8 +46,7 @@ namespace PedidosFacturacion
 
         private void btnAsignar_Click(object sender, EventArgs e)
         {
-            actualizarAsignacion();
-            cmbFacturista.SelectedIndex = -1;
+            //actualizarAsignacion();
         }
 
 
@@ -182,25 +179,25 @@ namespace PedidosFacturacion
             timer1.Enabled = true;
         }
 
-        private void actualizarAsignacion()
-        {
-            try
-            {
-                Operario facturista = (Operario)cmbFacturista.SelectedItem;
-                Operario asignador = (Operario)cmbAsignador.SelectedItem;
-                objLogica = new Logica();
-                //actualizo la DB con el facturista y la fecha/hora
-                objLogica.setFacturista(ValueIdFilaCanasto, facturista, asignador, DateTime.Now);
-                //actualizo el estado del pedido
-                objLogica.actualizarEstado(ValueIdFilaCanasto, "Asignado");
-                actualizarFila(facturista.Descripcion, asignador.Descripcion);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
+        //private void actualizarAsignacion()
+        //{
+        //    try
+        //    {
+        //        Operario facturista = (Operario)cmbFacturista.SelectedItem;
+        //        Operario asignador = (Operario)cmbAsignador.SelectedItem;
+        //        objLogica = new Logica();
+        //        //actualizo la DB con el facturista y la fecha/hora
+        //        objLogica.setFacturista(ValueIdFilaCanasto, facturista, asignador, DateTime.Now);
+        //        //actualizo el estado del pedido
+        //        objLogica.actualizarEstado(ValueIdFilaCanasto, "Asignado");
+        //        actualizarFila(facturista.Descripcion, asignador.Descripcion);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        MessageBox.Show(ex.Message);
+        //    }
 
-        }
+        //}
 
         private void actualizarFila(String facturista, String asignador)
         {
@@ -227,6 +224,13 @@ namespace PedidosFacturacion
             {
                 Console.WriteLine("No se puede generar la lista: " + e.Message);
             }
+        }
+
+        private void dgvPedido_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            Form asignarcanasto = new AsignarCanasto();
+            asignarcanasto.Visible = true;
+
         }
 
   
