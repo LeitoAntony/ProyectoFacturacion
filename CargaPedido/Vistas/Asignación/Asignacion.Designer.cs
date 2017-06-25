@@ -54,6 +54,7 @@
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btnActualizar = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.operarioBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.operarioBindingSource1)).BeginInit();
             this.panel1.SuspendLayout();
@@ -89,6 +90,7 @@
             // panel1
             // 
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Controls.Add(this.btnActualizar);
             this.panel1.Controls.Add(this.label3);
             this.panel1.Controls.Add(this.dtpFecha);
             this.panel1.Controls.Add(this.btnBuscar);
@@ -266,7 +268,17 @@
             this.Column4.Name = "Column4";
             this.Column4.ReadOnly = true;
             // 
-            // AsignacionPedido
+            // btnActualizar
+            // 
+            this.btnActualizar.Location = new System.Drawing.Point(291, 37);
+            this.btnActualizar.Name = "btnActualizar";
+            this.btnActualizar.Size = new System.Drawing.Size(75, 23);
+            this.btnActualizar.TabIndex = 9;
+            this.btnActualizar.Text = "Actualizar";
+            this.btnActualizar.UseVisualStyleBackColor = true;
+            this.btnActualizar.Click += new System.EventHandler(this.btnActualizar_Click);
+            // 
+            // Asignacion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -274,7 +286,7 @@
             this.Controls.Add(this.dgvCanasto);
             this.Controls.Add(this.dgvPedido);
             this.Controls.Add(this.panel1);
-            this.Name = "AsignacionPedido";
+            this.Name = "Asignacion";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "AsignacionPedido";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
@@ -316,5 +328,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
+        private System.Windows.Forms.Button btnActualizar;
     }
 }

@@ -60,53 +60,47 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AgregarCanasto.cs">
+    <Compile Include="Vistas\Cargas\AgregarCanasto.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AgregarCanasto.Designer.cs">
+    <Compile Include="Vistas\Cargas\AgregarCanasto.Designer.cs">
       <DependentUpon>AgregarCanasto.cs</DependentUpon>
     </Compile>
-    <Compile Include="Asignacion.cs">
+    <Compile Include="Vistas\Asignación\Asignacion.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Asignacion.Designer.cs">
+    <Compile Include="Vistas\Asignación\Asignacion.Designer.cs">
       <DependentUpon>Asignacion.cs</DependentUpon>
     </Compile>
-    <Compile Include="AsignarCanasto.cs">
+    <Compile Include="Vistas\Asignación\AsignarCanasto.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AsignarCanasto.Designer.cs">
+    <Compile Include="Vistas\Asignación\AsignarCanasto.Designer.cs">
       <DependentUpon>AsignarCanasto.cs</DependentUpon>
     </Compile>
     <Compile Include="Canasto.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="CargaPedido.cs">
+    <Compile Include="Vistas\Cargas\CargaPedido.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="CargaPedido.Designer.cs">
+    <Compile Include="Vistas\Cargas\CargaPedido.Designer.cs">
       <DependentUpon>CargaPedido.cs</DependentUpon>
     </Compile>
-    <Compile Include="Consultas.cs">
+    <Compile Include="Vistas\Consultas.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Consultas.Designer.cs">
+    <Compile Include="Vistas\Consultas.Designer.cs">
       <DependentUpon>Consultas.cs</DependentUpon>
     </Compile>
     <Compile Include="Estado.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="FacturacionPedido.cs">
+    <Compile Include="Vistas\Facturación\FacturacionPedido.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FacturacionPedido.Designer.cs">
+    <Compile Include="Vistas\Facturación\FacturacionPedido.Designer.cs">
       <DependentUpon>FacturacionPedido.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Form1.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
     <Compile Include="Local.cs">
       <DependentUpon>Model1.tt</DependentUpon>
@@ -133,10 +127,10 @@
     <Compile Include="Pedidos.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Principal.cs">
+    <Compile Include="Vistas\Principal.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Principal.Designer.cs">
+    <Compile Include="Vistas\Principal.Designer.cs">
       <DependentUpon>Principal.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
@@ -144,25 +138,25 @@
     <Compile Include="Segmento.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="AgregarCanasto.resx">
+    <EmbeddedResource Include="Vistas\Cargas\AgregarCanasto.resx">
       <DependentUpon>AgregarCanasto.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Asignacion.resx">
+    <EmbeddedResource Include="Vistas\Asignación\Asignacion.resx">
       <DependentUpon>Asignacion.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="AsignarCanasto.resx">
+    <EmbeddedResource Include="Vistas\Asignación\AsignarCanasto.resx">
       <DependentUpon>AsignarCanasto.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="CargaPedido.resx">
+    <EmbeddedResource Include="Vistas\Cargas\CargaPedido.resx">
       <DependentUpon>CargaPedido.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Consultas.resx">
+    <EmbeddedResource Include="Vistas\Consultas.resx">
       <DependentUpon>Consultas.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FacturacionPedido.resx">
+    <EmbeddedResource Include="Vistas\Facturación\FacturacionPedido.resx">
       <DependentUpon>FacturacionPedido.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Principal.resx">
+    <EmbeddedResource Include="Vistas\Principal.resx">
       <DependentUpon>Principal.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">

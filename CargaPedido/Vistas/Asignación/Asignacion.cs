@@ -57,7 +57,6 @@ namespace PedidosFacturacion
 
         private void Timer1_Tick(object Sender, EventArgs e)
         {
-            inicializarPedidos();
             getCanastos(dgvCanasto);
         }
 
@@ -205,6 +204,11 @@ namespace PedidosFacturacion
         public int getValueFilaCanasto()
         {
             return ValueIdFilaCanasto;
+        }
+
+        private void btnActualizar_Click(object sender, EventArgs e)
+        {
+            inicializarPedidos();
         }
 
     }
