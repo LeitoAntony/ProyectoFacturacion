@@ -25,7 +25,7 @@ namespace PedidosFacturacion
         private int contadorFilasCanasto = 0;
         private int IdCanasto;
         private int IdFilaCanasto;
-        private int ValueIdFilaCanasto;
+        private static int ValueIdFilaCanasto;
         private bool banderaCanasto = false;
 
         Form frmCargaCanasto;
@@ -37,15 +37,10 @@ namespace PedidosFacturacion
         private void CargaPedido_Load(object sender, EventArgs e)
         {
             llenarCombo();
-            setRButton();
             inicializarPedidos();
         }
-
-        private void btnCancelar_Click(object sender, EventArgs e)
-        {
-            resetearCampos();
-        }
-
+         
+        
         private void btnGuardar_Click(object sender, EventArgs e)
         {
             //chequeo de campos completos
@@ -55,31 +50,21 @@ namespace PedidosFacturacion
                 insertarPedidoDB();
                 //cargo el pedido en los comboBox
                 cargarPedido();
-
+                resetearCampos();
             }
             else
             {
                 MessageBox.Show("Complete el campo Local! ");
             }
         }
-
-        private void btnAgregarCanasto_Click(object sender, EventArgs e)
-        {
-            if (rbHombre.Checked || rbMujer.Checked || rbKids.Checked)
-            {
-                insertarCanastoDB();
-                cargarCanasto();
-            }
-            else
-                MessageBox.Show("Complete todos los campos! ", "Advertencia!");
-        }
-
+        
         private void btnBorrar_Click(object sender, EventArgs e)
         {
             if (contadorFilas > 0 && bandera)
                 if (contadorFilasCanasto == 0)
                 {
-                    if (MessageBox.Show("Estas seguro que desas eliminar?", "AVISO", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                    if (MessageBox.Show("Estas seguro que desas eliminar?", "AVISO", MessageBoxButtons.YesNo,
+                        MessageBoxIcon.Question) == DialogResult.Yes)
                     {
                         eliminarPedido();
                         eliminarPedidoDB();
@@ -91,15 +76,10 @@ namespace PedidosFacturacion
                 MessageBox.Show("Debe seleccionar un pedido para borrar! ", "Advertencia!");
             bandera = false;
         }
-
-        private void btnBorrarCanasto_Click(object sender, EventArgs e)
+     
+        private void btnCancelar_Click(object sender, EventArgs e)
         {
-            if(bandera && banderaCanasto)
-            {
-                eliminarCanasto();
-                eliminarCanastoDB();
-            }
-            banderaCanasto = false;
+            resetearCampos();
         }
 
         private void btnActualizar_Click(object sender, EventArgs e)
@@ -107,7 +87,7 @@ namespace PedidosFacturacion
             //actualizarPedido();
         }
 
-        private void dgvPedido_CellClick(object sender, DataGridViewCellEventArgs e)
+        private void dgvPedido_CellClick_1(object sender, DataGridViewCellEventArgs e)
         {
             bandera = true;
             IdFila = dgvPedido.CurrentRow.Index;
@@ -116,13 +96,21 @@ namespace PedidosFacturacion
             //dgvPedido.Rows[IdFila].DefaultCellStyle.BackColor = Color.LightGreen;
         }
 
-        private void dgvCanasto_CellClick(object sender, DataGridViewCellEventArgs e)
+        private void dgvPedido_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            banderaCanasto = true;
-            IdFilaCanasto = dgvCanasto.CurrentRow.Index;
-            ValueIdFilaCanasto = Convert.ToInt32(dgvCanasto.Rows[IdFilaCanasto].Cells[0].Value);
-            //dgvCanasto.Rows[IdFilaCanasto].DefaultCellStyle.BackColor = Color.LightGreen;
-            
+            bandera = true;
+            IdFila = dgvPedido.CurrentRow.Index;
+            ValueIdFila = Convert.ToInt32(dgvPedido.Rows[IdFila].Cells[0].Value);
+            MessageBox.Show("IdFila " + IdFila + "ValueIdFila " +ValueIdFila);
+
+            frmCargaCanasto = new AgregarCanasto();
+            frmCargaCanasto.Visible = true;
+        }
+
+        private void dgvCanasto_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            eliminarCanasto();
+            eliminarCanastoDB();
         }
 
         private void cmbLocal_SelectedIndexChanged(object sender, EventArgs e)
@@ -133,36 +121,18 @@ namespace PedidosFacturacion
 
         }
 
-        private void cmbVendedor_SelectedIndexChanged(object sender, EventArgs e)
+        private void resetearCampos()
         {
-            Operario vendedor = (Operario)cmbVendedor.SelectedItem;
-            if (cmbVendedor.SelectedItem != null)
-                txtVenedor.Text = vendedor.Legajo.ToString();
+            cmbLocal.SelectedIndex = -1;
+            txtLocal.Text = String.Empty;
         }
 
         private void llenarCombo()
         {
             //completo los ComboBox
-            llenarCmbVendedor();
             llenarCmbLocales();
 
             resetearCampos();
-        }
-
-        private void llenarCmbVendedor()
-        {
-            try
-            {
-                objLogica = new Logica();
-                //hace un bindig de los vendedores del context a una lista
-                List<Operario> vendedores = objLogica.getOperarios();
-                //agrega los vendedores al combobox definido por el objeto vendedorBindngSource
-                this.operarioBindingSource.DataSource = vendedores;
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine("No se puede generar la lista: " + e.Message);
-            }
         }
 
         private void llenarCmbLocales()
@@ -180,17 +150,8 @@ namespace PedidosFacturacion
                 Console.WriteLine("No se puede generar la lista: " + e.Message);
             }
 
-        }
-
-        private void setRButton()
-        {
-            objLogica = new Logica();
-            Segmento[] array = objLogica.getSegmentos();
-            rbHombre.Text = array[0].Descripcion;
-            rbMujer.Text = array[1].Descripcion;
-            rbKids.Text = array[2].Descripcion;
-        }
-
+        }     
+        
         private void inicializarPedidos()
         {
             objLogica = new Logica();
@@ -204,6 +165,47 @@ namespace PedidosFacturacion
                 this.contadorFilas = contadorFilas + 1;
             }   
         }
+        
+        private void cargarPedido()
+        {
+            Local local = (Local)cmbLocal.SelectedItem;          
+            //se carga en el dataGrdView los elemenos 
+            dgvPedido.Rows.Insert(contadorFilas, IdPedido, local.Descripcion);
+            contadorFilas++;
+        }
+        
+        private void insertarCanasto()
+        {
+            objLogica = new Logica();
+            Canasto canasto = objLogica.getCanastoPorIdPedido(IdPedido);
+
+                dgvCanasto.Rows.Insert(contadorFilasCanasto, canasto.Id, canasto.Numero_local, 
+                    canasto.Descripcion_local, canasto.Legajo_vendedor,canasto.Descripcion_vendedor, canasto.Segmento, canasto.Fecha);
+            contadorFilasCanasto++;
+        }
+        
+        private void insertarPedidoDB()
+        {
+            objLogica = new Logica();
+            Local local = (Local)cmbLocal.SelectedItem;           
+            //inserto los datos en la DB y me guardo el id de ese pedido
+           IdPedido = objLogica.insertarPedido(local);
+        }
+
+        private void eliminarPedido()
+        {
+            //elimino la fila por su id
+            dgvPedido.Rows.RemoveAt(IdFila);
+            contadorFilas--;
+        }
+        
+        private void eliminarPedidoDB()
+        {
+            objLogica = new Logica();
+            //elimino los datos de la base de datos
+            objLogica.eliminarPedido(ValueIdFila);
+        }
+        
         private void getCanastos()
         {
             dgvCanasto.Rows.Clear();
@@ -213,77 +215,10 @@ namespace PedidosFacturacion
             List<Canasto> canastos = objLogica.getCanastosPorIdPedido(ValueIdFila);
             foreach (var item in canastos)
             {
-                dgvCanasto.Rows.Insert(contadorFilasCanasto,item.Id, ValueIdFila, item.Numero_local, item.Descripcion_local, item.Legajo_vendedor,
-                    item.Descripcion_vendedor, item.Segmento, item.Fecha);
+                dgvCanasto.Rows.Insert(contadorFilasCanasto,item.Id, ValueIdFila, item.Numero_local, 
+                    item.Descripcion_local, item.Legajo_vendedor, item.Descripcion_vendedor, item.Segmento, item.Fecha);
                 this.contadorFilasCanasto = contadorFilasCanasto + 1;
             }
-        }
-
-        private void cargarPedido()
-        {
-            Local local = (Local)cmbLocal.SelectedItem;
-            Operario vendedor = (Operario)cmbVendedor.SelectedItem;
-
-            //se carga en el dataGrdView los elemenos 
-            dgvPedido.Rows.Insert(contadorFilas, IdPedido, local.Descripcion);
-            contadorFilas++;
-        }
-
-        private void cargarCanasto()
-        {
-            objLogica = new Logica();
-            Canasto canasto = objLogica.getCanastoPorIdPedido(IdPedido);
-
-                dgvCanasto.Rows.Insert(contadorFilasCanasto, canasto.Id, canasto.Numero_local, canasto.Descripcion_local, canasto.Legajo_vendedor
-                    ,canasto.Descripcion_vendedor, canasto.Segmento, canasto.Fecha);
-            contadorFilasCanasto++;
-        }
-
-
-        private void insertarPedidoDB()
-        {
-            objLogica = new Logica();
-            Local local = (Local)cmbLocal.SelectedItem;
-            Operario vendedor = (Operario)cmbVendedor.SelectedItem;
-            //inserto los datos en la DB y me guardo el id de ese pedido
-            IdPedido = objLogica.insertarPedido(local, vendedor);
-        }
-
-        private void insertarCanastoDB()
-        {
-            //recupero los datos de local, vendedor y segmento
-            Local local = (Local)cmbLocal.SelectedItem;
-            Operario vendedor = (Operario)cmbVendedor.SelectedItem;
-            string hombre = "", mujer = "", kids = "";
-            if (rbHombre.Checked)
-            {
-                hombre = rbHombre.Text;
-                IdCanasto = objLogica.insertarCanasto(IdPedido, local, vendedor, hombre);
-            }
-            if (rbMujer.Checked)
-            {
-                mujer = rbMujer.Text;
-                IdCanasto = objLogica.insertarCanasto(IdPedido, local, vendedor, mujer);
-            }
-            if (rbKids.Checked)
-            {
-                kids = rbKids.Text;
-                IdCanasto = objLogica.insertarCanasto(IdPedido, local, vendedor, kids);
-            }
-        }
-
-        private void eliminarPedido()
-        {
-            //elimino la fila por su id
-            dgvPedido.Rows.RemoveAt(IdFila);
-            contadorFilas--;
-        }
-
-        private void eliminarPedidoDB()
-        {
-            objLogica = new Logica();
-            //elimino los datos de la base de datos
-            objLogica.eliminarPedido(ValueIdFila);
         }
 
         private void eliminarCanasto()
@@ -292,13 +227,31 @@ namespace PedidosFacturacion
             dgvCanasto.Rows.RemoveAt(IdFilaCanasto);
             contadorFilasCanasto--;
         }
-
+       
         private void eliminarCanastoDB()
         {
             objLogica = new Logica();
             //elimino los datos de la base de datos
             objLogica.eliminarCanasto(ValueIdFilaCanasto);
         }
+
+        public int getValuePedido()
+        {
+            return ValueIdFila;    
+        }
+
+        public int getIdPedido()
+        {
+            return IdPedido;
+        }
+
+
+        
+        
+
+        
+
+        
 
         //private void actualizarPedido()
         //{
@@ -321,37 +274,15 @@ namespace PedidosFacturacion
         //    resetearCampos();
         //}
 
-        private void resetearCampos()
-        {
-            cmbVendedor.SelectedIndex = -1;
-            cmbLocal.SelectedIndex = -1;
-            rbHombre.Checked = false;
-            rbMujer.Checked = false;
-            rbKids.Checked = false;
-            txtLocal.Text = String.Empty;
-            txtVenedor.Text = String.Empty;
-            cmbVendedor.Focus();
-        }
+        
 
-        public int getValuePedido()
-        {
-            return ValueIdFila;    
-        }
+        
 
-        public int getIdPedido()
-        {
-            return IdPedido;
-        }
+        
 
-        private void dgvPedido_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
-        {
-            bandera = true;
-            IdFila = dgvPedido.CurrentRow.Index;
-            ValueIdFila = Convert.ToInt32(dgvPedido.Rows[IdFila].Cells[0].Value);
-            MessageBox.Show("IdFila " + IdFila + "ValueIdFila " +ValueIdFila);
+        
 
-            frmCargaCanasto = new AgregarCanasto();
-            frmCargaCanasto.Visible = true;
-        }
+
+       
     }
 }

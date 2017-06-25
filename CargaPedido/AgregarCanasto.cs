@@ -107,6 +107,8 @@ namespace PedidosFacturacion
             rbKids.Text = array[2].Descripcion;
         }
 
+
+        //devuelve el vendedor seleccionado
         private void cmbVendedor_SelectedIndexChanged(object sender, EventArgs e)
         {
             Operario vendedor = (Operario)cmbVendedor.SelectedItem;
@@ -114,6 +116,5 @@ namespace PedidosFacturacion
                 txtVenedor.Text = vendedor.Legajo.ToString();
         }
 
-       
     }
 }

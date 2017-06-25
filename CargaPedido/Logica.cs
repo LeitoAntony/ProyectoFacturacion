@@ -12,7 +12,7 @@ namespace PedidosFacturacion
     {
         private CargaPedidoDBEntities context = new CargaPedidoDBEntities();
 
-        public int insertarPedido(Local local, Operario vendedor)
+        public int insertarPedido(Local local)
     {
         Pedidos pedido = new Pedidos();
         pedido.Fecha = DateTime.Now;
