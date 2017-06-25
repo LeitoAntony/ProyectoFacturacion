@@ -15,6 +15,7 @@ namespace PedidosFacturacion
         private Logica objLogica;
         private CargaPedido objCargaPedido = new CargaPedido();
         private int IdCanasto;
+
         
         public AgregarCanasto()
         {
@@ -24,7 +25,7 @@ namespace PedidosFacturacion
         private void AgregarCanasto_Load(object sender, EventArgs e)
         {
             llenarCmbVendedor();
-            cmbVendedor.SelectedIndex = -1;
+            resetearCampos();
         }
         
         private void cmbVendedor_SelectedIndexChanged(object sender, EventArgs e)
@@ -39,7 +40,8 @@ namespace PedidosFacturacion
             if (cmbVendedor.SelectedItem != null && (rbHombre.Checked || rbMujer.Checked || rbKids.Checked))
             {
                 insertarCanastoDB();
-                this.Close();
+                resetearCampos();
+                MessageBox.Show("Agregado correctamente!");
             }
             else
                 MessageBox.Show("Complete todos los campos! ", "Advertencia!");            
@@ -106,5 +108,18 @@ namespace PedidosFacturacion
             rbKids.Text = array[2].Descripcion;
         }
 
+        private void btnsalir_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void resetearCampos()
+        {
+            cmbVendedor.SelectedIndex = -1;
+            txtVenedor.Text = String.Empty;
+            rbHombre.Checked = false;
+            rbMujer.Checked = false;
+            rbKids.Checked = false;
+        }
     }
 }

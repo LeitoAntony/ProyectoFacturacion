@@ -18,12 +18,12 @@ namespace PedidosFacturacion
 
         private int contadorFilas = 0;
         private int IdFila;
-        private int ValueIdFila;
+        private static int ValueIdFila;
         private bool bandera = false;
 
         private int contadorFilasCanasto = 0;
-        private int IdFilaCanasto;
-        private int ValueIdFilaCanasto;
+        //private static int IdFilaCanasto;
+        private static int ValueIdFilaCanasto;
         private bool banderaCanasto = false;
 
 
@@ -44,38 +44,26 @@ namespace PedidosFacturacion
             
         }
 
-        private void btnAsignar_Click(object sender, EventArgs e)
-        {
-            //actualizarAsignacion();
-        }
-
 
         private void dgvPedido_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             bandera = true;
             IdFila = dgvPedido.CurrentRow.Index;
             ValueIdFila = Convert.ToInt32(dgvPedido.Rows[IdFila].Cells[0].Value);
-            getCanastos();
+            getCanastos(dgvCanasto);
             //dgvPedido.Rows[IdFila].DefaultCellStyle.BackColor = Color.LightGreen;
         }
 
-        private void dgvCanasto_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-            banderaCanasto = true;
-            IdFilaCanasto = dgvCanasto.CurrentRow.Index;
-            ValueIdFilaCanasto = Convert.ToInt32(dgvCanasto.Rows[IdFilaCanasto].Cells[0].Value);
-            //dgvCanasto.Rows[IdFilaCanasto].DefaultCellStyle.BackColor = Color.LightGreen;
-
-        }
 
         private void Timer1_Tick(object Sender, EventArgs e)
         {
             inicializarPedidos();
-            getCanastos();
+            getCanastos(dgvCanasto);
         }
 
-        private void getCanastos()
+        public void getCanastos(DataGridView dgvCanasto)
         {
+            
             dgvCanasto.Rows.Clear();
             dgvCanasto.Refresh();
             contadorFilasCanasto = 0;
@@ -108,9 +96,8 @@ namespace PedidosFacturacion
                 
                 //this.contadorFilasCanasto = contadorFilasCanasto + 1;
             }
-            if(contadorFilasCanasto == dgvCanasto.Rows.Count)
-                            dgvPedido.Rows[IdFila].DefaultCellStyle.BackColor = Color.LightGreen;
-                
+            //if(contadorFilasCanasto == dgvCanasto.Rows.Count)
+            //                dgvPedido.Rows[IdFila].DefaultCellStyle.BackColor = Color.LightGreen;              
         }
 
         private void inicializarPedidos()
@@ -179,35 +166,7 @@ namespace PedidosFacturacion
             timer1.Enabled = true;
         }
 
-        //private void actualizarAsignacion()
-        //{
-        //    try
-        //    {
-        //        Operario facturista = (Operario)cmbFacturista.SelectedItem;
-        //        Operario asignador = (Operario)cmbAsignador.SelectedItem;
-        //        objLogica = new Logica();
-        //        //actualizo la DB con el facturista y la fecha/hora
-        //        objLogica.setFacturista(ValueIdFilaCanasto, facturista, asignador, DateTime.Now);
-        //        //actualizo el estado del pedido
-        //        objLogica.actualizarEstado(ValueIdFilaCanasto, "Asignado");
-        //        actualizarFila(facturista.Descripcion, asignador.Descripcion);
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        MessageBox.Show(ex.Message);
-        //    }
-
-        //}
-
-        private void actualizarFila(String facturista, String asignador)
-        {
-            //actualizo datos de la grilla
-            dgvCanasto[8, IdFilaCanasto].Value = "Asignado";
-            dgvCanasto[9, IdFilaCanasto].Value = DateTime.Now;
-            dgvCanasto[10, IdFilaCanasto].Value = asignador;
-            dgvCanasto[11, IdFilaCanasto].Value = facturista;
-            
-        }
+        //
 
         private void llenarComboBox()
         {
@@ -233,7 +192,20 @@ namespace PedidosFacturacion
 
         }
 
-  
+        public void actualizarFila(String facturista, String asignador, DataGridView dgvCanasto, int IdFilaCanasto)
+        {
+            //actualizo datos de la grilla desde la base de datos
+            dgvCanasto[8, IdFilaCanasto].Value = "Asignado";
+            dgvCanasto[9, IdFilaCanasto].Value = DateTime.Now;
+            dgvCanasto[10, IdFilaCanasto].Value = asignador;
+            dgvCanasto[11, IdFilaCanasto].Value = facturista;
+
+        }
+
+        public int getValueFilaCanasto()
+        {
+            return ValueIdFilaCanasto;
+        }
 
     }
 }

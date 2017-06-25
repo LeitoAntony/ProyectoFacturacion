@@ -185,7 +185,6 @@
             this.dgvCanasto.ReadOnly = true;
             this.dgvCanasto.Size = new System.Drawing.Size(838, 602);
             this.dgvCanasto.TabIndex = 23;
-            this.dgvCanasto.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvCanasto_CellClick);
             // 
             // dataGridViewTextBoxColumn4
             // 

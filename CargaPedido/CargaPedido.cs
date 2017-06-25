@@ -38,6 +38,7 @@ namespace PedidosFacturacion
         {
             llenarCombo();
             inicializarPedidos();
+            actualizarListaTimer();
         }
          
         
@@ -98,11 +99,10 @@ namespace PedidosFacturacion
 
         private void dgvPedido_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
+            
             bandera = true;
             IdFila = dgvPedido.CurrentRow.Index;
             ValueIdFila = Convert.ToInt32(dgvPedido.Rows[IdFila].Cells[0].Value);
-            MessageBox.Show("IdFila " + IdFila + "ValueIdFila " +ValueIdFila);
-
             frmCargaCanasto = new AgregarCanasto();
             frmCargaCanasto.Visible = true;
         }
@@ -154,6 +154,9 @@ namespace PedidosFacturacion
         
         private void inicializarPedidos()
         {
+            dgvPedido.Rows.Clear();
+            dgvPedido.Refresh();
+            contadorFilas = 0;
             objLogica = new Logica();
             //traigo desde la base de datos
             List<Pedidos> pedidos = objLogica.getPedidosPorFecha(DateTime.Now);
@@ -206,7 +209,7 @@ namespace PedidosFacturacion
             objLogica.eliminarPedido(ValueIdFila);
         }
         
-        private void getCanastos()
+        public void getCanastos()
         {
             dgvCanasto.Rows.Clear();
             dgvCanasto.Refresh();
@@ -245,6 +248,17 @@ namespace PedidosFacturacion
             return IdPedido;
         }
 
+        private void actualizarListaTimer()
+        {
+            timer1.Interval = 5000;
+            timer1.Tick += new EventHandler(Timer1_Tick);
+            timer1.Enabled = true;
+        }
+
+        private void Timer1_Tick(object Sender, EventArgs e)
+        {
+            getCanastos();
+        }
 
         
         

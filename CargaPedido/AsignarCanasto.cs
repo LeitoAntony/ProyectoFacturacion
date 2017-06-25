@@ -13,6 +13,10 @@ namespace PedidosFacturacion
     public partial class AsignarCanasto : Form
     {
         private Logica objLogica;
+        private Asignacion objAsignacion = new Asignacion();
+        private int IdFilaCanasto;
+        private int ValueIdFilaCanasto;
+
 
         public AsignarCanasto()
         {
@@ -23,8 +27,8 @@ namespace PedidosFacturacion
         {
             llenarCmbAsignador();
             llenarCmbFacturista();
-            cmbAsignador.SelectedIndex = -1;
-            cmbFacturista.SelectedIndex = -1;
+            resetearCampos();
+            objAsignacion.getCanastos(dgvCanasto);
         }
 
         private void cmbFacturista_SelectedIndexChanged(object sender, EventArgs e)
@@ -43,7 +47,7 @@ namespace PedidosFacturacion
 
         private void btnAsignar_Click(object sender, EventArgs e)
         {
-
+            actualizarAsignacion();
         }
 
         private void llenarCmbAsignador()
@@ -78,6 +82,45 @@ namespace PedidosFacturacion
             }
         }
 
+        private void actualizarAsignacion()
+        {
+            try
+            {
+                Operario facturista = (Operario)cmbFacturista.SelectedItem;
+                Operario asignador = (Operario)cmbAsignador.SelectedItem;
+                objLogica = new Logica();
+                //actualizo la DB con el facturista y la fecha/hora
+                objLogica.setFacturista(ValueIdFilaCanasto, facturista, asignador, DateTime.Now);
+                //actualizo el estado del pedido
+                objLogica.actualizarEstado(ValueIdFilaCanasto, "Asignado");
+               objAsignacion.actualizarFila(facturista.Descripcion, asignador.Descripcion, dgvCanasto, IdFilaCanasto);
+               dgvCanasto.Rows[IdFilaCanasto].DefaultCellStyle.BackColor = Color.Yellow;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
+        }
+
+        private void dgvCanasto_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            IdFilaCanasto = dgvCanasto.CurrentRow.Index;
+            ValueIdFilaCanasto = Convert.ToInt32(dgvCanasto.Rows[IdFilaCanasto].Cells[0].Value);
+            //dgvCanasto.Rows[IdFilaCanasto].DefaultCellStyle.BackColor = Color.LightGreen;
+            MessageBox.Show("Fila " + IdFilaCanasto + " valor " + ValueIdFilaCanasto);
+
+        }
+
+        private void resetearCampos()
+        {
+            cmbAsignador.SelectedIndex = -1;
+            cmbFacturista.SelectedIndex = -1;
+            txtAsignador.Text = String.Empty;
+            txtFacturista.Text = String.Empty;
+        }
         
+
+
     }
 }

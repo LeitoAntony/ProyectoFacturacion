@@ -30,6 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.btnsalir = new System.Windows.Forms.Button();
             this.label7 = new System.Windows.Forms.Label();
             this.btnCancelar = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
@@ -51,6 +52,7 @@
             // panel2
             // 
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel2.Controls.Add(this.btnsalir);
             this.panel2.Controls.Add(this.label7);
             this.panel2.Controls.Add(this.btnCancelar);
             this.panel2.Controls.Add(this.label5);
@@ -66,6 +68,16 @@
             this.panel2.Size = new System.Drawing.Size(848, 132);
             this.panel2.TabIndex = 22;
             // 
+            // btnsalir
+            // 
+            this.btnsalir.Location = new System.Drawing.Point(766, 96);
+            this.btnsalir.Name = "btnsalir";
+            this.btnsalir.Size = new System.Drawing.Size(75, 23);
+            this.btnsalir.TabIndex = 20;
+            this.btnsalir.Text = "Salir";
+            this.btnsalir.UseVisualStyleBackColor = true;
+            this.btnsalir.Click += new System.EventHandler(this.btnsalir_Click);
+            // 
             // label7
             // 
             this.label7.AutoSize = true;
@@ -77,7 +89,7 @@
             // 
             // btnCancelar
             // 
-            this.btnCancelar.Location = new System.Drawing.Point(752, 96);
+            this.btnCancelar.Location = new System.Drawing.Point(684, 96);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(75, 23);
             this.btnCancelar.TabIndex = 18;
@@ -106,7 +118,7 @@
             // 
             // btnAgregarCanasto
             // 
-            this.btnAgregarCanasto.Location = new System.Drawing.Point(671, 96);
+            this.btnAgregarCanasto.Location = new System.Drawing.Point(603, 96);
             this.btnAgregarCanasto.Name = "btnAgregarCanasto";
             this.btnAgregarCanasto.Size = new System.Drawing.Size(75, 23);
             this.btnAgregarCanasto.TabIndex = 16;
@@ -199,6 +211,7 @@
             this.ClientSize = new System.Drawing.Size(848, 132);
             this.Controls.Add(this.panel2);
             this.Name = "AgregarCanasto";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Agregar Canasto";
             this.Load += new System.EventHandler(this.AgregarCanasto_Load);
             this.panel2.ResumeLayout(false);
@@ -226,5 +239,6 @@
         private System.Windows.Forms.ComboBox cmbVendedor;
         private System.Windows.Forms.TextBox txtVenedor;
         private System.Windows.Forms.BindingSource operarioBindingSource;
+        private System.Windows.Forms.Button btnsalir;
     }
 }
