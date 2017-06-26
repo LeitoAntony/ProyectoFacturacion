@@ -15,8 +15,6 @@ namespace PedidosFacturacion
     public partial class Pedido
     {
         public int Id { get; set; }
-        public string Prioridad { get; set; }
-        public string Comentario { get; set; }
         public string Descripcion_local { get; set; }
         public Nullable<System.DateTime> Fecha { get; set; }
     }

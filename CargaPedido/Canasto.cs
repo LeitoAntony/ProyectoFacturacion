@@ -33,5 +33,7 @@ namespace PedidosFacturacion
         public Nullable<int> Id_facturista { get; set; }
         public Nullable<int> Legajo_facturista { get; set; }
         public string Descripcion_facturista { get; set; }
+        public string Prioridad { get; set; }
+        public string Comentario { get; set; }
     }
 }

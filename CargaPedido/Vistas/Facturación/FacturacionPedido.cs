@@ -26,6 +26,7 @@ namespace PedidosFacturacion
         private void FacturacionPedido_Load(object sender, EventArgs e)
         {
             llenarComboBox();
+            cmbFacturista.SelectedIndex = -1;
         }
 
         private void btnFacturado_Click(object sender, EventArgs e)

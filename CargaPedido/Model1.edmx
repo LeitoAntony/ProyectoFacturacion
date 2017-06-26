@@ -28,6 +28,8 @@
           <Property Name="Id_facturista" Type="int" />
           <Property Name="Legajo_facturista" Type="int" />
           <Property Name="Descripcion_facturista" Type="nchar" MaxLength="50" />
+          <Property Name="Prioridad" Type="nchar" MaxLength="50" />
+          <Property Name="Comentario" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="Estado">
           <Key>
@@ -57,8 +59,6 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Prioridad" Type="nvarchar(max)" />
-          <Property Name="Comentario" Type="nvarchar(max)" />
           <Property Name="Descripcion_local" Type="nchar" MaxLength="50" />
           <Property Name="Fecha" Type="date" />
         </EntityType>
@@ -104,6 +104,8 @@
           <Property Name="Id_facturista" Type="Int32" />
           <Property Name="Legajo_facturista" Type="Int32" />
           <Property Name="Descripcion_facturista" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+          <Property Name="Prioridad" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+          <Property Name="Comentario" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="Estado">
           <Key>
@@ -133,8 +135,6 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Prioridad" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Comentario" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Descripcion_local" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
           <Property Name="Fecha" Type="DateTime" Precision="0" />
         </EntityType>
@@ -162,6 +162,8 @@
           <EntitySetMapping Name="Canastoes">
             <EntityTypeMapping TypeName="PedidosDBModel.Canasto">
               <MappingFragment StoreEntitySet="Canasto">
+                <ScalarProperty Name="Comentario" ColumnName="Comentario" />
+                <ScalarProperty Name="Prioridad" ColumnName="Prioridad" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Id_pedido" ColumnName="Id_pedido" />
                 <ScalarProperty Name="Id_local" ColumnName="Id_local" />
@@ -214,8 +216,6 @@
             <EntityTypeMapping TypeName="PedidosDBModel.Pedido">
               <MappingFragment StoreEntitySet="Pedidos">
                 <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Prioridad" ColumnName="Prioridad" />
-                <ScalarProperty Name="Comentario" ColumnName="Comentario" />
                 <ScalarProperty Name="Descripcion_local" ColumnName="Descripcion_local" />
                 <ScalarProperty Name="Fecha" ColumnName="Fecha" />
               </MappingFragment>

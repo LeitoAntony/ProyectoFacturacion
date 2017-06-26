@@ -74,7 +74,7 @@ namespace PedidosFacturacion
             {
                 dgvCanasto.Rows.Insert(contadorFilasCanasto, item.Id, ValueIdFila, item.Numero_local, 
                     item.Descripcion_local, item.Legajo_vendedor,
-                    item.Descripcion_vendedor, item.Segmento, item.Fecha, item.Estado, item.Fecha_asignacion,
+                    item.Descripcion_vendedor, item.Segmento,item.Prioridad, item.Fecha, item.Estado, item.Fecha_asignacion,
                     item.Descripcion_asignador, item.Descripcion_facturista);
                 if (item.Estado != null)
                 {
@@ -89,11 +89,13 @@ namespace PedidosFacturacion
                         dgvCanasto.Rows[contadorFilasCanasto].DefaultCellStyle.BackColor = Color.LightGreen;
                         
                         this.contadorFilasCanasto = contadorFilasCanasto + 1;
-                    }
-                        
-                    
+                    } 
                 }
-                
+                if (item.Prioridad != null)
+                    {
+                        if (item.Prioridad.Trim().ToString() == "Prioridad")
+                            dgvCanasto.Rows[contadorFilasCanasto].DefaultCellStyle.BackColor = Color.Red;
+                    }  
                 //this.contadorFilasCanasto = contadorFilasCanasto + 1;
             }
             //if(contadorFilasCanasto == dgvCanasto.Rows.Count)
@@ -112,13 +114,7 @@ namespace PedidosFacturacion
             //los mapeo a la gilla
             foreach (var item in pedidos)
             {
-                dgvPedido.Rows.Insert(contadorFilas, item.Id, item.Descripcion_local, item.Prioridad);
-                if (item.Prioridad != null)
-                {
-                    if (item.Prioridad.Trim().ToString() == "Prioridad")
-                       dgvPedido.Rows[contadorFilas].DefaultCellStyle.BackColor = Color.Red;
-                }
-                
+                dgvPedido.Rows.Insert(contadorFilas, item.Id, item.Descripcion_local);
                 this.contadorFilas = contadorFilas + 1;
             }
         }

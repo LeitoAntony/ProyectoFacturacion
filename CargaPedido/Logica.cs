@@ -111,12 +111,12 @@ namespace PedidosFacturacion
 
         }
 
-        //public void setComentario(int Id, String comentario) 
-        //{
-        //    var pedidoEditar = context.Pedidos.FirstOrDefault(x => x.Id == Id);
-        //    pedidoEditar.Comentario = comentario;
-        //    context.SaveChanges();
-        //}
+        public void setComentario(int Id, String comentario)
+        {
+            var canastoEditar = context.Canastoes.FirstOrDefault(x => x.Id == Id);
+            canastoEditar.Comentario = comentario;
+            context.SaveChanges();
+        }
 
         public void actualizarEstado(int Id, String estado)
         {
@@ -153,15 +153,25 @@ namespace PedidosFacturacion
             return context.Locals.FirstOrDefault(q => q.Descripcion == descripcion);
         }
 
-        public IPagedList<Pedido> getPedidosPorFecha(DateTime dtpFecha, int paginaActual, int tamañoPagina)
+        public IPagedList<Canasto> getPedidosPorFecha(DateTime dtpFecha, int paginaActual, int tamañoPagina)
         {
             //manejar excepcion
+            List<Canasto> ret = (from p in context.Pedidos
+                                join c in context.Canastoes on p.Id equals c.Id_pedido
+                                where (p.Fecha == dtpFecha.Date) orderby p.Id
+                                select c).ToList();
+
+            IPagedList<Canasto> lista2 = (from p in context.Pedidos
+                                join c in context.Canastoes on p.Id equals c.Id_pedido
+                                where (p.Fecha == dtpFecha.Date) orderby p.Id
+                                         select c).ToPagedList(paginaActual, tamañoPagina);
+
             IPagedList<Pedido> lista1 = (from q in context.Pedidos
-                                          where (q.Fecha == dtpFecha.Date.Date)
+                                          where (q.Fecha == dtpFecha.Date)
                                           orderby
                                               q.Id
                                           select q ).ToPagedList(paginaActual, tamañoPagina);
-            return lista1;
+            return lista2;
         }
 
         public List<Pedido> getPedidosPorFecha(DateTime fecha)
@@ -214,15 +224,15 @@ namespace PedidosFacturacion
 
         public String getComentario(int Id)
         {
-            String comentarioPedido = context.Pedidos.FirstOrDefault(x => x.Id == Id).Comentario;
+            String comentarioCanasto = context.Canastoes.FirstOrDefault(x => x.Id == Id).Comentario;
 
-            return comentarioPedido;
+            return comentarioCanasto;
         }
 
         public void setPrioridad(int Id)
         {
-            var pedidoEditar = context.Pedidos.FirstOrDefault(x => x.Id == Id);
-            //pedidoEditar.Prioridad_ = "Prioridad";
+            var pedidoEditar = context.Canastoes.FirstOrDefault(x => x.Id == Id);
+            pedidoEditar.Prioridad = "Prioridad";
             context.SaveChanges();
         }
 

@@ -23,6 +23,8 @@
     <Property Name="Id_facturista" Type="Int32" />
     <Property Name="Legajo_facturista" Type="Int32" />
     <Property Name="Descripcion_facturista" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+    <Property Name="Prioridad" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+    <Property Name="Comentario" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
   </EntityType>
   <EntityType Name="Estado">
     <Key>
@@ -52,8 +54,6 @@
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="Prioridad" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <Property Name="Comentario" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="Descripcion_local" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
     <Property Name="Fecha" Type="DateTime" Precision="0" />
   </EntityType>

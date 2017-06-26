@@ -23,6 +23,8 @@
     <Property Name="Id_facturista" Type="int" />
     <Property Name="Legajo_facturista" Type="int" />
     <Property Name="Descripcion_facturista" Type="nchar" MaxLength="50" />
+    <Property Name="Prioridad" Type="nchar" MaxLength="50" />
+    <Property Name="Comentario" Type="nvarchar(max)" />
   </EntityType>
   <EntityType Name="Estado">
     <Key>
@@ -52,8 +54,6 @@
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Prioridad" Type="nvarchar(max)" />
-    <Property Name="Comentario" Type="nvarchar(max)" />
     <Property Name="Descripcion_local" Type="nchar" MaxLength="50" />
     <Property Name="Fecha" Type="date" />
   </EntityType>

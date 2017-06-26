@@ -46,11 +46,11 @@ namespace PedidosFacturacion
             {
                 objLogica = new Logica();
                 paginaActual--;
-                //list = objLogica.getPedidosPorFecha(dtpFecha.Value, paginaActual, tamañoPagina);
+                IPagedList<Canasto> list = objLogica.getPedidosPorFecha(dtpFecha.Value, paginaActual, tamañoPagina);
                 btnSig.Enabled = list.IsFirstPage;
                 btnPrev.Enabled = list.IsLastPage;
                 lblPagina.Text = string.Format("Página {0}/{1}", list.PageNumber, list.PageCount);
-                cargarPedido();
+                cargarPedido(list);
             }
 
         }
@@ -61,11 +61,11 @@ namespace PedidosFacturacion
             {
                 objLogica = new Logica();
                 paginaActual++;
-                //list = objLogica.getPedidosPorFecha(dtpFecha.Value, paginaActual, tamañoPagina);
+                IPagedList<Canasto> list = objLogica.getPedidosPorFecha(dtpFecha.Value, paginaActual, tamañoPagina);
                 btnSig.Enabled = list.IsFirstPage;
                 btnPrev.Enabled = list.IsLastPage;
                 lblPagina.Text = string.Format("Página {0}/{1}", list.PageNumber, list.PageCount);
-                cargarPedido();
+                cargarPedido(list);
             }
 
         }
@@ -89,7 +89,7 @@ namespace PedidosFacturacion
         private void btnAceptar_Click(object sender, EventArgs e)
         {
             objLogica = new Logica();
-           // objLogica.setComentario(ValueIdFila, txtComentario.Text);
+            objLogica.setComentario(ValueIdFila, txtComentario.Text);
             txtComentario.Text = String.Empty;
         }
 
@@ -136,44 +136,38 @@ namespace PedidosFacturacion
                 MessageBox.Show("El pedido no contiene comentarios!");
             }
         }
-        
-        private void cargarPedido()
+
+        private void cargarPedido(IPagedList<Canasto> list)
         {
             contadorFilas = 0;
             dgvPedido.Rows.Clear();
             dgvPedido.Refresh();
+
+            
             //completo la grilla 
-            //foreach (var item in list)
-            //{
-            //    dgvPedido.Rows.Insert(contadorFilas, item.Id, item.Numero_Local, item.Descripcion_Local,
-            //             item.Legajo_Vendedor, item.Descripcion_Vendedor, item.Estado, item.Prioridad_, item.Hombre, item.Mujer, item.Kids
-            //              , item.Fecha_creacion, item.Fecha_Asignacion, item.Fecha_Facturacion, item.Descripcion_Asignador, item.Descripcion_Facturista);
-            //    if (item.Prioridad_ != null)
-            //    {
-            //        if (item.Prioridad_.Trim().ToString() == "Prioridad")
-            //            dgvPedido.Rows[contadorFilas].DefaultCellStyle.BackColor = Color.Red;
-            //    }
-            //    if (item.Estado != null)
-            //    {
-            //        if (item.Estado.Trim().ToString() == "Asignado")
-            //            dgvPedido.Rows[contadorFilas].DefaultCellStyle.BackColor = Color.Yellow;
-            //        if (item.Estado.Trim().ToString() == "Facturado")
-            //            dgvPedido.Rows[contadorFilas].DefaultCellStyle.BackColor = Color.LightGreen;
-            //    }
-            //    this.contadorFilas = contadorFilas + 1;
-            //}
+            foreach (var item in list)
+            {
+                dgvPedido.Rows.Insert(contadorFilas, item.Id,item.Id_pedido, item.Numero_local ,item.Descripcion_local, item.Legajo_vendedor, item.Descripcion_vendedor,
+                   item.Estado, item.Prioridad , item.Segmento, item.Fecha, item.Fecha_asignacion, item.Fecha_facturacion, item.Descripcion_asignador, item.Descripcion_facturista);
+                if (item.Prioridad != null)
+                {
+                    if (item.Prioridad.Trim().ToString() == "Prioridad")
+                        dgvPedido.Rows[contadorFilas].DefaultCellStyle.BackColor = Color.Red;
+                }                
+                this.contadorFilas = contadorFilas + 1;
+            }
         }
 
         private void listarPedidos()
         {
             objLogica = new Logica();
             //traigo los objetos de la DB
-            list = objLogica.getPedidosPorFecha(dtpFecha.Value, paginaActual, tamañoPagina);
+            IPagedList<Canasto> list = objLogica.getPedidosPorFecha(dtpFecha.Value, paginaActual, tamañoPagina);
             btnSig.Enabled = list.IsFirstPage;
             btnPrev.Enabled = list.IsLastPage;
             lblPagina.Text = string.Format("Página {0}/{1}", list.PageNumber, list.PageCount);
             //mapeo el pedido a la grilla
-            cargarPedido();
+            cargarPedido(list);
         }
         
         private void setPrioridad()
@@ -187,7 +181,7 @@ namespace PedidosFacturacion
 
         private void actualizarFila(String pri)
         {
-            dgvPedido[6, IdFila].Value = pri;
+            dgvPedido[7, IdFila].Value = pri;
         }
 
     }

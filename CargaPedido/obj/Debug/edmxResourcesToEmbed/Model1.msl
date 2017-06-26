@@ -4,6 +4,8 @@
     <EntitySetMapping Name="Canastoes">
       <EntityTypeMapping TypeName="PedidosDBModel.Canasto">
         <MappingFragment StoreEntitySet="Canasto">
+          <ScalarProperty Name="Comentario" ColumnName="Comentario" />
+          <ScalarProperty Name="Prioridad" ColumnName="Prioridad" />
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Id_pedido" ColumnName="Id_pedido" />
           <ScalarProperty Name="Id_local" ColumnName="Id_local" />
@@ -56,8 +58,6 @@
       <EntityTypeMapping TypeName="PedidosDBModel.Pedido">
         <MappingFragment StoreEntitySet="Pedidos">
           <ScalarProperty Name="Id" ColumnName="Id" />
-          <ScalarProperty Name="Prioridad" ColumnName="Prioridad" />
-          <ScalarProperty Name="Comentario" ColumnName="Comentario" />
           <ScalarProperty Name="Descripcion_local" ColumnName="Descripcion_local" />
           <ScalarProperty Name="Fecha" ColumnName="Fecha" />
         </MappingFragment>
