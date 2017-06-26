@@ -55,6 +55,12 @@ namespace PedidosFacturacion
             frmFacturacion.MdiParent = this;
             frmFacturacion.Show();
         }
+
+        private void login()
+        {
+            
+        }
+
     }
 }
 

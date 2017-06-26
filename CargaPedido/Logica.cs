@@ -261,6 +261,16 @@ namespace PedidosFacturacion
                                        select c).ToPagedList(paginaActual, tamañoPagina);
             return ret;
         }
+
+        internal string getUsuarioVendedor()
+        {
+            return "usuario";
+        }
+
+        internal string getPassVendedor()
+        {
+            return "1234";
+        }
     }
 
 

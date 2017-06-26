@@ -108,3 +108,4 @@ C:\Users\userrfid\Documents\ProyectosVisualStudio2013\ProyectoFacturacion\CargaP
 C:\Users\userrfid\Documents\ProyectosVisualStudio2013\ProyectoFacturacion\CargaPedido\obj\Debug\PedidosFacturacion.AsignarCanasto.resources
 C:\Users\userrfid\Documents\ProyectosVisualStudio2013\ProyectoFacturacion\CargaPedido\obj\Debug\PedidosFacturacion.CargaPedido.resources
 C:\Users\userrfid\Documents\ProyectosVisualStudio2013\ProyectoFacturacion\CargaPedido\obj\Debug\PedidosFacturacion.csprojResolveAssemblyReference.cache
+C:\Users\userrfid\Documents\ProyectosVisualStudio2013\ProyectoFacturacion\CargaPedido\obj\Debug\PedidosFacturacion.Login.resources
