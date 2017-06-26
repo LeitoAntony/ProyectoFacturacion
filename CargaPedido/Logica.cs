@@ -240,7 +240,27 @@ namespace PedidosFacturacion
         {
             return context.Segmentoes.ToArray();
         }
-        
+
+
+        internal IPagedList<Canasto> getPedidosPorPioridad(DateTime dtpFecha, int paginaActual, int tamañoPagina)
+        {
+            IPagedList<Canasto> ret = (from p in context.Pedidos
+                                          join c in context.Canastoes on p.Id equals c.Id_pedido
+                                          where (p.Fecha == dtpFecha.Date)
+                                          orderby c.Prioridad descending
+                                          select c).ToPagedList(paginaActual, tamañoPagina);
+            return ret;
+        }
+
+        internal IPagedList<Canasto> getPedidosPorLocal(DateTime dtpFecha, int paginaActual, int tamañoPagina, Local local)
+        {
+            IPagedList<Canasto> ret = (from p in context.Pedidos
+                                       join c in context.Canastoes on p.Id equals c.Id_pedido
+                                       where (p.Fecha == dtpFecha.Date && c.Descripcion_local == local.Descripcion)
+                                       orderby c.Descripcion_local
+                                       select c).ToPagedList(paginaActual, tamañoPagina);
+            return ret;
+        }
     }
 
 

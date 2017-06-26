@@ -30,8 +30,6 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Consultas));
-            this.dtpFecha = new System.Windows.Forms.DateTimePicker();
-            this.btmConsultar = new System.Windows.Forms.Button();
             this.dgvPedido = new System.Windows.Forms.DataGridView();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -47,56 +45,34 @@
             this.Column13 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column14 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column15 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnPrev = new System.Windows.Forms.Button();
             this.btnSig = new System.Windows.Forms.Button();
             this.btnImprimir = new System.Windows.Forms.Button();
             this.lblPagina = new System.Windows.Forms.Label();
             this.printDocument1 = new System.Drawing.Printing.PrintDocument();
             this.printPreviewDialog1 = new System.Windows.Forms.PrintPreviewDialog();
-            this.btnPrioridad = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
+            this.txtPopUp = new System.Windows.Forms.TextBox();
+            this.btnCerrar = new System.Windows.Forms.Button();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.btnAceptar = new System.Windows.Forms.Button();
             this.txtComentario = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.txtPopUp = new System.Windows.Forms.TextBox();
-            this.btnAceptar = new System.Windows.Forms.Button();
-            this.btnCerrar = new System.Windows.Forms.Button();
-            this.panel1 = new System.Windows.Forms.Panel();
+            this.label1 = new System.Windows.Forms.Label();
+            this.btnPrioridad = new System.Windows.Forms.Button();
+            this.dtpFecha = new System.Windows.Forms.DateTimePicker();
+            this.cmbBusqueda = new System.Windows.Forms.ComboBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.btmConsultar = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
-            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.consultasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.fechaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.creaciónToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.asignaciónToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.facturaciónToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.pedidosBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.estadosBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.cmbLocal = new System.Windows.Forms.ComboBox();
+            this.localBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.dgvPedido)).BeginInit();
-            this.panel1.SuspendLayout();
-            this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pedidosBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.estadosBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.localBindingSource)).BeginInit();
             this.SuspendLayout();
-            // 
-            // dtpFecha
-            // 
-            this.dtpFecha.Checked = false;
-            this.dtpFecha.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpFecha.Location = new System.Drawing.Point(7, 33);
-            this.dtpFecha.Name = "dtpFecha";
-            this.dtpFecha.Size = new System.Drawing.Size(200, 20);
-            this.dtpFecha.TabIndex = 0;
-            // 
-            // btmConsultar
-            // 
-            this.btmConsultar.Location = new System.Drawing.Point(213, 30);
-            this.btmConsultar.Name = "btmConsultar";
-            this.btmConsultar.Size = new System.Drawing.Size(75, 23);
-            this.btmConsultar.TabIndex = 1;
-            this.btmConsultar.Text = "Consultas";
-            this.btmConsultar.UseVisualStyleBackColor = true;
-            this.btmConsultar.Click += new System.EventHandler(this.btmConsultar_Click);
             // 
             // dgvPedido
             // 
@@ -121,13 +97,12 @@
             this.Column12,
             this.Column13,
             this.Column14,
-            this.Column15,
-            this.Column10});
-            this.dgvPedido.Location = new System.Drawing.Point(12, 91);
+            this.Column15});
+            this.dgvPedido.Location = new System.Drawing.Point(12, 193);
             this.dgvPedido.Name = "dgvPedido";
             this.dgvPedido.ReadOnly = true;
             this.dgvPedido.RowHeadersVisible = false;
-            this.dgvPedido.Size = new System.Drawing.Size(1340, 522);
+            this.dgvPedido.Size = new System.Drawing.Size(1340, 420);
             this.dgvPedido.TabIndex = 2;
             this.dgvPedido.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvPedido_CellMouseClick);
             // 
@@ -216,12 +191,6 @@
             this.Column15.Name = "Column15";
             this.Column15.ReadOnly = true;
             // 
-            // Column10
-            // 
-            this.Column10.HeaderText = "Prioridad";
-            this.Column10.Name = "Column10";
-            this.Column10.ReadOnly = true;
-            // 
             // btnPrev
             // 
             this.btnPrev.Location = new System.Drawing.Point(1027, 619);
@@ -276,47 +245,6 @@
             this.printPreviewDialog1.Name = "printPreviewDialog1";
             this.printPreviewDialog1.Visible = false;
             // 
-            // btnPrioridad
-            // 
-            this.btnPrioridad.Location = new System.Drawing.Point(426, 30);
-            this.btnPrioridad.Name = "btnPrioridad";
-            this.btnPrioridad.Size = new System.Drawing.Size(75, 23);
-            this.btnPrioridad.TabIndex = 9;
-            this.btnPrioridad.Text = "Prioridad";
-            this.btnPrioridad.UseVisualStyleBackColor = true;
-            this.btnPrioridad.Click += new System.EventHandler(this.btnActualizar_Click);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(295, 36);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(115, 13);
-            this.label1.TabIndex = 10;
-            this.label1.Text = "Marcar como prioridad:";
-            // 
-            // txtComentario
-            // 
-            this.txtComentario.AcceptsReturn = true;
-            this.txtComentario.AcceptsTab = true;
-            this.txtComentario.Location = new System.Drawing.Point(590, 33);
-            this.txtComentario.Multiline = true;
-            this.txtComentario.Name = "txtComentario";
-            this.txtComentario.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtComentario.Size = new System.Drawing.Size(557, 20);
-            this.txtComentario.TabIndex = 11;
-            this.txtComentario.MouseEnter += new System.EventHandler(this.txtComentario_MouseEnter);
-            this.txtComentario.MouseLeave += new System.EventHandler(this.txtComentario_MouseLeave);
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(521, 35);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(63, 13);
-            this.label2.TabIndex = 12;
-            this.label2.Text = "Comentario:";
-            // 
             // txtPopUp
             // 
             this.txtPopUp.Enabled = false;
@@ -329,16 +257,6 @@
             this.txtPopUp.TabIndex = 13;
             this.txtPopUp.Visible = false;
             // 
-            // btnAceptar
-            // 
-            this.btnAceptar.Location = new System.Drawing.Point(1169, 30);
-            this.btnAceptar.Name = "btnAceptar";
-            this.btnAceptar.Size = new System.Drawing.Size(75, 23);
-            this.btnAceptar.TabIndex = 14;
-            this.btnAceptar.Text = "Aceptar";
-            this.btnAceptar.UseVisualStyleBackColor = true;
-            this.btnAceptar.Click += new System.EventHandler(this.btnAceptar_Click);
-            // 
             // btnCerrar
             // 
             this.btnCerrar.Location = new System.Drawing.Point(1234, 405);
@@ -350,77 +268,100 @@
             this.btnCerrar.Visible = false;
             this.btnCerrar.Click += new System.EventHandler(this.btnCerrar_Click);
             // 
-            // panel1
+            // btnAceptar
             // 
-            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel1.Controls.Add(this.txtComentario);
-            this.panel1.Controls.Add(this.label3);
-            this.panel1.Controls.Add(this.dtpFecha);
-            this.panel1.Controls.Add(this.btnAceptar);
-            this.panel1.Controls.Add(this.btmConsultar);
-            this.panel1.Controls.Add(this.btnPrioridad);
-            this.panel1.Controls.Add(this.label2);
-            this.panel1.Controls.Add(this.label1);
-            this.panel1.Location = new System.Drawing.Point(12, 27);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1340, 58);
-            this.panel1.TabIndex = 17;
+            this.btnAceptar.Location = new System.Drawing.Point(955, 67);
+            this.btnAceptar.Name = "btnAceptar";
+            this.btnAceptar.Size = new System.Drawing.Size(75, 23);
+            this.btnAceptar.TabIndex = 20;
+            this.btnAceptar.Text = "Aceptar";
+            this.btnAceptar.UseVisualStyleBackColor = true;
+            this.btnAceptar.Click += new System.EventHandler(this.btnAceptar_Click_1);
+            // 
+            // txtComentario
+            // 
+            this.txtComentario.AcceptsReturn = true;
+            this.txtComentario.AcceptsTab = true;
+            this.txtComentario.Location = new System.Drawing.Point(380, 69);
+            this.txtComentario.Multiline = true;
+            this.txtComentario.Name = "txtComentario";
+            this.txtComentario.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.txtComentario.Size = new System.Drawing.Size(557, 20);
+            this.txtComentario.TabIndex = 18;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(377, 42);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(63, 13);
+            this.label2.TabIndex = 19;
+            this.label2.Text = "Comentario:";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(377, 9);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(115, 13);
+            this.label1.TabIndex = 22;
+            this.label1.Text = "Marcar como prioridad:";
+            // 
+            // btnPrioridad
+            // 
+            this.btnPrioridad.Location = new System.Drawing.Point(515, -1);
+            this.btnPrioridad.Name = "btnPrioridad";
+            this.btnPrioridad.Size = new System.Drawing.Size(75, 23);
+            this.btnPrioridad.TabIndex = 21;
+            this.btnPrioridad.Text = "Prioridad";
+            this.btnPrioridad.UseVisualStyleBackColor = true;
+            this.btnPrioridad.Click += new System.EventHandler(this.btnPrioridad_Click);
+            // 
+            // dtpFecha
+            // 
+            this.dtpFecha.Checked = false;
+            this.dtpFecha.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpFecha.Location = new System.Drawing.Point(12, 35);
+            this.dtpFecha.Name = "dtpFecha";
+            this.dtpFecha.Size = new System.Drawing.Size(200, 20);
+            this.dtpFecha.TabIndex = 23;
+            // 
+            // cmbBusqueda
+            // 
+            this.cmbBusqueda.FormattingEnabled = true;
+            this.cmbBusqueda.Location = new System.Drawing.Point(12, 92);
+            this.cmbBusqueda.Name = "cmbBusqueda";
+            this.cmbBusqueda.Size = new System.Drawing.Size(200, 21);
+            this.cmbBusqueda.TabIndex = 25;
+            this.cmbBusqueda.SelectedIndexChanged += new System.EventHandler(this.cmbBusqueda_SelectedIndexChanged);
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(12, 67);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(107, 13);
+            this.label4.TabIndex = 26;
+            this.label4.Text = "Criterio de busqueda:";
+            // 
+            // btmConsultar
+            // 
+            this.btmConsultar.Location = new System.Drawing.Point(218, 33);
+            this.btmConsultar.Name = "btmConsultar";
+            this.btmConsultar.Size = new System.Drawing.Size(75, 23);
+            this.btmConsultar.TabIndex = 24;
+            this.btmConsultar.Text = "Consultar";
+            this.btmConsultar.UseVisualStyleBackColor = true;
+            this.btmConsultar.Click += new System.EventHandler(this.btmConsultar_Click_1);
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(4, 4);
+            this.label3.Location = new System.Drawing.Point(12, 13);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(76, 16);
-            this.label3.TabIndex = 0;
-            this.label3.Text = "Consultas";
-            // 
-            // menuStrip1
-            // 
-            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.consultasToolStripMenuItem});
-            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
-            this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1364, 24);
-            this.menuStrip1.TabIndex = 19;
-            this.menuStrip1.Text = "menuStrip1";
-            // 
-            // consultasToolStripMenuItem
-            // 
-            this.consultasToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.fechaToolStripMenuItem});
-            this.consultasToolStripMenuItem.Name = "consultasToolStripMenuItem";
-            this.consultasToolStripMenuItem.Size = new System.Drawing.Size(71, 20);
-            this.consultasToolStripMenuItem.Text = "Consultas";
-            // 
-            // fechaToolStripMenuItem
-            // 
-            this.fechaToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.creaciónToolStripMenuItem,
-            this.asignaciónToolStripMenuItem,
-            this.facturaciónToolStripMenuItem});
-            this.fechaToolStripMenuItem.Name = "fechaToolStripMenuItem";
-            this.fechaToolStripMenuItem.Size = new System.Drawing.Size(105, 22);
-            this.fechaToolStripMenuItem.Text = "Fecha";
-            // 
-            // creaciónToolStripMenuItem
-            // 
-            this.creaciónToolStripMenuItem.Name = "creaciónToolStripMenuItem";
-            this.creaciónToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
-            this.creaciónToolStripMenuItem.Text = "Creación";
-            // 
-            // asignaciónToolStripMenuItem
-            // 
-            this.asignaciónToolStripMenuItem.Name = "asignaciónToolStripMenuItem";
-            this.asignaciónToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
-            this.asignaciónToolStripMenuItem.Text = "Asignación";
-            // 
-            // facturaciónToolStripMenuItem
-            // 
-            this.facturaciónToolStripMenuItem.Name = "facturaciónToolStripMenuItem";
-            this.facturaciónToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
-            this.facturaciónToolStripMenuItem.Text = "Facturación";
+            this.label3.Size = new System.Drawing.Size(98, 13);
+            this.label3.TabIndex = 27;
+            this.label3.Text = "Fecha de consulta:";
             // 
             // pedidosBindingSource
             // 
@@ -430,13 +371,39 @@
             // 
             this.estadosBindingSource.DataSource = typeof(PedidosFacturacion.Estado);
             // 
+            // cmbLocal
+            // 
+            this.cmbLocal.DataSource = this.localBindingSource;
+            this.cmbLocal.DisplayMember = "Descripcion";
+            this.cmbLocal.Enabled = false;
+            this.cmbLocal.FormattingEnabled = true;
+            this.cmbLocal.Location = new System.Drawing.Point(12, 151);
+            this.cmbLocal.Name = "cmbLocal";
+            this.cmbLocal.Size = new System.Drawing.Size(199, 21);
+            this.cmbLocal.TabIndex = 28;
+            this.cmbLocal.ValueMember = "Id";
+            this.cmbLocal.SelectedIndexChanged += new System.EventHandler(this.cmbLocal_SelectedIndexChanged);
+            // 
+            // localBindingSource
+            // 
+            this.localBindingSource.DataSource = typeof(PedidosFacturacion.Local);
+            // 
             // Consultas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1364, 705);
-            this.Controls.Add(this.menuStrip1);
-            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.cmbLocal);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.dtpFecha);
+            this.Controls.Add(this.cmbBusqueda);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.btmConsultar);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.btnPrioridad);
+            this.Controls.Add(this.btnAceptar);
+            this.Controls.Add(this.txtComentario);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.btnCerrar);
             this.Controls.Add(this.txtPopUp);
             this.Controls.Add(this.lblPagina);
@@ -444,19 +411,15 @@
             this.Controls.Add(this.btnSig);
             this.Controls.Add(this.btnPrev);
             this.Controls.Add(this.dgvPedido);
-            this.MainMenuStrip = this.menuStrip1;
             this.Name = "Consultas";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Consultas";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.Consultas_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvPedido)).EndInit();
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
-            this.menuStrip1.ResumeLayout(false);
-            this.menuStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pedidosBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.estadosBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.localBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -464,8 +427,6 @@
 
         #endregion
 
-        private System.Windows.Forms.DateTimePicker dtpFecha;
-        private System.Windows.Forms.Button btmConsultar;
         private System.Windows.Forms.DataGridView dgvPedido;
         private System.Windows.Forms.Button btnPrev;
         private System.Windows.Forms.Button btnSig;
@@ -475,21 +436,8 @@
         private System.Windows.Forms.PrintPreviewDialog printPreviewDialog1;
         private System.Windows.Forms.BindingSource estadosBindingSource;
         private System.Windows.Forms.BindingSource pedidosBindingSource;
-        private System.Windows.Forms.Button btnPrioridad;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox txtComentario;
-        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox txtPopUp;
-        private System.Windows.Forms.Button btnAceptar;
         private System.Windows.Forms.Button btnCerrar;
-        private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.MenuStrip menuStrip1;
-        private System.Windows.Forms.ToolStripMenuItem consultasToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem fechaToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem creaciónToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem asignaciónToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem facturaciónToolStripMenuItem;
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column9;
@@ -505,6 +453,17 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column13;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column14;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column15;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column10;
+        private System.Windows.Forms.Button btnAceptar;
+        private System.Windows.Forms.TextBox txtComentario;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button btnPrioridad;
+        private System.Windows.Forms.DateTimePicker dtpFecha;
+        private System.Windows.Forms.ComboBox cmbBusqueda;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Button btmConsultar;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.ComboBox cmbLocal;
+        private System.Windows.Forms.BindingSource localBindingSource;
     }
 }

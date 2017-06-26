@@ -21,7 +21,7 @@ namespace PedidosFacturacion
         private int IdFila;
         private int ValueIdFila;
         private int contadorFilas = 0;
-        private IPagedList<Pedido> list;
+       // private IPagedList<Pedido> list;
 
         public Consultas()
         {
@@ -30,15 +30,10 @@ namespace PedidosFacturacion
 
         private void Consultas_Load(object sender, EventArgs e)
         {
-            
+            llenarCmbBusqueda();
+            llenarCmbLocales();
         }
 
-       
-
-        private void btmConsultar_Click(object sender, EventArgs e)
-        {
-            listarPedidos();
-        }
 
         private void btnPrev_Click(object sender, EventArgs e)
         {
@@ -77,7 +72,7 @@ namespace PedidosFacturacion
 
         private void txtComentario_MouseEnter(object sender, EventArgs e)
         {
-            txtComentario.Size = new System.Drawing.Size(557, 150);
+            txtComentario.Size = new System.Drawing.Size(557, 50);
 
         }
 
@@ -158,16 +153,47 @@ namespace PedidosFacturacion
             }
         }
 
-        private void listarPedidos()
+        private void listarPorFecha(DateTime fecha)
         {
             objLogica = new Logica();
             //traigo los objetos de la DB
-            IPagedList<Canasto> list = objLogica.getPedidosPorFecha(dtpFecha.Value, paginaActual, tamañoPagina);
+            IPagedList<Canasto> list = objLogica.getPedidosPorFecha(fecha.Date, paginaActual, tamañoPagina);
             btnSig.Enabled = list.IsFirstPage;
             btnPrev.Enabled = list.IsLastPage;
             lblPagina.Text = string.Format("Página {0}/{1}", list.PageNumber, list.PageCount);
             //mapeo el pedido a la grilla
             cargarPedido(list);
+        }
+
+        private void listarPorPrioridad(DateTime fecha)
+        {
+            objLogica = new Logica();
+            //traigo los objetos de la DB
+            IPagedList<Canasto> list = objLogica.getPedidosPorPioridad(fecha.Date, paginaActual, tamañoPagina);
+            btnSig.Enabled = list.IsFirstPage;
+            btnPrev.Enabled = list.IsLastPage;
+            lblPagina.Text = string.Format("Página {0}/{1}", list.PageNumber, list.PageCount);
+            //mapeo el pedido a la grilla
+            cargarPedido(list);
+        }
+
+        private void listarPorLocal(DateTime fecha, Local local)
+        {
+            objLogica = new Logica();
+            //traigo los objetos de la DB
+            
+            IPagedList<Canasto> list = objLogica.getPedidosPorLocal(fecha.Date, paginaActual, tamañoPagina, local);
+            btnSig.Enabled = list.IsFirstPage;
+            btnPrev.Enabled = list.IsLastPage;
+            lblPagina.Text = string.Format("Página {0}/{1}", list.PageNumber, list.PageCount);
+            //mapeo el pedido a la grilla
+            cargarPedido(list);        
+        }
+
+        private void llenarCmbBusqueda()
+        {
+            cmbBusqueda.Items.Add("Local");
+            cmbBusqueda.Items.Add("Prioridad");
         }
         
         private void setPrioridad()
@@ -183,6 +209,73 @@ namespace PedidosFacturacion
         {
             dgvPedido[7, IdFila].Value = pri;
         }
+
+        private void setComentario()
+        {
+            objLogica = new Logica();
+            objLogica.setComentario(ValueIdFila, txtComentario.Text);
+
+
+
+        }
+
+        private void cmbBusqueda_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cmbBusqueda.SelectedItem.ToString().Trim() == "Local")
+            {
+                cmbLocal.Enabled = true;               
+            }
+            else
+            {
+                listarPorPrioridad(dtpFecha.Value);
+            }
+
+
+        }
+        
+        private void cmbLocal_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Local local = (Local)cmbLocal.SelectedItem;
+                if(cmbLocal.SelectedItem != null)
+                    listarPorLocal(dtpFecha.Value, local);
+
+        }
+
+        private void btmConsultar_Click_1(object sender, EventArgs e)
+        {
+            listarPorFecha(dtpFecha.Value);
+        }
+
+        private void btnPrioridad_Click(object sender, EventArgs e)
+        {
+            setPrioridad();
+        }
+
+        private void llenarCmbLocales()
+        {
+            try
+            {
+                objLogica = new Logica();
+                //hace un bindig de los locales del context a una lista
+                var locales = objLogica.getLocales();
+                //agrega los locales al combobox definido por el objeto localBindngSource
+                this.localBindingSource.DataSource = locales;
+                cmbLocal.SelectedIndex = -1;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("No se puede generar la lista: " + e.Message);
+            }
+
+        }
+
+        private void btnAceptar_Click_1(object sender, EventArgs e)
+        {
+            setComentario();
+            txtComentario.Text = string.Empty;
+        }
+
+       
 
     }
 }
