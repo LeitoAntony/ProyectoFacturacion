@@ -46,6 +46,9 @@ namespace PedidosFacturacion
             this.label6 = new System.Windows.Forms.Label();
             this.btnActualizar = new System.Windows.Forms.Button();
             this.dgvCanasto = new System.Windows.Forms.DataGridView();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.label2 = new System.Windows.Forms.Label();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -54,9 +57,6 @@ namespace PedidosFacturacion
             this.Column10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column11 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column12 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.label2 = new System.Windows.Forms.Label();
-            this.timer1 = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.localBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.operarioBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPedido)).BeginInit();
@@ -238,12 +238,32 @@ namespace PedidosFacturacion
             this.dgvCanasto.TabIndex = 22;
             this.dgvCanasto.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvCanasto_CellDoubleClick);
             // 
+            // panel2
+            // 
+            this.panel2.Controls.Add(this.label2);
+            this.panel2.Location = new System.Drawing.Point(515, 3);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(837, 123);
+            this.panel2.TabIndex = 23;
+            // 
+            // label2
+            // 
+            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(328, 11);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(161, 37);
+            this.label2.TabIndex = 0;
+            this.label2.Text = "Canastos";
+            // 
             // Column1
             // 
             this.Column1.HeaderText = "";
             this.Column1.Name = "Column1";
             this.Column1.ReadOnly = true;
-            this.Column1.Visible = false;
             // 
             // Column3
             // 
@@ -294,27 +314,6 @@ namespace PedidosFacturacion
             this.Column12.Name = "Column12";
             this.Column12.ReadOnly = true;
             // 
-            // panel2
-            // 
-            this.panel2.Controls.Add(this.label2);
-            this.panel2.Location = new System.Drawing.Point(515, 3);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(837, 123);
-            this.panel2.TabIndex = 23;
-            // 
-            // label2
-            // 
-            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(328, 11);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(161, 37);
-            this.label2.TabIndex = 0;
-            this.label2.Text = "Canastos";
-            // 
             // CargaPedido
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -358,6 +357,12 @@ namespace PedidosFacturacion
         private System.Windows.Forms.BindingSource localBindingSource;
         private System.Windows.Forms.BindingSource operarioBindingSource;
         private System.Windows.Forms.DataGridView dgvCanasto;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column9;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
@@ -366,11 +371,5 @@ namespace PedidosFacturacion
         private System.Windows.Forms.DataGridViewTextBoxColumn Column10;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column11;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column12;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column9;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
-        private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Timer timer1;
     }
 }

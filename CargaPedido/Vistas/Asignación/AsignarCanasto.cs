@@ -48,6 +48,8 @@ namespace PedidosFacturacion
         private void btnAsignar_Click(object sender, EventArgs e)
         {
             actualizarAsignacion();
+            cmbFacturista.SelectedIndex = -1;            
+            txtFacturista.Text = String.Empty;
         }
 
         private void llenarCmbAsignador()
@@ -118,6 +120,16 @@ namespace PedidosFacturacion
             cmbFacturista.SelectedIndex = -1;
             txtAsignador.Text = String.Empty;
             txtFacturista.Text = String.Empty;
+        }
+
+        private void btnCancelar_Click(object sender, EventArgs e)
+        {
+            resetearCampos();
+        }
+
+        private void btnSalir_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
         
 

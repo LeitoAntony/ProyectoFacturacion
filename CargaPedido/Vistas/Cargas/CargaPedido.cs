@@ -24,8 +24,8 @@ namespace PedidosFacturacion
 
         private int contadorFilasCanasto = 0;
         private int IdCanasto;
-        private int IdFilaCanasto;
-        private static int ValueIdFilaCanasto;
+        private int IdFilaCanasto = 0;
+        private static int ValueIdFilaCanasto = 0;
         private bool banderaCanasto = false;
 
         Form frmCargaCanasto;
@@ -38,7 +38,6 @@ namespace PedidosFacturacion
         {
             llenarCombo();
             inicializarPedidos();
-            actualizarListaTimer();
         }
          
         
@@ -93,6 +92,7 @@ namespace PedidosFacturacion
             bandera = true;
             IdFila = dgvPedido.CurrentRow.Index;
             ValueIdFila = Convert.ToInt32(dgvPedido.Rows[IdFila].Cells[0].Value);
+            if(contadorFilas > 0)
             getCanastos();
             //dgvPedido.Rows[IdFila].DefaultCellStyle.BackColor = Color.LightGreen;
         }
@@ -109,6 +109,8 @@ namespace PedidosFacturacion
 
         private void dgvCanasto_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
+            IdFilaCanasto = dgvCanasto.CurrentRow.Index;
+            ValueIdFilaCanasto = Convert.ToInt32(dgvCanasto.Rows[IdFilaCanasto].Cells[0].Value);
             eliminarCanasto();
             eliminarCanastoDB();
         }
@@ -159,7 +161,7 @@ namespace PedidosFacturacion
             contadorFilas = 0;
             objLogica = new Logica();
             //traigo desde la base de datos
-            List<Pedidos> pedidos = objLogica.getPedidosPorFecha(DateTime.Now);
+            List<Pedido> pedidos = objLogica.getPedidosPorFecha(DateTime.Now);
             
             //los mapeo a la gilla
             foreach (var item in pedidos)
@@ -233,6 +235,7 @@ namespace PedidosFacturacion
        
         private void eliminarCanastoDB()
         {
+            MessageBox.Show("id fila caasto " + ValueIdFilaCanasto);
             objLogica = new Logica();
             //elimino los datos de la base de datos
             objLogica.eliminarCanasto(ValueIdFilaCanasto);
@@ -247,25 +250,6 @@ namespace PedidosFacturacion
         {
             return IdPedido;
         }
-
-        private void actualizarListaTimer()
-        {
-            timer1.Interval = 5000;
-            timer1.Tick += new EventHandler(Timer1_Tick);
-            timer1.Enabled = true;
-        }
-
-        private void Timer1_Tick(object Sender, EventArgs e)
-        {
-            getCanastos();
-        }
-
-        
-        
-
-        
-
-        
 
         //private void actualizarPedido()
         //{

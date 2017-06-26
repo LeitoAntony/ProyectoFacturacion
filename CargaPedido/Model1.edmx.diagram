@@ -4,13 +4,13 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="7ba89ba08faf4c04bf144d490dd84401" Name="Diagrama1" ZoomLevel="61">
-        <EntityTypeShape EntityType="CargaPedidoDBModel.Canasto" Width="1.5" PointX="11" PointY="0.75" />
-        <EntityTypeShape EntityType="CargaPedidoDBModel.Estado" Width="1.5" PointX="9.125" PointY="0.625" />
-        <EntityTypeShape EntityType="CargaPedidoDBModel.Local" Width="1.5" PointX="15" PointY="0.75" />
-        <EntityTypeShape EntityType="CargaPedidoDBModel.Operario" Width="1.5" PointX="4.58848482025251" PointY="1.4969270087298596" />
-        <EntityTypeShape EntityType="CargaPedidoDBModel.Pedidos" Width="1.5" PointX="13" PointY="0.5" />
-        <EntityTypeShape EntityType="CargaPedidoDBModel.Segmento" Width="1.5" PointX="7.4222089235774282" PointY="1.9565255949071263" />
+      <Diagram DiagramId="3a8b985e53c14deca84144802c2b21db" Name="Diagram1" ZoomLevel="86">
+        <EntityTypeShape EntityType="PedidosDBModel.Canasto" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PedidosDBModel.Estado" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PedidosDBModel.Local" Width="1.5" PointX="2.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PedidosDBModel.Operario" Width="1.5" PointX="4.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PedidosDBModel.Pedido" Width="1.5" PointX="4.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PedidosDBModel.Segmento" Width="1.5" PointX="6.75" PointY="0.75" IsExpanded="true" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

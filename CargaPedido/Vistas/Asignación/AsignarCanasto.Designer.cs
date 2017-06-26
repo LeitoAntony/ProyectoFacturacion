@@ -55,6 +55,8 @@
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btnCancelar = new System.Windows.Forms.Button();
+            this.btnSalir = new System.Windows.Forms.Button();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.operarioBindingSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.operarioBindingSource)).BeginInit();
@@ -64,6 +66,8 @@
             // panel2
             // 
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel2.Controls.Add(this.btnSalir);
+            this.panel2.Controls.Add(this.btnCancelar);
             this.panel2.Controls.Add(this.label4);
             this.panel2.Controls.Add(this.label7);
             this.panel2.Controls.Add(this.txtFacturista);
@@ -125,7 +129,7 @@
             // 
             // btnAsignar
             // 
-            this.btnAsignar.Location = new System.Drawing.Point(760, 96);
+            this.btnAsignar.Location = new System.Drawing.Point(598, 95);
             this.btnAsignar.Name = "btnAsignar";
             this.btnAsignar.Size = new System.Drawing.Size(75, 23);
             this.btnAsignar.TabIndex = 9;
@@ -290,6 +294,26 @@
             this.Column4.Name = "Column4";
             this.Column4.ReadOnly = true;
             // 
+            // btnCancelar
+            // 
+            this.btnCancelar.Location = new System.Drawing.Point(679, 95);
+            this.btnCancelar.Name = "btnCancelar";
+            this.btnCancelar.Size = new System.Drawing.Size(75, 23);
+            this.btnCancelar.TabIndex = 22;
+            this.btnCancelar.Text = "Cancelar";
+            this.btnCancelar.UseVisualStyleBackColor = true;
+            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
+            // 
+            // btnSalir
+            // 
+            this.btnSalir.Location = new System.Drawing.Point(760, 95);
+            this.btnSalir.Name = "btnSalir";
+            this.btnSalir.Size = new System.Drawing.Size(75, 23);
+            this.btnSalir.TabIndex = 23;
+            this.btnSalir.Text = "Salir";
+            this.btnSalir.UseVisualStyleBackColor = true;
+            this.btnSalir.Click += new System.EventHandler(this.btnSalir_Click);
+            // 
             // AsignarCanasto
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -338,5 +362,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
+        private System.Windows.Forms.Button btnSalir;
+        private System.Windows.Forms.Button btnCancelar;
     }
 }

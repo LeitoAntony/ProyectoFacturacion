@@ -9,12 +9,12 @@ using PagedList;
 namespace PedidosFacturacion
 {
     public class Logica 
-    {
-        private CargaPedidoDBEntities context = new CargaPedidoDBEntities();
+    {      
+        private PedidosDBEntities context = new PedidosDBEntities();
 
         public int insertarPedido(Local local)
     {
-        Pedidos pedido = new Pedidos();
+        Pedido pedido = new Pedido();
         pedido.Fecha = DateTime.Now;
         pedido.Descripcion_local = local.Descripcion;
         //Adhiero mi objeto pedido a la base
@@ -28,7 +28,7 @@ namespace PedidosFacturacion
 
         public int insertarCanasto(int IdPedido, Local local, Operario vendedor, String segmento)
         {
-            Estado[] estado = context.Estado.ToArray();
+            Estado[] estado = context.Estadoes.ToArray();
             //creo mi objeto
             Canasto canasto = new Canasto();
             
@@ -46,7 +46,7 @@ namespace PedidosFacturacion
             
 
 
-            context.Canasto.Add(canasto);
+            context.Canastoes.Add(canasto);
             
       
             context.SaveChanges();
@@ -76,15 +76,15 @@ namespace PedidosFacturacion
         public void eliminarPedido(int Id)
         {
             //Borra en la base y guarda los cambios
-            Pedidos BorrarPedido = (from q in context.Pedidos where q.Id == Id select q).First();
+            Pedido BorrarPedido = (from q in context.Pedidos where q.Id == Id select q).First();
             context.Pedidos.Remove(BorrarPedido);
             context.SaveChanges();
         }
 
         public void eliminarCanasto(int Id)
         {
-            Canasto BorrarCanasto = (from q in context.Canasto where q.Id == Id select q).First();
-            context.Canasto.Remove(BorrarCanasto);
+            Canasto BorrarCanasto = (from q in context.Canastoes where q.Id == Id select q).First();
+            context.Canastoes.Remove(BorrarCanasto);
             context.SaveChanges();
         }
 
@@ -92,7 +92,7 @@ namespace PedidosFacturacion
         {
             try
             {
-                var canastoEditar = context.Canasto.FirstOrDefault(x => x.Id == Id);
+                var canastoEditar = context.Canastoes.FirstOrDefault(x => x.Id == Id);
                 canastoEditar.Id_facturista = facturista.Id;
                 canastoEditar.Legajo_facturista = facturista.Legajo;
                 canastoEditar.Descripcion_facturista = facturista.Descripcion;
@@ -120,14 +120,14 @@ namespace PedidosFacturacion
 
         public void actualizarEstado(int Id, String estado)
         {
-            var canastoEditar = context.Canasto.FirstOrDefault(x => x.Id == Id);
+            var canastoEditar = context.Canastoes.FirstOrDefault(x => x.Id == Id);
             canastoEditar.Estado = estado;
             context.SaveChanges();
         }
 
         public void actualizarEstadoPorFecha(int Id, String estado)
         {
-            var canastoEditar = context.Canasto.FirstOrDefault(x => x.Id == Id);
+            var canastoEditar = context.Canastoes.FirstOrDefault(x => x.Id == Id);
             canastoEditar.Estado = estado;
             canastoEditar.Fecha_facturacion = DateTime.Now;
             context.SaveChanges();
@@ -135,28 +135,28 @@ namespace PedidosFacturacion
         
         public List<Operario> getOperarios()
         {
-            return context.Operario.ToList();
+            return context.Operarios.ToList();
         }
 
         public List<Estado> getEstados()
         {
-           return context.Estado.ToList();
+           return context.Estadoes.ToList();
         }
 
         public List<Local> getLocales()
         {
-            return context.Local.ToList();
+            return context.Locals.ToList();
         }
 
         public Local getLocal(String descripcion)
         {
-            return context.Local.FirstOrDefault(q => q.Descripcion == descripcion);
+            return context.Locals.FirstOrDefault(q => q.Descripcion == descripcion);
         }
 
-        public IPagedList<Pedidos> getPedidosPorFecha(DateTime dtpFecha, int paginaActual, int tamañoPagina)
+        public IPagedList<Pedido> getPedidosPorFecha(DateTime dtpFecha, int paginaActual, int tamañoPagina)
         {
             //manejar excepcion
-            IPagedList<Pedidos> lista1 = (from q in context.Pedidos
+            IPagedList<Pedido> lista1 = (from q in context.Pedidos
                                           where (q.Fecha == dtpFecha.Date.Date)
                                           orderby
                                               q.Id
@@ -164,7 +164,7 @@ namespace PedidosFacturacion
             return lista1;
         }
 
-        public List<Pedidos> getPedidosPorFecha(DateTime fecha)
+        public List<Pedido> getPedidosPorFecha(DateTime fecha)
         {
             var ped = (from q in context.Pedidos.Where(q => q.Fecha == fecha.Date)
                        orderby q.Id
@@ -174,7 +174,7 @@ namespace PedidosFacturacion
 
         public List<Canasto> getCanastosPorIdPedido(int IdPedido)
         {
-            var ped = (from q in context.Canasto.Where(q => q.Id_pedido == IdPedido)
+            var ped = (from q in context.Canastoes.Where(q => q.Id_pedido == IdPedido)
                        orderby q.Id
                        select q).ToList();
             return ped;
@@ -182,12 +182,12 @@ namespace PedidosFacturacion
 
         public Canasto getCanastoPorIdPedido(int IdPedido)
         {
-    return context.Canasto.FirstOrDefault(x => x.Id_pedido == IdPedido);
+    return context.Canastoes.FirstOrDefault(x => x.Id_pedido == IdPedido);
     }
 
         public List<Canasto> getPedidosPorFacturista(Operario facturista)
         {
-            List<Canasto> lista = (from q in context.Canasto
+            List<Canasto> lista = (from q in context.Canastoes
                                    where (q.Descripcion_facturista == facturista.Descripcion
                                    && q.Estado.Trim() == "Asignado")
                                    orderby q.Id
@@ -195,19 +195,19 @@ namespace PedidosFacturacion
             return lista;
         }
 
-        public List<Pedidos> getPedidosPorAsignador(String fecha)
+        public List<Pedido> getPedidosPorAsignador(String fecha)
         {
             var ped = (from q in context.Pedidos orderby q.Id where q.Fecha.ToString() == fecha select q).ToList();
             return ped;
         }
 
-        public IQueryable<Pedidos> getPedidos()
+        public IQueryable<Pedido> getPedidos()
         {
-            IQueryable<Pedidos> pedidos = context.Pedidos;
+            IQueryable<Pedido> pedidos = context.Pedidos;
             return pedidos;
         }
 
-        public Pedidos getPedido(int Id)
+        public Pedido getPedido(int Id)
         {
             return context.Pedidos.Find(Id);
         }
@@ -228,7 +228,7 @@ namespace PedidosFacturacion
 
         public Segmento[] getSegmentos()
         {
-            return context.Segmento.ToArray();
+            return context.Segmentoes.ToArray();
         }
         
     }

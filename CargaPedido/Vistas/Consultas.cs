@@ -21,7 +21,7 @@ namespace PedidosFacturacion
         private int IdFila;
         private int ValueIdFila;
         private int contadorFilas = 0;
-        private IPagedList<Pedidos> list;
+        private IPagedList<Pedido> list;
 
         public Consultas()
         {

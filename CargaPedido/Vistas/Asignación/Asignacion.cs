@@ -57,6 +57,7 @@ namespace PedidosFacturacion
 
         private void Timer1_Tick(object Sender, EventArgs e)
         {
+            if (contadorFilas > 0)
             getCanastos(dgvCanasto);
         }
 
@@ -106,7 +107,7 @@ namespace PedidosFacturacion
             contadorFilas = 0;
             objLogica = new Logica();
             //traigo desde la base de datos
-            List<Pedidos> pedidos = objLogica.getPedidosPorFecha(DateTime.Now);
+            List<Pedido> pedidos = objLogica.getPedidosPorFecha(dtpFecha.Value);
 
             //los mapeo a la gilla
             foreach (var item in pedidos)

@@ -423,7 +423,7 @@
             // 
             // pedidosBindingSource
             // 
-            this.pedidosBindingSource.DataSource = typeof(PedidosFacturacion.Pedidos);
+            this.pedidosBindingSource.DataSource = typeof(PedidosFacturacion.Pedido);
             // 
             // estadosBindingSource
             // 

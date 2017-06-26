@@ -77,7 +77,7 @@ namespace PedidosFacturacion
         {
             objLogica = new Logica();
             //recupero los datos de local, vendedor y segmento
-            Pedidos nombreLocal = objLogica.getPedido(objCargaPedido.getValuePedido());
+            Pedido nombreLocal = objLogica.getPedido(objCargaPedido.getValuePedido());
             Local local = objLogica.getLocal(nombreLocal.Descripcion_local);         
             Operario vendedor = (Operario)cmbVendedor.SelectedItem;
             int IdPedido = objCargaPedido.getIdPedido();
