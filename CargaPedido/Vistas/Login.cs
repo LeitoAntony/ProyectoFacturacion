@@ -28,13 +28,36 @@ namespace PedidosFacturacion
         {
             objLogica = new Logica();
             if (txtUsuario.Text == objLogica.getUsuarioVendedor() && txtContraseña.Text == objLogica.getPassVendedor())
-            { 
-                Form frmVentas = new CargaPedido();               
+            {
+                CargaPedido frmVentas = new CargaPedido();               
                 frmVentas.Show();
+                this.Close();
             }
-                
+            else if (txtUsuario.Text == objLogica.getUsuarioAsignador() && txtContraseña.Text == objLogica.getPassAsignador())
+            {
+                Asignacion frmAsignador = new Asignacion();
+                frmAsignador.Show();
+                this.Close();
+            }
+            else if (txtUsuario.Text == objLogica.getUsuarioFacturista() && txtContraseña.Text == objLogica.getPassFacturista())
+            {
+                FacturacionPedido frmFacturista = new FacturacionPedido();
+                frmFacturista.Show();
+                this.Close();
+            }
+            else if (txtUsuario.Text == objLogica.getUsuarioConsultas() && txtContraseña.Text == objLogica.getPassConsultas())
+            {
+                Consultas frmConsultas = new Consultas();
+                frmConsultas.Show();
+                this.Close();
+            }
+            else if (txtUsuario.Text == objLogica.getUsuarioAdmin() && txtContraseña.Text == objLogica.getPassAdmin())
+            {
+                MdiParent.MainMenuStrip.Enabled = true;
+                MdiParent.MainMenuStrip.Visible = true;
+                this.Close();
+            }
         }
-
 
     }
 }

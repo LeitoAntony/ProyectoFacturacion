@@ -56,10 +56,16 @@ namespace PedidosFacturacion
             frmFacturacion.Show();
         }
 
-        private void login()
+        private void Principal_Load(object sender, EventArgs e)
         {
+            menuStrip1.Enabled = false;
+            menuStrip1.Visible = false;
+            Login frmLogin = new Login();
+            frmLogin.MdiParent = this;
+            frmLogin.Show();
             
         }
+
 
     }
 }

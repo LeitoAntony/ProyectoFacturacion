@@ -264,12 +264,52 @@ namespace PedidosFacturacion
 
         internal string getUsuarioVendedor()
         {
-            return "usuario";
+            return "ventas";
         }
 
         internal string getPassVendedor()
         {
-            return "1234";
+            return "ventas";
+        }
+
+        internal string getUsuarioAsignador()
+        {
+            return "asignacion";
+        }
+
+        internal string getPassAsignador()
+        {
+            return "asignacion";
+        }
+
+        internal string getUsuarioFacturista()
+        {
+            return "facturacion";
+        }
+
+        internal string getPassFacturista()
+        {
+            return "facturacion";
+        }
+
+        internal string getUsuarioConsultas()
+        {
+            return "consultas";
+        }
+
+        internal string getPassConsultas()
+        {
+            return "consultas";
+        }
+
+        internal string getUsuarioAdmin()
+        {
+            return "admin";
+        }
+
+        internal string getPassAdmin()
+        {
+            return "admin";
         }
     }
 

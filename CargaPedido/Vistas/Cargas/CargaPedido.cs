@@ -23,10 +23,8 @@ namespace PedidosFacturacion
         private bool bandera = false;
 
         private int contadorFilasCanasto = 0;
-        private int IdCanasto;
         private int IdFilaCanasto = 0;
         private static int ValueIdFilaCanasto = 0;
-        private bool banderaCanasto = false;
 
         Form frmCargaCanasto;
         public CargaPedido()
@@ -235,7 +233,6 @@ namespace PedidosFacturacion
        
         private void eliminarCanastoDB()
         {
-            MessageBox.Show("id fila caasto " + ValueIdFilaCanasto);
             objLogica = new Logica();
             //elimino los datos de la base de datos
             objLogica.eliminarCanasto(ValueIdFilaCanasto);
@@ -250,6 +247,7 @@ namespace PedidosFacturacion
         {
             return IdPedido;
         }
+
 
         //private void actualizarPedido()
         //{
