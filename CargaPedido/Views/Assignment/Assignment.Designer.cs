@@ -1,6 +1,6 @@
 ﻿namespace PedidosFacturacion
 {
-    partial class Asignacion
+    partial class Assignment
     {
         /// <summary>
         /// Required designer variable.

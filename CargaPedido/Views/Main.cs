@@ -30,28 +30,28 @@ namespace PedidosFacturacion
 
         private void consultasToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Form frmConsultas = new Consultas();
+            Form frmConsultas = new Queries();
             frmConsultas.MdiParent = this;
             frmConsultas.Show();
         }
 
         private void agregarToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Form frmCarga = new CargaPedido();
+            Form frmCarga = new Order();
             frmCarga.MdiParent = this;
             frmCarga.Show();
         }
 
         private void asignarToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Form frmAsignacion = new Asignacion();
+            Form frmAsignacion = new Assignment();
             frmAsignacion.MdiParent = this;
             frmAsignacion.Show();
         }
 
         private void facturarToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Form frmFacturacion = new FacturacionPedido();
+            Form frmFacturacion = new Invoicing();
             frmFacturacion.MdiParent = this;
             frmFacturacion.Show();
         }

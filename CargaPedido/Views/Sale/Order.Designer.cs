@@ -1,7 +1,7 @@
 ﻿
 namespace PedidosFacturacion
 {
-    partial class CargaPedido
+    partial class Order
     {
         /// <summary>
         /// Required designer variable.

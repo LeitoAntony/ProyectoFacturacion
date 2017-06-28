@@ -1,6 +1,6 @@
 ﻿namespace PedidosFacturacion
 {
-    partial class AsignarCanasto
+    partial class AssignBasket
     {
         /// <summary>
         /// Required designer variable.

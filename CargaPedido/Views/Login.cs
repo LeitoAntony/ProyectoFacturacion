@@ -12,7 +12,7 @@ namespace PedidosFacturacion
 {
     public partial class Login : Form
     {
-        private Logica objLogica;
+        private Logic objLogica;
 
         public Login()
         {
@@ -26,28 +26,28 @@ namespace PedidosFacturacion
 
         private void btnAceptar_Click(object sender, EventArgs e)
         {
-            objLogica = new Logica();
+            objLogica = new Logic();
             if (txtUsuario.Text == objLogica.getUsuarioVendedor() && txtContraseña.Text == objLogica.getPassVendedor())
             {
-                CargaPedido frmVentas = new CargaPedido();               
+                Order frmVentas = new Order();               
                 frmVentas.Show();
                 this.Close();
             }
             else if (txtUsuario.Text == objLogica.getUsuarioAsignador() && txtContraseña.Text == objLogica.getPassAsignador())
             {
-                Asignacion frmAsignador = new Asignacion();
+                Assignment frmAsignador = new Assignment();
                 frmAsignador.Show();
                 this.Close();
             }
             else if (txtUsuario.Text == objLogica.getUsuarioFacturista() && txtContraseña.Text == objLogica.getPassFacturista())
             {
-                FacturacionPedido frmFacturista = new FacturacionPedido();
+                Invoicing frmFacturista = new Invoicing();
                 frmFacturista.Show();
                 this.Close();
             }
             else if (txtUsuario.Text == objLogica.getUsuarioConsultas() && txtContraseña.Text == objLogica.getPassConsultas())
             {
-                Consultas frmConsultas = new Consultas();
+                Queries frmConsultas = new Queries();
                 frmConsultas.Show();
                 this.Close();
             }

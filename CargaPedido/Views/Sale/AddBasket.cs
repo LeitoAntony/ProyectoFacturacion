@@ -1,33 +1,26 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace PedidosFacturacion
 {
-    public partial class AgregarCanasto : Form
+    public partial class AddBasket : Form
     {
-        private Logica objLogica;
-        private CargaPedido objCargaPedido = new CargaPedido();
-        private int IdCanasto;
+        private Logic objLogic;
+        private Order objOrder = new Order();        
 
-        
-        public AgregarCanasto()
+
+        public AddBasket()
         {
             InitializeComponent();
         }
 
         private void AgregarCanasto_Load(object sender, EventArgs e)
         {
-            llenarCmbVendedor();
-            resetearCampos();
+            fillCmbSeller();
+            resetFields();
         }
-        
+
         private void cmbVendedor_SelectedIndexChanged(object sender, EventArgs e)
         {
             Operario vendedor = (Operario)cmbVendedor.SelectedItem;
@@ -39,31 +32,31 @@ namespace PedidosFacturacion
         {
             if (cmbVendedor.SelectedItem != null && (rbHombre.Checked || rbMujer.Checked || rbKids.Checked))
             {
-                insertarCanastoDB();
-                resetearCampos();
+                insertBasketDB();
+                resetFields();
                 MessageBox.Show("Agregado correctamente!");
             }
             else
-                MessageBox.Show("Complete todos los campos! ", "Advertencia!");            
+                MessageBox.Show("Complete todos los campos! ", "Advertencia!");
         }
-        
+
         private void btnCancelar_Click(object sender, EventArgs e)
         {
-            cmbVendedor.SelectedIndex = -1;
-            rbHombre.Checked = false;
-            rbMujer.Checked = false;
-            rbKids.Checked = false;           
-            txtVenedor.Text = String.Empty;
-            cmbVendedor.Focus();
+            resetFields();
         }
-        
-        private void llenarCmbVendedor()
+ 
+        private void btnsalir_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void fillCmbSeller()
         {
             try
             {
-                objLogica = new Logica();
+                objLogic = new Logic();
                 //hace un bindig de los vendedores del context a una lista
-                List<Operario> vendedores = objLogica.getOperarios();
+                List<Operario> vendedores = objLogic.getOperators();
                 //agrega los vendedores al combobox definido por el objeto vendedorBindngSource
                 this.operarioBindingSource.DataSource = vendedores;
             }
@@ -73,53 +66,53 @@ namespace PedidosFacturacion
             }
         }
 
-        private void insertarCanastoDB()
+        private void insertBasketDB()
         {
-            objLogica = new Logica();
+            objLogic = new Logic();
             //recupero los datos de local, vendedor y segmento
-            Pedido nombreLocal = objLogica.getPedido(objCargaPedido.getValuePedido());
-            Local local = objLogica.getLocal(nombreLocal.Descripcion_local);         
-            Operario vendedor = (Operario)cmbVendedor.SelectedItem;
-            int IdPedido = objCargaPedido.getIdPedido();
+            Pedido order = objLogic.getOrder(objOrder.getValueOrder());
+            Local local = objLogic.getLocal(order.Descripcion_local);
+            Operario seller = (Operario)cmbVendedor.SelectedItem;
+            insertBasket(seller, local);
+        }
+
+        private void insertBasket(Operario seller, Local local)
+        {
             string hombre = "", mujer = "", kids = "";
             if (rbHombre.Checked)
             {
                 hombre = rbHombre.Text;
-                IdCanasto = objLogica.insertarCanasto(nombreLocal.Id, local, vendedor, hombre);
+                objLogic.insertBasket(local.Id, local, seller, hombre);
             }
             if (rbMujer.Checked)
             {
                 mujer = rbMujer.Text;
-                IdCanasto = objLogica.insertarCanasto(nombreLocal.Id, local, vendedor, mujer);
+                objLogic.insertBasket(local.Id, local, seller, mujer);
             }
             if (rbKids.Checked)
             {
                 kids = rbKids.Text;
-                IdCanasto = objLogica.insertarCanasto(nombreLocal.Id, local, vendedor, kids);
+                objLogic.insertBasket(local.Id, local, seller, kids);
             }
         }
 
         private void setRButton()
         {
-            objLogica = new Logica();
-            Segmento[] array = objLogica.getSegmentos();
+            objLogic = new Logic();
+            Segmento[] array = objLogic.getSegments();
             rbHombre.Text = array[0].Descripcion;
             rbMujer.Text = array[1].Descripcion;
             rbKids.Text = array[2].Descripcion;
         }
 
-        private void btnsalir_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
-
-        private void resetearCampos()
+        private void resetFields()
         {
             cmbVendedor.SelectedIndex = -1;
-            txtVenedor.Text = String.Empty;
             rbHombre.Checked = false;
             rbMujer.Checked = false;
             rbKids.Checked = false;
+            txtVenedor.Text = String.Empty;
+            cmbVendedor.Focus();
         }
     }
 }

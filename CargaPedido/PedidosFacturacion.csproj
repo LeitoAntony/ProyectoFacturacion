@@ -69,10 +69,10 @@
     <Compile Include="Local.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Vistas\Login.cs">
+    <Compile Include="Views\Login.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Vistas\Login.Designer.cs">
+    <Compile Include="Views\Login.Designer.cs">
       <DependentUpon>Login.cs</DependentUpon>
     </Compile>
     <Compile Include="Model1.Context.cs">
@@ -99,74 +99,74 @@
     <Compile Include="Segmento.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Vistas\Cargas\AgregarCanasto.cs">
+    <Compile Include="Views\Sale\AddBasket.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Vistas\Cargas\AgregarCanasto.Designer.cs">
-      <DependentUpon>AgregarCanasto.cs</DependentUpon>
+    <Compile Include="Views\Sale\AddBasket.Designer.cs">
+      <DependentUpon>AddBasket.cs</DependentUpon>
     </Compile>
-    <Compile Include="Vistas\Asignación\Asignacion.cs">
+    <Compile Include="Views\Assignment\Assignment.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Vistas\Asignación\Asignacion.Designer.cs">
-      <DependentUpon>Asignacion.cs</DependentUpon>
+    <Compile Include="Views\Assignment\Assignment.Designer.cs">
+      <DependentUpon>Assignment.cs</DependentUpon>
     </Compile>
-    <Compile Include="Vistas\Asignación\AsignarCanasto.cs">
+    <Compile Include="Views\Assignment\AssignBasket.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Vistas\Asignación\AsignarCanasto.Designer.cs">
-      <DependentUpon>AsignarCanasto.cs</DependentUpon>
+    <Compile Include="Views\Assignment\AssignBasket.Designer.cs">
+      <DependentUpon>AssignBasket.cs</DependentUpon>
     </Compile>
-    <Compile Include="Vistas\Cargas\CargaPedido.cs">
+    <Compile Include="Views\Sale\Order.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Vistas\Cargas\CargaPedido.Designer.cs">
-      <DependentUpon>CargaPedido.cs</DependentUpon>
+    <Compile Include="Views\Sale\Order.Designer.cs">
+      <DependentUpon>Order.cs</DependentUpon>
     </Compile>
-    <Compile Include="Vistas\Consultas\Consultas.cs">
+    <Compile Include="Views\Query\Queries.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Vistas\Consultas\Consultas.Designer.cs">
-      <DependentUpon>Consultas.cs</DependentUpon>
+    <Compile Include="Views\Query\Queries.Designer.cs">
+      <DependentUpon>Queries.cs</DependentUpon>
     </Compile>
-    <Compile Include="Vistas\Facturación\FacturacionPedido.cs">
+    <Compile Include="Views\Invoicing\Invoicing.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Vistas\Facturación\FacturacionPedido.Designer.cs">
-      <DependentUpon>FacturacionPedido.cs</DependentUpon>
+    <Compile Include="Views\Invoicing\Invoicing.Designer.cs">
+      <DependentUpon>Invoicing.cs</DependentUpon>
     </Compile>
-    <Compile Include="Logica.cs" />
-    <Compile Include="Vistas\Principal.cs">
+    <Compile Include="Logic.cs" />
+    <Compile Include="Views\Main.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Vistas\Principal.Designer.cs">
-      <DependentUpon>Principal.cs</DependentUpon>
+    <Compile Include="Views\Main.Designer.cs">
+      <DependentUpon>Main.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Vistas\Login.resx">
+    <EmbeddedResource Include="Views\Login.resx">
       <DependentUpon>Login.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Vistas\Cargas\AgregarCanasto.resx">
-      <DependentUpon>AgregarCanasto.cs</DependentUpon>
+    <EmbeddedResource Include="Views\Sale\AddBasket.resx">
+      <DependentUpon>AddBasket.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Vistas\Asignación\Asignacion.resx">
-      <DependentUpon>Asignacion.cs</DependentUpon>
+    <EmbeddedResource Include="Views\Assignment\Assignment.resx">
+      <DependentUpon>Assignment.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Vistas\Asignación\AsignarCanasto.resx">
-      <DependentUpon>AsignarCanasto.cs</DependentUpon>
+    <EmbeddedResource Include="Views\Assignment\AssignBasket.resx">
+      <DependentUpon>AssignBasket.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Vistas\Cargas\CargaPedido.resx">
-      <DependentUpon>CargaPedido.cs</DependentUpon>
+    <EmbeddedResource Include="Views\Sale\Order.resx">
+      <DependentUpon>Order.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Vistas\Consultas\Consultas.resx">
-      <DependentUpon>Consultas.cs</DependentUpon>
+    <EmbeddedResource Include="Views\Query\Queries.resx">
+      <DependentUpon>Queries.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Vistas\Facturación\FacturacionPedido.resx">
-      <DependentUpon>FacturacionPedido.cs</DependentUpon>
+    <EmbeddedResource Include="Views\Invoicing\Invoicing.resx">
+      <DependentUpon>Invoicing.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Vistas\Principal.resx">
-      <DependentUpon>Principal.cs</DependentUpon>
+    <EmbeddedResource Include="Views\Main.resx">
+      <DependentUpon>Main.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

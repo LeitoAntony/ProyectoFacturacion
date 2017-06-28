@@ -1,6 +1,6 @@
 ﻿namespace PedidosFacturacion
 {
-    partial class FacturacionPedido
+    partial class Invoicing
     {
         /// <summary>
         /// Required designer variable.
