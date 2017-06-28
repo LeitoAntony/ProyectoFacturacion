@@ -11,43 +11,66 @@ namespace PedidosFacturacion
         public int insertOrder(Local local)
         {
             Pedido order = new Pedido();
-            order.Fecha = DateTime.Now;
-            order.Descripcion_local = local.Descripcion;
-            //Adhiero mi objeto pedido a la base
-            context.Pedidos.Add(order);
+            try
+            {
+                order.Fecha = DateTime.Now;
+                order.Descripcion_local = local.Descripcion;
+                //Adhiero mi objeto pedido a la base
+                context.Pedidos.Add(order);
 
-            //guardo
-            context.SaveChanges();
+                //guardo
+                context.SaveChanges();
+
+            }
+            catch (Exception e)
+            {
+                throw new NullReferenceException("Error al insertar una orden; " + e.Message);
+            }
+
             return order.Id;
         }
 
         public void insertBasket(int IdOrder, Local local, Operario seller, String segment)
         {
-            Estado[] state = context.Estadoes.ToArray();
-            //creo mi objeto
-            Canasto basket = new Canasto();
+            try
+            {
+                Estado[] state = context.Estadoes.ToArray();
+                //creo mi objeto
+                Canasto basket = new Canasto();
 
-            basket.Id_local = local.Id;
-            basket.Numero_local = local.Numero;
-            basket.Descripcion_local = local.Descripcion;
-            basket.Id_vendedor = seller.Id;
-            basket.Legajo_vendedor = seller.Legajo;
-            basket.Descripcion_vendedor = seller.Descripcion;
-            basket.Estado = state[0].Descripcion;
-            basket.Fecha = DateTime.Now;
-            basket.Segmento = segment;
-            basket.Id_pedido = IdOrder;
+                basket.Id_local = local.Id;
+                basket.Numero_local = local.Numero;
+                basket.Descripcion_local = local.Descripcion;
+                basket.Id_vendedor = seller.Id;
+                basket.Legajo_vendedor = seller.Legajo;
+                basket.Descripcion_vendedor = seller.Descripcion;
+                basket.Estado = state[0].Descripcion;
+                basket.Fecha = DateTime.Now;
+                basket.Segmento = segment;
+                basket.Id_pedido = IdOrder;
 
-            context.Canastoes.Add(basket);
-            context.SaveChanges();
-        }       
+                context.Canastoes.Add(basket);
+                context.SaveChanges();
+            }
+            catch (Exception e)
+            {
+                throw new NullReferenceException("Error al insertar un canasto! " + e.Message);
+            }
+        }
 
         public void deleteOrder(int Id)
         {
-            //Borra en la base y guarda los cambios
-            Pedido orderDelete = (from q in context.Pedidos where q.Id == Id select q).First();
-            context.Pedidos.Remove(orderDelete);
-            context.SaveChanges();
+            try
+            {
+                //Borra en la base y guarda los cambios
+                Pedido orderDelete = (from q in context.Pedidos where q.Id == Id select q).First();
+                context.Pedidos.Remove(orderDelete);
+                context.SaveChanges();
+            }
+            catch (Exception e)
+            {
+                throw new NullReferenceException("Error al borrar una orden! " + e.Message);
+            }
         }
 
         public void deleteBasket(int Id)
@@ -74,7 +97,7 @@ namespace PedidosFacturacion
             }
             catch (Exception e)
             {
-                throw new NullReferenceException("Debe seleccionar un pedido y completar los campos! "+e.Message);
+                throw new NullReferenceException("Debe seleccionar un pedido y completar los campos! " + e.Message);
             }
         }
 
@@ -133,7 +156,7 @@ namespace PedidosFacturacion
         {
             return context.Segmentoes.ToArray();
         }
-      
+
         public List<Pedido> getOrdersByDate(DateTime date)
         {
             var ped = (from q in context.Pedidos.Where(q => q.Fecha == date.Date)
@@ -149,7 +172,7 @@ namespace PedidosFacturacion
                        select q).ToList();
             return ped;
         }
-        
+
         public List<Operario> getOperators()
         {
             return context.Operarios.ToList();
@@ -164,7 +187,7 @@ namespace PedidosFacturacion
         {
             return context.Locals.ToList();
         }
-        
+
         public List<Canasto> getOrderByInvoce(Operario invoce)
         {
             List<Canasto> lista = (from q in context.Canastoes
