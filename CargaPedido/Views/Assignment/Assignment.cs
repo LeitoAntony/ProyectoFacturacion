@@ -60,10 +60,10 @@ namespace PedidosFacturacion
         public void updateRowBasket(String invoicer, String assignmer, DataGridView dgvCanasto, int idRow)
         {
             //actualizo datos de la grilla desde la base de datos
-            dgvCanasto[8, idRow].Value = "Asignado";
-            dgvCanasto[9, idRow].Value = DateTime.Now;
-            dgvCanasto[10, idRow].Value = assignmer;
-            dgvCanasto[11, idRow].Value = invoicer;
+            dgvCanasto[9, idRow].Value = "Asignado";
+            dgvCanasto[10, idRow].Value = DateTime.Now;
+            dgvCanasto[11, idRow].Value = assignmer;
+            dgvCanasto[12, idRow].Value = invoicer;
 
         }
         
@@ -86,10 +86,13 @@ namespace PedidosFacturacion
                     item.Descripcion_local, item.Legajo_vendedor,
                     item.Descripcion_vendedor, item.Segmento, item.Prioridad, item.Fecha, item.Estado, item.Fecha_asignacion,
                     item.Descripcion_asignador, item.Descripcion_facturista);
+                
                 //resalto fila segun el estado
                 state(dgvCanasto, item);
                 //resalto fila segun la prioridad
                 priority(dgvCanasto, item);
+                stateBellow(dgvCanasto, item);
+                this.accountantRowsBasket = accountantRowsBasket + 1;
             }
         }
 
@@ -100,12 +103,23 @@ namespace PedidosFacturacion
             accountantRowsBasket = 0;
         }
 
+        private void stateBellow(DataGridView dgvCanasto, Canasto item)
+        { 
+            if(item.Prioridad != null && item.Estado != null)
+            {
+                if((item.Prioridad.Trim().ToString() == "Prioridad") && (item.Estado.Trim().ToString().Equals("Facturado")))
+                    dgvCanasto.Rows[accountantRowsBasket].DefaultCellStyle.BackColor = Color.LightGreen;
+            }
+        }
+
         private void priority(DataGridView dgvCanasto, Canasto item)
         {
             if (item.Prioridad != null)
             {
-                if (item.Prioridad.Trim().ToString() == "Prioridad")
-                    dgvCanasto.Rows[accountantRowsBasket].DefaultCellStyle.BackColor = Color.Red;
+                if (item.Prioridad.Trim().ToString() == "Prioridad") 
+                { 
+                    dgvCanasto.Rows[accountantRowsBasket].DefaultCellStyle.BackColor = Color.Red;                   
+                }       
             }
         }
         
@@ -116,13 +130,11 @@ namespace PedidosFacturacion
                 if (item.Estado.Trim().ToString().Equals("Asignado"))
                 {
                     dgvCanasto.Rows[accountantRowsBasket].DefaultCellStyle.BackColor = Color.Yellow;
-                    this.accountantRowsBasket = accountantRowsBasket + 1;
                 }
 
                 if (item.Estado.Trim().ToString().Equals("Facturado"))
                 {
                     dgvCanasto.Rows[accountantRowsBasket].DefaultCellStyle.BackColor = Color.LightGreen;
-                    this.accountantRowsBasket = accountantRowsBasket + 1;
                 }
             }
         }
@@ -130,6 +142,7 @@ namespace PedidosFacturacion
         private void initializeOrder()
         {
             reset(dgvPedido);
+            accountantRows = 0; 
             objLogic = new Logic();
             //traigo desde la base de datos
             List<Pedido> orders = objLogic.getOrdersByDate(dtpFecha.Value);
@@ -165,6 +178,5 @@ namespace PedidosFacturacion
                 Console.WriteLine("No se puede generar la lista: " + e.Message);
             }
         }
-
     }
 }

@@ -25,6 +25,11 @@
     <Property Name="Descripcion_facturista" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
     <Property Name="Prioridad" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
     <Property Name="Comentario" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Operario" Relationship="Self.FK_Canasto_Asignador" FromRole="Canasto" ToRole="Operario" />
+    <NavigationProperty Name="Operario1" Relationship="Self.FK_Canasto_Facturista" FromRole="Canasto" ToRole="Operario" />
+    <NavigationProperty Name="Local" Relationship="Self.FK_Canasto_Local" FromRole="Canasto" ToRole="Local" />
+    <NavigationProperty Name="Operario2" Relationship="Self.FK_Canasto_Operario" FromRole="Canasto" ToRole="Operario" />
+    <NavigationProperty Name="Pedido" Relationship="Self.FK_Canasto_Pedidos" FromRole="Canasto" ToRole="Pedidos" />
   </EntityType>
   <EntityType Name="Estado">
     <Key>
@@ -40,6 +45,7 @@
     <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="Numero" Type="Int32" Nullable="false" />
     <Property Name="Descripcion" Type="String" MaxLength="50" FixedLength="true" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Canastoes" Relationship="Self.FK_Canasto_Local" FromRole="Local" ToRole="Canasto" />
   </EntityType>
   <EntityType Name="Operario">
     <Key>
@@ -48,6 +54,9 @@
     <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="Legajo" Type="Int32" Nullable="false" />
     <Property Name="Descripcion" Type="String" MaxLength="50" FixedLength="true" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Canastoes" Relationship="Self.FK_Canasto_Asignador" FromRole="Operario" ToRole="Canasto" />
+    <NavigationProperty Name="Canastoes1" Relationship="Self.FK_Canasto_Facturista" FromRole="Operario" ToRole="Canasto" />
+    <NavigationProperty Name="Canastoes2" Relationship="Self.FK_Canasto_Operario" FromRole="Operario" ToRole="Canasto" />
   </EntityType>
   <EntityType Name="Pedido">
     <Key>
@@ -56,6 +65,7 @@
     <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="Descripcion_local" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
     <Property Name="Fecha" Type="DateTime" Precision="0" />
+    <NavigationProperty Name="Canastoes" Relationship="Self.FK_Canasto_Pedidos" FromRole="Pedidos" ToRole="Canasto" />
   </EntityType>
   <EntityType Name="Segmento">
     <Key>
@@ -64,6 +74,76 @@
     <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="Descripcion" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
   </EntityType>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <Association Name="FK_Canasto_Asignador">
+    <End Role="Operario" Type="Self.Operario" Multiplicity="0..1" />
+    <End Role="Canasto" Type="Self.Canasto" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Operario">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Canasto">
+        <PropertyRef Name="Id_asignador" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Canasto_Facturista">
+    <End Role="Operario" Type="Self.Operario" Multiplicity="0..1" />
+    <End Role="Canasto" Type="Self.Canasto" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Operario">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Canasto">
+        <PropertyRef Name="Id_facturista" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Canasto_Local">
+    <End Role="Local" Type="Self.Local" Multiplicity="0..1" />
+    <End Role="Canasto" Type="Self.Canasto" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Local">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Canasto">
+        <PropertyRef Name="Id_local" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Canasto_Operario">
+    <End Role="Operario" Type="Self.Operario" Multiplicity="0..1" />
+    <End Role="Canasto" Type="Self.Canasto" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Operario">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Canasto">
+        <PropertyRef Name="Id_vendedor" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Canasto_Pedidos">
+    <End Role="Pedidos" Type="Self.Pedido" Multiplicity="0..1" />
+    <End Role="Canasto" Type="Self.Canasto" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Pedidos">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Canasto">
+        <PropertyRef Name="Id_pedido" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <EntityContainer Name="PedidosDBEntities" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="Canastoes" EntityType="Self.Canasto" />
     <EntitySet Name="Estadoes" EntityType="Self.Estado" />
@@ -71,5 +151,36 @@
     <EntitySet Name="Operarios" EntityType="Self.Operario" />
     <EntitySet Name="Pedidos" EntityType="Self.Pedido" />
     <EntitySet Name="Segmentoes" EntityType="Self.Segmento" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+    <AssociationSet Name="FK_Canasto_Asignador" Association="Self.FK_Canasto_Asignador">
+      <End Role="Operario" EntitySet="Operarios" />
+      <End Role="Canasto" EntitySet="Canastoes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Canasto_Facturista" Association="Self.FK_Canasto_Facturista">
+      <End Role="Operario" EntitySet="Operarios" />
+      <End Role="Canasto" EntitySet="Canastoes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Canasto_Local" Association="Self.FK_Canasto_Local">
+      <End Role="Local" EntitySet="Locals" />
+      <End Role="Canasto" EntitySet="Canastoes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Canasto_Operario" Association="Self.FK_Canasto_Operario">
+      <End Role="Operario" EntitySet="Operarios" />
+      <End Role="Canasto" EntitySet="Canastoes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Canasto_Pedidos" Association="Self.FK_Canasto_Pedidos">
+      <End Role="Pedidos" EntitySet="Pedidos" />
+      <End Role="Canasto" EntitySet="Canastoes" />
+    </AssociationSet>
+    <EntitySet Name="Usuarios" EntityType="PedidosDBModel.Usuario" />
   </EntityContainer>
+  <EntityType Name="Usuario">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="UserName" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="Password" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+  </EntityType>
 </Schema>

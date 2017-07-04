@@ -32,7 +32,8 @@ namespace PedidosFacturacion
         {
             if (cmbVendedor.SelectedItem != null && (rbHombre.Checked || rbMujer.Checked || rbKids.Checked))
             {
-                insertBasketDB();
+                int idOrder = objOrder.getValueOrder();
+                insertBasketDB(idOrder);
                 resetFields();
                 MessageBox.Show("Agregado correctamente!");
             }
@@ -66,33 +67,33 @@ namespace PedidosFacturacion
             }
         }
 
-        private void insertBasketDB()
+        private void insertBasketDB(int IdPedido)
         {
             objLogic = new Logic();
             //recupero los datos de local, vendedor y segmento
             Pedido order = objLogic.getOrder(objOrder.getValueOrder());
             Local local = objLogic.getLocal(order.Descripcion_local);
             Operario seller = (Operario)cmbVendedor.SelectedItem;
-            insertBasket(seller, local);
+            insertBasket(IdPedido,seller, local);
         }
 
-        private void insertBasket(Operario seller, Local local)
+        private void insertBasket(int idPedido, Operario seller, Local local)
         {
             string hombre = "", mujer = "", kids = "";
             if (rbHombre.Checked)
             {
                 hombre = rbHombre.Text;
-                objLogic.insertBasket(local.Id, local, seller, hombre);
+                objLogic.insertBasket(idPedido, local, seller, hombre);
             }
             if (rbMujer.Checked)
             {
                 mujer = rbMujer.Text;
-                objLogic.insertBasket(local.Id, local, seller, mujer);
+                objLogic.insertBasket(idPedido, local, seller, mujer);
             }
             if (rbKids.Checked)
             {
                 kids = rbKids.Text;
-                objLogic.insertBasket(local.Id, local, seller, kids);
+                objLogic.insertBasket(idPedido, local, seller, kids);
             }
         }
 

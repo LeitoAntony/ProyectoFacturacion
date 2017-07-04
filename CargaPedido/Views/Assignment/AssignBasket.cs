@@ -62,9 +62,8 @@ namespace PedidosFacturacion
         
         private void dgvCanasto_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            IdRow = dgvCanasto.CurrentRow.Index;
-            if (IdRow < 0)
-                ValueRow = Convert.ToInt32(dgvCanasto.Rows[IdRow].Cells[0].Value);
+            IdRow = dgvCanasto.CurrentRow.Index;           
+            ValueRow = Convert.ToInt32(dgvCanasto.Rows[IdRow].Cells[0].Value);
         }
 
         private void fillcmbAssignmer()

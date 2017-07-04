@@ -12,7 +12,7 @@ namespace PedidosFacturacion
 {
     public partial class Login : Form
     {
-        private Logic objLogica;
+        private Logic objLogic;
 
         public Login()
         {
@@ -26,38 +26,47 @@ namespace PedidosFacturacion
 
         private void btnAceptar_Click(object sender, EventArgs e)
         {
-            objLogica = new Logic();
-            if (txtUsuario.Text == objLogica.getUsuarioVendedor() && txtContraseña.Text == objLogica.getPassVendedor())
+            string user = txtUsuario.Text;
+            string pass = txtContraseña.Text;
+            if (checkData(user, pass))
             {
-                Order frmVentas = new Order();               
-                frmVentas.Show();
-                this.Close();
-            }
-            else if (txtUsuario.Text == objLogica.getUsuarioAsignador() && txtContraseña.Text == objLogica.getPassAsignador())
-            {
-                Assignment frmAsignador = new Assignment();
-                frmAsignador.Show();
-                this.Close();
-            }
-            else if (txtUsuario.Text == objLogica.getUsuarioFacturista() && txtContraseña.Text == objLogica.getPassFacturista())
-            {
-                Invoicing frmFacturista = new Invoicing();
-                frmFacturista.Show();
-                this.Close();
-            }
-            else if (txtUsuario.Text == objLogica.getUsuarioConsultas() && txtContraseña.Text == objLogica.getPassConsultas())
-            {
-                Queries frmConsultas = new Queries();
-                frmConsultas.Show();
-                this.Close();
-            }
-            else if (txtUsuario.Text == objLogica.getUsuarioAdmin() && txtContraseña.Text == objLogica.getPassAdmin())
-            {
-                MdiParent.MainMenuStrip.Enabled = true;
-                MdiParent.MainMenuStrip.Visible = true;
-                this.Close();
+                if (user == "ventas")
+                {
+                    Order frmVentas = new Order();
+                    frmVentas.Show();
+                    this.Close();
+                }
+                else if (user == "asignacion")
+                {
+                    Assignment frmAsignador = new Assignment();
+                    frmAsignador.Show();
+                    this.Close();
+                }
+                else if (user == "facturista")
+                {
+                    Invoicing frmFacturista = new Invoicing();
+                    frmFacturista.Show();
+                    this.Close();
+                }
+                else if (user == "consultas")
+                {
+                    Queries frmConsultas = new Queries();
+                    frmConsultas.Show();
+                    this.Close();
+                }
+                else if (user == "admin")
+                {
+                    MdiParent.MainMenuStrip.Enabled = true;
+                    MdiParent.MainMenuStrip.Visible = true;
+                    this.Close();
+                }
+
             }
         }
 
+        private bool checkData(string user, string pass)
+        {
+            return objLogic.chackDataLoguin(user, pass);
+        }
     }
 }

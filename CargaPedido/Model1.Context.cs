@@ -31,5 +31,7 @@ namespace PedidosFacturacion
         public DbSet<Operario> Operarios { get; set; }
         public DbSet<Pedido> Pedidos { get; set; }
         public DbSet<Segmento> Segmentoes { get; set; }
+        public DbSet<sysdiagram> sysdiagrams { get; set; }
+        public DbSet<Usuario> Usuarios { get; set; }
     }
 }

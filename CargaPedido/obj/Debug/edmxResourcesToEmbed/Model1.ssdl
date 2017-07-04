@@ -64,6 +64,85 @@
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Descripcion" Type="nchar" MaxLength="50" />
   </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="Usuarios">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="UserName" Type="nvarchar" MaxLength="256" Nullable="false" />
+    <Property Name="Password" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Email" Type="nvarchar" MaxLength="256" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_Canasto_Asignador">
+    <End Role="Operario" Type="Self.Operario" Multiplicity="0..1" />
+    <End Role="Canasto" Type="Self.Canasto" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Operario">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Canasto">
+        <PropertyRef Name="Id_asignador" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Canasto_Facturista">
+    <End Role="Operario" Type="Self.Operario" Multiplicity="0..1" />
+    <End Role="Canasto" Type="Self.Canasto" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Operario">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Canasto">
+        <PropertyRef Name="Id_facturista" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Canasto_Local">
+    <End Role="Local" Type="Self.Local" Multiplicity="0..1" />
+    <End Role="Canasto" Type="Self.Canasto" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Local">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Canasto">
+        <PropertyRef Name="Id_local" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Canasto_Operario">
+    <End Role="Operario" Type="Self.Operario" Multiplicity="0..1" />
+    <End Role="Canasto" Type="Self.Canasto" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Operario">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Canasto">
+        <PropertyRef Name="Id_vendedor" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Canasto_Pedidos">
+    <End Role="Pedidos" Type="Self.Pedidos" Multiplicity="0..1" />
+    <End Role="Canasto" Type="Self.Canasto" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Pedidos">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Canasto">
+        <PropertyRef Name="Id_pedido" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <EntityContainer Name="PedidosDBModelStoreContainer">
     <EntitySet Name="Canasto" EntityType="Self.Canasto" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Estado" EntityType="Self.Estado" Schema="dbo" store:Type="Tables" />
@@ -71,5 +150,27 @@
     <EntitySet Name="Operario" EntityType="Self.Operario" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Pedidos" EntityType="Self.Pedidos" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Segmento" EntityType="Self.Segmento" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Usuarios" EntityType="Self.Usuarios" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Canasto_Asignador" Association="Self.FK_Canasto_Asignador">
+      <End Role="Operario" EntitySet="Operario" />
+      <End Role="Canasto" EntitySet="Canasto" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Canasto_Facturista" Association="Self.FK_Canasto_Facturista">
+      <End Role="Operario" EntitySet="Operario" />
+      <End Role="Canasto" EntitySet="Canasto" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Canasto_Local" Association="Self.FK_Canasto_Local">
+      <End Role="Local" EntitySet="Local" />
+      <End Role="Canasto" EntitySet="Canasto" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Canasto_Operario" Association="Self.FK_Canasto_Operario">
+      <End Role="Operario" EntitySet="Operario" />
+      <End Role="Canasto" EntitySet="Canasto" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Canasto_Pedidos" Association="Self.FK_Canasto_Pedidos">
+      <End Role="Pedidos" EntitySet="Pedidos" />
+      <End Role="Canasto" EntitySet="Canasto" />
+    </AssociationSet>
   </EntityContainer>
 </Schema>

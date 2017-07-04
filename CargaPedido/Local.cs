@@ -14,8 +14,15 @@ namespace PedidosFacturacion
     
     public partial class Local
     {
+        public Local()
+        {
+            this.Canastoes = new HashSet<Canasto>();
+        }
+    
         public int Id { get; set; }
         public int Numero { get; set; }
         public string Descripcion { get; set; }
+    
+        public virtual ICollection<Canasto> Canastoes { get; set; }
     }
 }

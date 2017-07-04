@@ -4,13 +4,20 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="3a8b985e53c14deca84144802c2b21db" Name="Diagram1" ZoomLevel="86">
-        <EntityTypeShape EntityType="PedidosDBModel.Canasto" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="PedidosDBModel.Estado" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="PedidosDBModel.Local" Width="1.5" PointX="2.75" PointY="3.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="PedidosDBModel.Operario" Width="1.5" PointX="4.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="PedidosDBModel.Pedido" Width="1.5" PointX="4.75" PointY="3.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="PedidosDBModel.Segmento" Width="1.5" PointX="6.75" PointY="0.75" IsExpanded="true" />
+      <Diagram DiagramId="dfd395c9205b490eacd11f891fa558c8" Name="Diagram1" ZoomLevel="74">
+        <EntityTypeShape EntityType="PedidosDBModel.Canasto" Width="1.5" PointX="3.875" PointY="0.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="PedidosDBModel.Estado" Width="1.5" PointX="5.75" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="PedidosDBModel.Local" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PedidosDBModel.Operario" Width="1.5" PointX="0.75" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="PedidosDBModel.Pedido" Width="1.5" PointX="8.625" PointY="3.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="PedidosDBModel.Segmento" Width="1.5" PointX="5.75" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="PedidosDBModel.sysdiagram" Width="1.5" PointX="5.75" PointY="7.5" IsExpanded="true" />
+        <AssociationConnector Association="PedidosDBModel.FK_Canasto_Asignador" ManuallyRouted="false" />
+        <AssociationConnector Association="PedidosDBModel.FK_Canasto_Facturista" ManuallyRouted="false" />
+        <AssociationConnector Association="PedidosDBModel.FK_Canasto_Local" ManuallyRouted="false" />
+        <AssociationConnector Association="PedidosDBModel.FK_Canasto_Operario" ManuallyRouted="false" />
+        <AssociationConnector Association="PedidosDBModel.FK_Canasto_Pedidos" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="PedidosDBModel.Usuario" Width="1.5" PointX="8.375" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

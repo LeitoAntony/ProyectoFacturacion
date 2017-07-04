@@ -16,7 +16,7 @@ namespace PedidosFacturacion
         private Logic objLogic;
         private AddBasket frmAddBasket;
         private int accountantRows = 0;
-        private int Id;
+        private static int Id;
         private static int IdRow;
         private static int ValueRow;
         private bool flag = false;
@@ -107,8 +107,8 @@ namespace PedidosFacturacion
         {
             IdBasketRow = dgvCanasto.CurrentRow.Index;
             ValueBasketRow = Convert.ToInt32(dgvCanasto.Rows[IdBasketRow].Cells[0].Value);
-            deleteOrder();
-            deleteOrderDB();
+            deleteBasket();
+            deleteBasketDB();
         }
 
         private void cmbLocal_SelectedIndexChanged(object sender, EventArgs e)

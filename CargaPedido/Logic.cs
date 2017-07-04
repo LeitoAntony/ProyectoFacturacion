@@ -7,6 +7,7 @@ namespace PedidosFacturacion
     public class Logic
     {
         private PedidosDBEntities context = new PedidosDBEntities();
+        private ABMLogic objABMLogic = new ABMLogic();
 
         public int insertOrder(Local local)
         {
@@ -103,9 +104,17 @@ namespace PedidosFacturacion
 
         public void setComentary(int Id, String comentary)
         {
-            var canastoEditar = context.Canastoes.FirstOrDefault(x => x.Id == Id);
-            canastoEditar.Comentario = comentary;
-            context.SaveChanges();
+            try
+            {
+                var canastoEditar = context.Canastoes.FirstOrDefault(x => x.Id == Id);
+                canastoEditar.Comentario = comentary;
+                context.SaveChanges();
+            }
+            catch (Exception e)
+            {
+                throw new NullReferenceException("Ingrese un comentario! ");
+            }
+
         }
 
         public void updateStates(int Id, String state)
@@ -125,9 +134,17 @@ namespace PedidosFacturacion
 
         public void setPriority(int Id)
         {
-            var orderEdit = context.Canastoes.FirstOrDefault(x => x.Id == Id);
-            orderEdit.Prioridad = "Prioridad";
-            context.SaveChanges();
+            try
+            {
+                var orderEdit = context.Canastoes.FirstOrDefault(x => x.Id == Id);
+                orderEdit.Prioridad = "Prioridad";
+                context.SaveChanges();
+            }
+            catch (Exception)
+            {
+                throw new ArgumentOutOfRangeException("Seleccione un canasto para marcar! ");
+            }
+
         }
 
         public Local getLocal(String descripcion)
@@ -285,6 +302,30 @@ namespace PedidosFacturacion
         {
             return "admin";
         }
+
+        internal bool chackDataLoguin(string user, string pass)
+        {
+            try
+            {
+                string passEncoded = objABMLogic.Encode(pass);
+
+                var userDB = context.Usuarios.FirstOrDefault(x => x.UserName.Trim() == user);
+                
+                if (userDB.UserName == user)
+                {                 
+                 var passDB = from p in context.Usuarios where userDB.UserName == user select p.Password;
+                 if (passDB.ToString().Trim() == passEncoded)
+                     return true;
+                } 
+            }
+            catch (Exception e)
+            {
+                throw;
+            }
+            return false;
+        }
+
+
     }
 
 

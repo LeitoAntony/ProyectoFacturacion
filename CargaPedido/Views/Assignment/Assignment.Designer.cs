@@ -277,7 +277,7 @@
             this.Column4.Name = "Column4";
             this.Column4.ReadOnly = true;
             // 
-            // Asignacion
+            // Assignment
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -285,7 +285,7 @@
             this.Controls.Add(this.dgvCanasto);
             this.Controls.Add(this.dgvPedido);
             this.Controls.Add(this.panel1);
-            this.Name = "Asignacion";
+            this.Name = "Assignment";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "AsignacionPedido";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;

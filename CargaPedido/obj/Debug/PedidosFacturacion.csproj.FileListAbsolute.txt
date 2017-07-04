@@ -101,7 +101,6 @@ C:\Users\userrfid\Documents\ProyectosVisualStudio2013\ProyectoFacturacion\Proyec
 G:\Proyectos\Proyectos_C#\GitHub\ProyectoFacturacion\CargaPedido\obj\Debug\PedidosFacturacion.AgregarCanasto.resources
 G:\Proyectos\Proyectos_C#\GitHub\ProyectoFacturacion\CargaPedido\obj\Debug\PedidosFacturacion.AsignarCanasto.resources
 G:\Proyectos\Proyectos_C#\GitHub\ProyectoFacturacion\CargaPedido\obj\Debug\PedidosFacturacion.Asignacion.resources
-C:\Users\userrfid\Documents\ProyectosVisualStudio2013\ProyectoFacturacion\CargaPedido\obj\Debug\PedidosFacturacion.csprojResolveAssemblyReference.cache
 C:\Users\userrfid\Documents\ProyectosVisualStudio2013\ProyectoFacturacion\CargaPedido\obj\Debug\PedidosFacturacion.Login.resources
 C:\Users\userrfid\Documents\ProyectosVisualStudio2013\ProyectoFacturacion\CargaPedido\obj\Debug\PedidosFacturacion.Assignment.resources
 C:\Users\userrfid\Documents\ProyectosVisualStudio2013\ProyectoFacturacion\CargaPedido\obj\Debug\PedidosFacturacion.AssignBasket.resources
@@ -109,3 +108,5 @@ C:\Users\userrfid\Documents\ProyectosVisualStudio2013\ProyectoFacturacion\CargaP
 C:\Users\userrfid\Documents\ProyectosVisualStudio2013\ProyectoFacturacion\CargaPedido\obj\Debug\PedidosFacturacion.Invoicing.resources
 C:\Users\userrfid\Documents\ProyectosVisualStudio2013\ProyectoFacturacion\CargaPedido\obj\Debug\PedidosFacturacion.AddBasket.resources
 C:\Users\userrfid\Documents\ProyectosVisualStudio2013\ProyectoFacturacion\CargaPedido\obj\Debug\PedidosFacturacion.Order.resources
+C:\Users\userrfid\Documents\ProyectosVisualStudio2013\ProyectoFacturacion\CargaPedido\obj\Debug\PedidosFacturacion.Views.ABM.resources
+C:\Users\userrfid\Documents\ProyectosVisualStudio2013\ProyectoFacturacion\CargaPedido\obj\Debug\PedidosFacturacion.csprojResolveAssemblyReference.cache

@@ -12,17 +12,11 @@ namespace PedidosFacturacion
     using System;
     using System.Collections.Generic;
     
-    public partial class Pedido
+    public partial class Usuario
     {
-        public Pedido()
-        {
-            this.Canastoes = new HashSet<Canasto>();
-        }
-    
-        public int Id { get; set; }
-        public string Descripcion_local { get; set; }
-        public Nullable<System.DateTime> Fecha { get; set; }
-    
-        public virtual ICollection<Canasto> Canastoes { get; set; }
+        public string Id { get; set; }
+        public string UserName { get; set; }
+        public string Password { get; set; }
+        public string Email { get; set; }
     }
 }

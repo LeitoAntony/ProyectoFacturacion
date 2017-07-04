@@ -14,8 +14,19 @@ namespace PedidosFacturacion
     
     public partial class Operario
     {
+        public Operario()
+        {
+            this.Canastoes = new HashSet<Canasto>();
+            this.Canastoes1 = new HashSet<Canasto>();
+            this.Canastoes2 = new HashSet<Canasto>();
+        }
+    
         public int Id { get; set; }
         public int Legajo { get; set; }
         public string Descripcion { get; set; }
+    
+        public virtual ICollection<Canasto> Canastoes { get; set; }
+        public virtual ICollection<Canasto> Canastoes1 { get; set; }
+        public virtual ICollection<Canasto> Canastoes2 { get; set; }
     }
 }

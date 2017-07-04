@@ -35,5 +35,11 @@ namespace PedidosFacturacion
         public string Descripcion_facturista { get; set; }
         public string Prioridad { get; set; }
         public string Comentario { get; set; }
+    
+        public virtual Operario Operario { get; set; }
+        public virtual Operario Operario1 { get; set; }
+        public virtual Local Local { get; set; }
+        public virtual Operario Operario2 { get; set; }
+        public virtual Pedido Pedido { get; set; }
     }
 }
