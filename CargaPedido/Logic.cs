@@ -7,7 +7,7 @@ namespace PedidosFacturacion
     public class Logic
     {
         private PedidosDBEntities context = new PedidosDBEntities();
-        private ABMLogic objABMLogic = new ABMLogic();
+
 
         public int insertOrder(Local local)
         {
@@ -252,62 +252,13 @@ namespace PedidosFacturacion
         }
 
 
-
-        internal string getUsuarioVendedor()
+        internal bool chackDataLoguin(string pUser, string pPass)
         {
-            return "ventas";
-        }
-
-        internal string getPassVendedor()
-        {
-            return "ventas";
-        }
-
-        internal string getUsuarioAsignador()
-        {
-            return "asignacion";
-        }
-
-        internal string getPassAsignador()
-        {
-            return "asignacion";
-        }
-
-        internal string getUsuarioFacturista()
-        {
-            return "facturacion";
-        }
-
-        internal string getPassFacturista()
-        {
-            return "facturacion";
-        }
-
-        internal string getUsuarioConsultas()
-        {
-            return "consultas";
-        }
-
-        internal string getPassConsultas()
-        {
-            return "consultas";
-        }
-
-        internal string getUsuarioAdmin()
-        {
-            return "admin";
-        }
-
-        internal string getPassAdmin()
-        {
-            return "admin";
-        }
-
-        internal bool chackDataLoguin(string user, string pass)
-        {
+            string user = pUser.Trim();
+            string pass = pPass.Trim();
             try
             {
-                string passEncoded = objABMLogic.Encode(pass);
+                string passEncoded = Encode(pass);
 
                 var userDB = context.Usuarios.FirstOrDefault(x => x.UserName.Trim() == user);
                 
@@ -326,7 +277,44 @@ namespace PedidosFacturacion
         }
 
 
+        internal string Encode(string pass)
+        {
+            string password = pass.ToLower();
+            string encode = string.Empty;
+            string encode2 = string.Empty;
+            for (int i = 0; i < password.Length; i++)
+            {
+                encode += (char)(password[i] + 10);
+            }
+            encode = encode + encode;
+            for (int i = encode.Length - 1; i > 0; i--)
+            {
+                encode2 += (char)(encode[i]);
+            }
+            encode = encode + encode2;
+            return encode;
+        }
+
+        internal string Decode(string pass)
+        {
+            string encode = string.Empty;
+            string encode2 = string.Empty;
+            for (int i = 0; i < pass.Length; i++)
+            {
+                encode += (char)(pass[i] - 10);
+            }
+            return encode;
+        }
+
+        internal void saveUserDB(string txtUsuario, string encode)
+        {
+            Usuario user = new Usuario();
+            user.UserName = txtUsuario.Trim();
+            user.Email = string.Empty;
+            user.Password = encode;
+            context.Usuarios.Add(user);
+            context.SaveChanges();
+
+        }
     }
-
-
 }

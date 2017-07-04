@@ -12,7 +12,7 @@ namespace PedidosFacturacion.Views
 {
     public partial class ABM : Form
     {
-        ABMLogic objLogic = new ABMLogic();
+        Logic objLogic = new Logic();
 
         public ABM()
         {
@@ -21,18 +21,44 @@ namespace PedidosFacturacion.Views
 
         private void btnGuardar_Click(object sender, EventArgs e)
         {
-            if (txtUsuario.Text != string.Empty && txtContraseña.Text != string.Empty)
+            if (txtUsuario.Text != string.Empty && txtContraseña.Text != string.Empty && txtConfirmacion.Text != string.Empty)
             {
-                string encode = Encode();
-                MessageBox.Show("Pass " + encode);
+                string pass = txtContraseña.Text;
+                string confi = txtConfirmacion.Text;                
+                if (pass == confi)
+                {
+                    string encode = Encode(pass);
+                    saveUser(txtUsuario.Text, encode);
+                    MessageBox.Show("Usuario creado correctamente!");
+                    resetFields();
+                }
+                else
+                    MessageBox.Show("Los datos de confirmación no corresponden!");
             }
+            else
+                MessageBox.Show("Complete todos los campos!");
         }
 
-        private string Encode()
+        private void resetFields()
         {
-            string user = txtUsuario.Text;
-            string pass = txtContraseña.Text;
+            txtUsuario.Text = string.Empty;
+            txtContraseña.Text = string.Empty;
+            txtConfirmacion.Text = string.Empty;
             
+        }
+
+        private void saveUser(string txtUsuario, string encode)
+        {
+            objLogic.saveUserDB(txtUsuario, encode);
+        }
+
+        private string Decoder(string encode)
+        {           
+            return objLogic.Decode(encode);
+        }
+
+        private string Encode(string pass)
+        {
             return objLogic.Encode(pass);
         }
 

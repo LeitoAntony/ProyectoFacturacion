@@ -17,7 +17,7 @@ namespace PedidosFacturacion
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new ABM());
+            Application.Run(new Login());
         }
     }
 }

@@ -17,7 +17,7 @@
         <AssociationConnector Association="PedidosDBModel.FK_Canasto_Local" ManuallyRouted="false" />
         <AssociationConnector Association="PedidosDBModel.FK_Canasto_Operario" ManuallyRouted="false" />
         <AssociationConnector Association="PedidosDBModel.FK_Canasto_Pedidos" ManuallyRouted="false" />
-        <EntityTypeShape EntityType="PedidosDBModel.Usuario" Width="1.5" PointX="8.375" PointY="0.75" />
+        <EntityTypeShape EntityType="PedidosDBModel.Usuario" Width="1.5" PointX="10.75" PointY="2" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

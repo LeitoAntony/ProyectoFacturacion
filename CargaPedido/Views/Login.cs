@@ -66,6 +66,7 @@ namespace PedidosFacturacion
 
         private bool checkData(string user, string pass)
         {
+            if()
             return objLogic.chackDataLoguin(user, pass);
         }
     }
