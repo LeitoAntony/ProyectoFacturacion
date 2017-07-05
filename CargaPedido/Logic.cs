@@ -252,7 +252,7 @@ namespace PedidosFacturacion
         }
 
 
-        internal bool chackDataLoguin(string pUser, string pPass)
+        public bool chackDataLoguin(string pUser, string pPass)
         {
             string user = pUser.Trim();
             string pass = pPass.Trim();
@@ -261,17 +261,18 @@ namespace PedidosFacturacion
                 string passEncoded = Encode(pass);
 
                 var userDB = context.Usuarios.FirstOrDefault(x => x.UserName.Trim() == user);
-                
+
                 if (userDB.UserName == user)
-                {                 
-                 var passDB = from p in context.Usuarios where userDB.UserName == user select p.Password;
-                 if (passDB.ToString().Trim() == passEncoded)
-                     return true;
-                } 
+                {
+                    var passDB = context.Usuarios.FirstOrDefault(x => x.Password == passEncoded);
+                    string pa = passDB.Password.ToString();
+                    if (passDB.Password.ToString().Trim() == passEncoded)
+                        return true;
+                }
             }
             catch (Exception e)
             {
-                throw;
+                throw new NullReferenceException("Datos ingresados incorrectos!");
             }
             return false;
         }

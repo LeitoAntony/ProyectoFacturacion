@@ -42,7 +42,7 @@ namespace PedidosFacturacion
                     frmAsignador.Show();
                     this.Close();
                 }
-                else if (user == "facturista")
+                else if (user == "facturacion")
                 {
                     Invoicing frmFacturista = new Invoicing();
                     frmFacturista.Show();
@@ -60,14 +60,23 @@ namespace PedidosFacturacion
                     MdiParent.MainMenuStrip.Visible = true;
                     this.Close();
                 }
-
             }
         }
 
         private bool checkData(string user, string pass)
         {
-            if()
-            return objLogic.chackDataLoguin(user, pass);
+            try
+            {
+                objLogic = new Logic();
+                if(user != null && pass != null)
+                return objLogic.chackDataLoguin(user, pass);
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message);
+            }
+            
+            return false;
         }
     }
 }

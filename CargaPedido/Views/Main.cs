@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PedidosFacturacion.Views;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -30,28 +31,28 @@ namespace PedidosFacturacion
 
         private void consultasToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Form frmConsultas = new Queries();
+            Queries frmConsultas = new Queries();
             frmConsultas.MdiParent = this;
             frmConsultas.Show();
         }
 
         private void agregarToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Form frmCarga = new Order();
+            Order frmCarga = new Order();
             frmCarga.MdiParent = this;
             frmCarga.Show();
         }
 
         private void asignarToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Form frmAsignacion = new Assignment();
+            Assignment frmAsignacion = new Assignment();
             frmAsignacion.MdiParent = this;
             frmAsignacion.Show();
         }
 
         private void facturarToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Form frmFacturacion = new Invoicing();
+            Invoicing frmFacturacion = new Invoicing();
             frmFacturacion.MdiParent = this;
             frmFacturacion.Show();
         }
@@ -64,6 +65,13 @@ namespace PedidosFacturacion
             frmLogin.MdiParent = this;
             frmLogin.Show();
             
+        }
+
+        private void aBMToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ABM frmABM = new ABM();
+            frmABM.MdiParent = this;
+            frmABM.Show();
         }
 
 

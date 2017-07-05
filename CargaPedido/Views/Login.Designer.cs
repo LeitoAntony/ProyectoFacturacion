@@ -120,9 +120,9 @@
             this.label3.ForeColor = System.Drawing.SystemColors.ControlLight;
             this.label3.Location = new System.Drawing.Point(15, 9);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(92, 29);
+            this.label3.Size = new System.Drawing.Size(78, 29);
             this.label3.TabIndex = 7;
-            this.label3.Text = "Loguin";
+            this.label3.Text = "Login";
             // 
             // pictureBox2
             // 
